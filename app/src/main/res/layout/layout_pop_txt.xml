@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?android:selectableItemBackground"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_popu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_70px"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_trans_30px"/>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:background="@color/color_e5e5e5"/>
+
+</LinearLayout>

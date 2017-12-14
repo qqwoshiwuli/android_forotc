@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/trans_25px"
+            android:paddingTop="@dimen/trans_20px"
+            android:text="担保方是什么意思？"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_30px"/>
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:id="@+id/tv_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:rotation="-90"
+            android:text="@string/ic_zhankai"
+            android:textColor="@color/color_font3"
+            android:textSize="@dimen/text_trans_24px"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/trans_25px"
+        android:text="对的，目前平台上所有交易都需要担保方。您可以在交易前自由选择您信任的担保方。每笔交易开始后，担保方都会被冻结等值的BTC在平台，保证您的交易安全。"
+        android:textColor="@color/color_font2"
+        android:textSize="@dimen/text_trans_24px"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:background="@color/color_e5e5e5"/>
+
+
+</LinearLayout>

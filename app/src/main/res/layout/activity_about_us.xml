@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/trans_40px"
+            android:paddingRight="@dimen/trans_40px">
+
+            <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/trans_150px"
+                android:layout_marginBottom="@dimen/trans_150px"
+                android:gravity="bottom"
+                android:paddingTop="@dimen/trans_30px"
+                android:text="@string/ic_logo2"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/text_trans_60px"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.5"
+                android:paddingTop="@dimen/trans_60px"
+                android:visibility="gone"
+                android:text="FOROTC团队成立于2017年9月，项目于同月立项。团队由台湾人士创建，公司注册于台湾，获得多名区块链爱好者投资，并与行业内不少自媒体达成合作意识。产品致力于为用户提供更好地场外交易服务。经过将近2个月的研发， 目前已推出安卓、iOS版本APP。当前版本已支持比特币的场外交易，会逐步增加以太坊及其他小币种的场外交易，以及矿机周边的交易。"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_28px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trans_60px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/trans_10px"
+                    android:layout_height="@dimen/trans_30px"
+                    android:layout_marginRight="@dimen/trans_10px"
+                    android:background="@color/color_blue"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系我们"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_30px"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginTop="@dimen/trans_20px"
+                android:background="@color/color_e5e5e5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trans_30px"
+                android:gravity="center"
+                android:text="formoreotc@gmail.com"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trans_60px"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/trans_10px"
+                    android:layout_height="@dimen/trans_30px"
+                    android:layout_marginRight="@dimen/trans_10px"
+                    android:background="@color/color_blue"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="官方博客"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_30px"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginTop="@dimen/trans_20px"
+                android:background="@color/color_e5e5e5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="18"
+                    android:text="Telegram"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_24px"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tv_telegram"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/trans_25px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_25px"
+                    android:text="https://forotc.wordpress.com"
+                    android:textColor="@drawable/color_blue_dark"
+                    android:textSize="@dimen/text_trans_24px"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trans_25px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="18"
+                    android:text="slack"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_24px"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tv_slack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:text="http://t.me/group/sdweh"
+                    android:textColor="@drawable/color_blue_dark"
+                    android:textSize="@dimen/text_trans_24px"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/trans_40px"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px"
+        android:paddingTop="@dimen/trans_40px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/trans_20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingRight="@dimen/trans_40px"
+                android:text="提币地址"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_withdrawal_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="点击选择一个提币地址"
+                android:textColor="@color/color_font3"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="right"
+                android:paddingLeft="@dimen/trans_20px"
+                android:text="管理"
+                android:textColor="@color/color_blue_dark"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="@dimen/trans_40px"
+                android:paddingRight="@dimen/trans_40px"
+                android:paddingTop="@dimen/trans_40px"
+                android:text="提币数量"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <EditText
+                android:id="@+id/et_withdrawal_money"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="请输入提币数量"
+                android:textColorHint="@color/color_font3"
+                android:background="@null"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minWidth="@dimen/trans_100px"
+                android:hint="请输入提币数量"
+                android:paddingLeft="@dimen/trans_80px"
+                android:text="BTC"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_poundage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="本次提现需要支付手续费: "
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_poundage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lines="1"
+                android:text="0.09828 BTC"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/trans_40px"
+            android:background="@drawable/select_blue_max_radiu"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/trans_10px"
+            android:paddingLeft="@dimen/trans_90px"
+            android:paddingRight="@dimen/trans_90px"
+            android:paddingTop="@dimen/trans_10px"
+            android:text="确认提币"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_trans_30px"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_20px"
+        android:background="@color/color_f5f5f5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/trans_30px"
+        android:layout_marginLeft="@dimen/trans_40px"
+        android:layout_marginTop="@dimen/trans_30px"
+        android:gravity="center"
+        android:text="提现记录"
+        android:textColor="@color/color_font1"
+        android:textSize="@dimen/text_trans_30px"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:layout_marginLeft="@dimen/trans_40px"
+        android:layout_marginRight="@dimen/trans_40px"
+        android:background="@color/color_e5e5e5"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/trans_30px"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px"
+        android:paddingTop="@dimen/trans_30px">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="提现数量"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_24px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现时间"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_24px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="状态"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_24px"/>
+    </LinearLayout>
+
+</LinearLayout>

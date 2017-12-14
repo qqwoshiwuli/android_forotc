@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/trans_100px">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <com.gqfbtc.widget.CommonTabLayout
+            android:id="@+id/tl_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_100px"
+            android:layout_gravity="bottom"
+            android:background="@color/color_fafafa"
+            app:tl_underline_gravity="TOP"
+            tl:tl_iconHeight="@dimen/trans_50px"
+            tl:tl_iconWidth="@dimen/trans_50px"
+            tl:tl_indicator_color="#2C97DE"
+            tl:tl_indicator_height="0dp"
+            tl:tl_textSelectColor="@color/color_blue"
+            tl:tl_textUnselectColor="@color/color_959595"
+            tl:tl_textsize="@dimen/trans_20px"
+            tl:tl_underline_color="#C7C7CD"
+            tl:tl_underline_height="@dimen/trans_1px">
+
+
+        </com.gqfbtc.widget.CommonTabLayout>
+
+        <com.gqfbtc.widget.BoomButtom
+            android:id="@+id/boom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+
+        </com.gqfbtc.widget.BoomButtom>
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:id="@+id/tv_center_btn"
+            android:layout_width="@dimen/trans_105px"
+            android:layout_height="@dimen/trans_105px"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/trans_10px"
+            android:background="@drawable/shape_blue_max_radiu"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/ic_jia"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_trans_45px"
+            android:visibility="visible"/>
+    </FrameLayout>
+
+
+</FrameLayout>

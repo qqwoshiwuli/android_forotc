@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:padding="@dimen/trans_15px">
+
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shap_write_t10_radiu"
+        android:padding="@dimen/trans_10px"
+        android:textColor="@color/color_font1"
+        android:textSize="@dimen/text_trans_28px"/>
+
+    <LinearLayout
+        android:id="@+id/lin_toast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingRight="@dimen/trans_10px"
+            android:text="@string/ic_kekao"
+            android:textColor="@color/color_font3"
+            android:textSize="@dimen/text_trans_26px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/color_font3"
+            android:textSize="@dimen/text_trans_28px"/>
+    </LinearLayout>
+
+</FrameLayout>

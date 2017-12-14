@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/include_toolbar_with_statusbar"/>
+
+        <LinearLayout
+            android:id="@+id/lin_top_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/trans_90px"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/trans_20px"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/trans_20px"
+            android:paddingRight="@dimen/trans_20px">
+
+            <TextView
+                android:id="@+id/tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="买BTC"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="@dimen/trans_10px"
+                android:text="@string/ic_zhankai"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin_release"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/trans_90px"
+            android:layout_gravity="bottom|right"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/trans_30px"
+            android:paddingRight="@dimen/trans_30px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingRight="@dimen/trans_10px"
+                android:text="发布交易"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_26px"/>
+
+            <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ic_jia"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <include layout="@layout/public_pull_recycleview"/>
+
+</LinearLayout>

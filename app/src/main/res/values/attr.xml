@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="horizontal_diver" format="dimension"/>
+    <attr name="vertical_diver" format="dimension"/>
+
+    <declare-styleable name="FlowTagLayout">
+        <attr name="horizontal_diver"/>
+        <attr name="vertical_diver"/>
+    </declare-styleable>
+</resources>

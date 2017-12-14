@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/trans_40px"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_40px"
+                    android:text="@string/str_toast_authentication"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_trans_28px"/>
+
+                <TextView
+                    android:id="@+id/tv_toast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="right"
+                    android:paddingBottom="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_45px"
+                    android:text="查看示例"
+                    android:textColor="@color/color_blue_dark"
+                    android:textSize="@dimen/text_trans_28px"/>
+
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginLeft="@dimen/trans_40px"
+                android:layout_marginRight="@dimen/trans_40px"
+                android:background="@color/color_e5e5e5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="@dimen/trans_40px"
+                android:text="身份证正面"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_trans_28px"/>
+
+            <ImageView
+                android:id="@+id/iv_front_idcard"
+                android:layout_width="@dimen/trans_388px"
+                android:layout_height="@dimen/trans_250px"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_idcardpeople"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginLeft="@dimen/trans_40px"
+                android:layout_marginRight="@dimen/trans_40px"
+                android:layout_marginTop="@dimen/trans_40px"
+                android:background="@color/color_e5e5e5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="@dimen/trans_40px"
+                android:text="身份证反面"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_trans_28px"/>
+
+            <ImageView
+                android:id="@+id/iv_reverse_idcard"
+                android:layout_width="@dimen/trans_388px"
+                android:layout_height="@dimen/trans_250px"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_idcardtxt"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginLeft="@dimen/trans_40px"
+                android:layout_marginRight="@dimen/trans_40px"
+                android:layout_marginTop="@dimen/trans_40px"
+                android:background="@color/color_e5e5e5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:padding="@dimen/trans_40px"
+                android:text="手持身份证照和证明纸条"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_trans_28px"/>
+
+            <ImageView
+                android:id="@+id/iv_people_idcard"
+                android:layout_width="@dimen/trans_388px"
+                android:layout_height="@dimen/trans_250px"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_idcardwithuser"
+                />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trans_100px"/>
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/select_blue_dark"
+        android:gravity="center"
+        android:padding="@dimen/trans_30px"
+        android:text="确定上传"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_trans_30px"/>
+</LinearLayout>

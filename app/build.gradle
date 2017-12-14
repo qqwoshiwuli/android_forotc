@@ -1,0 +1,146 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'btc'
+            keyPassword '123456'
+            storeFile file('btc.jks')
+            storePassword '123456'
+            v2SigningEnabled false
+        }
+
+        debug {
+            keyAlias 'btc'
+            keyPassword '123456'
+            storeFile file('btc.jks')
+            storePassword '123456'
+            v2SigningEnabled false
+        }
+    }
+    compileSdkVersion 27
+    buildToolsVersion '27.0.0'
+    defaultConfig {
+        applicationId "com.gqfbtc"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //shrinkResources true
+        }
+
+    }
+    sourceSets {
+
+        main {
+
+            res.srcDirs = ['src/main/res']
+
+            assets.srcDirs = ['src/main/assets']
+
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+
+            jni.srcDirs = []
+
+            jniLibs.srcDirs = ['src/main/libs']
+
+        }
+
+    }
+    repositories { flatDir { dirs 'libs' } }
+    dataBinding {
+        enabled true
+    }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+greendao {
+    //版本号，升级时可配置,对应当前数据库版本
+    schemaVersion 1
+    //由GreenDao自动生成代码所在的包名，默认的是在项目包下面新建一个gen
+    daoPackage 'com.gqfbtc.greenDB'
+    //设置自动生成代码的目录
+    targetGenDir 'src/main/java'
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:design:27.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    //框架
+    compile project(':mybaselibrary')
+    //工具类集合 https://github.com/haoma2012/AndroidUtils
+    compile 'com.blankj:utilcode:1.8.3'
+    //导航栏
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //轮播图
+    compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+    //圆角imageview
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    //通用开关按钮 https://github.com/kyleduo/SwitchButton
+    compile 'com.kyleduo.switchbutton:library:1.4.6'
+    //评分
+    compile 'com.hedgehog.ratingbar:app:1.1.2'
+    //数据库
+    compile 'org.greenrobot:greendao:3.2.2'
+    //
+    compile 'com.android.support:multidex:1.0.2'
+    implementation files('libs/joda-time-2.5-sources.jar')
+    implementation files('libs/joda-time-2.5.jar')
+    implementation files('libs/MobCommons-2017.0914.1125.jar')
+    implementation files('libs/MobTools-2017.0914.1125.jar')
+    implementation files('libs/ShareSDK-Core-3.1.0.jar')
+    implementation files('libs/ShareSDK-QQ-3.1.0.jar')
+    implementation files('libs/ShareSDK-QZone-3.1.0.jar')
+    implementation files('libs/ShareSDK-SinaWeibo-3.1.0.jar')
+    implementation files('libs/ShareSDK-Wechat-3.1.0.jar')
+    implementation files('libs/ShareSDK-Wechat-Core-3.1.0.jar')
+    implementation files('libs/ShareSDK-Wechat-Moments-3.1.0.jar')
+    implementation files('libs/MiPush_SDK_Client_3_2_2.jar')
+    implementation project(':IMKit2')
+    implementation project(':IMLib2')
+}
+//密钥库类型: JKS
+//密钥库提供方: SUN
+//
+//您的密钥库包含 1 个条目
+//
+//别名: btc
+//创建日期: 2017-10-14
+//条目类型: PrivateKeyEntry
+//证书链长度: 1
+//证书[1]:
+//所有者: CN=btc, OU=btc, O=btc, L=btc, ST=btc, C=btc
+//发布者: CN=btc, OU=btc, O=btc, L=btc, ST=btc, C=btc
+//序列号: 636c2474
+//有效期开始日期: Sat Oct 14 10:15:20 CST 2017, 截止日期: Wed Oct 08 10:15:20 CST 2042
+//证书指纹:
+//MD5: A9:58:CA:34:D7:3B:66:20:D8:94:30:41:BF:14:25:86
+//SHA1: 75:A8:11:57:C4:47:5B:52:2A:A8:0D:A9:44:9E:87:E0:2C:F0:91:1E
+//SHA256: BD:BB:55:B0:34:63:CF:AD:B7:DC:60:B8:F7:76:CF:1B:B5:7E:F8:DF:F3:11:B2:77:63:E8:2E:C0:5F:EB:D7:AB
+//签名算法名称: SHA256withRSA
+//版本: 3
+//
+//扩展:
+//
+//#1: ObjectId: 2.5.29.14 Criticality=false
+//SubjectKeyIdentifier [
+//        KeyIdentifier [
+//                0000: 33 3A 7F E2 87 3D 24 C5   8C D7 3D 96 EB AF 65 05  3:...=$...=...e.
+//                0010: 87 7E 56 FA                                        ..V.
+//                ]
+//        ]

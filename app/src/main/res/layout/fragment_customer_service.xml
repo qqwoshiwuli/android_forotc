@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:background="@color/color_e5e5e5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/trans_15px">
+
+        <EditText
+            android:id="@+id/et_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="@dimen/trans_40px"
+            android:layout_marginRight="@dimen/trans_20px"
+            android:layout_marginTop="@dimen/trans_15px"
+            android:layout_weight="1"
+            android:background="@drawable/shap_gray_border_t10_radiu"
+            android:gravity="top|left"
+            android:hint="说点什么"
+            android:paddingBottom="@dimen/trans_8px"
+            android:paddingLeft="@dimen/trans_15px"
+            android:paddingRight="@dimen/trans_15px"
+            android:paddingTop="@dimen/trans_8px"
+            android:textColor="@color/color_font1"
+            android:textColorHint="@color/color_font4"
+            android:textSize="@dimen/trans_32px"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="@dimen/trans_40px"
+            android:background="@drawable/select_blue_radiu"
+            android:gravity="center"
+            android:paddingBottom="@dimen/trans_8px"
+            android:paddingLeft="@dimen/trans_35px"
+            android:paddingRight="@dimen/trans_35px"
+            android:paddingTop="@dimen/trans_8px"
+            android:text="发送"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_trans_32px"/>
+
+    </LinearLayout>
+
+</LinearLayout>

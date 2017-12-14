@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/trans_250px"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/trans_20px"
+    >
+
+    <ImageView
+        android:layout_width="@dimen/trans_25px"
+        android:layout_height="@dimen/trans_25px"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/trans_45px"
+        android:elevation="@dimen/trans_10px"
+        android:scaleType="fitXY"
+        android:src="@drawable/jiaotop"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/trans_20px"
+        android:background="@drawable/shape_white_radiu_t20"
+        android:elevation="@dimen/trans_10px"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:id="@+id/view_dimess"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

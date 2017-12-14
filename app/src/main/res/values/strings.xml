@@ -1,0 +1,243 @@
+<resources>
+    <!--icon-->
+    <string name="app_name">FOROTC</string>
+    <string name="ic_dui">&#xe602;</string>
+    <string name="ic_btc">&#xe659;</string>
+    <string name="ic_zhankai">&#xe69e;</string>
+    <string name="ic_shanchu">&#xe77b;</string>
+    <string name="ic_jiaoyi">&#xe63b;</string>
+    <string name="ic_user2">&#xe601;</string>
+    <string name="ic_fuzhi">&#xe60f;</string>
+    <string name="ic_changjianwenti">&#xe682;</string>
+    <string name="ic_dingdan">&#xe623;</string>
+    <string name="ic_qianbao">&#xe744;</string>
+    <string name="ic_fenxiang">&#xe64b;</string>
+    <string name="ic_qianbao2">&#xe608;</string>
+    <string name="ic_wode">&#xe634;</string>
+    <string name="ic_mima">&#xe6ea;</string>
+    <string name="ic_huifu">&#xe648;</string>
+    <string name="ic_eth">&#xe619;</string>
+    <string name="ic_fukuanfangshi">&#xe6d4;</string>
+    <string name="ic_xing">&#xe644;</string>
+    <string name="ic_shijian">&#xe629;</string>
+    <string name="ic_kefu">&#xe607;</string>
+    <string name="ic_tuichu">&#xe612;</string>
+    <string name="ic_guanyu">&#xe620;</string>
+    <string name="ic_eye">&#xe636;</string>
+    <string name="ic_guanli">&#xe622;</string>
+    <string name="ic_shezhi">&#xe600;</string>
+    <string name="ic_jia">&#xe645;</string>
+    <string name="ic_shuangxiangjiantou">&#xe73a;</string>
+    <string name="ic_anquan">&#xe62a;</string>
+    <string name="ic_kuaisu">&#xe62d;</string>
+    <string name="ic_guanggaofuwudan">&#xe62c;</string>
+    <string name="ic_goumai">&#xe624;</string>
+    <string name="ic_qiehuan">&#xe60e;</string>
+    <string name="ic_kekao">&#xe671;</string>
+    <string name="ic_xing2">&#xe77c;</string>
+    <string name="ic_logo2">&#xe610;</string>
+    <string name="ic_fenlei">&#xe611;</string>
+    <string name="order_type_sell_btc">&#xe61b;</string>
+    <string name="order_type_buy_eth">&#xe61a;</string>
+    <string name="order_type_sell_eth">&#xe618;</string>
+    <string name="order_type_buy_btc">&#xe617;</string>
+    <string name="btc_m">&#xe616;</string>
+    <string name="btc_l">&#xe614;</string>
+    <string name="bizhong">&#xe613;</string>
+    <string name="fenlei">&#xe611;</string>
+    <string name="logo2">&#xe610;</string>
+    <string name="box_off">&#xe609;</string>
+    <string name="CloudWAN">&#xe671;</string>
+    <string name="ic_fuwudan">&#xe62c;</string>
+    <string name="ic_ios">&#xe615;</string>
+    <string name="ic_android">&#xe615;</string>
+    <string name="ic_fenxiang2">&#xe65d;</string>
+    <string name="box_on">&#xe60b;</string>
+    <string name="ic_star_light">&#xe77c;</string>
+    <string name="ic_star_dark">&#xe644;</string>
+    <string name="ic_bizhong">&#xe613;</string>
+    <string name="ic_tupian">&#xe61e;</string>
+    <string name="ic_wenben">&#xe653;</string>
+    <string name="ic_jineda">&#xe63c;</string>
+    <string name="ic_jianglimingxi">&#xe62e;</string>
+    <string name="ic_mairu">&#xe8ab;</string>
+    <string name="ic_renqun">&#xe69f;</string>
+    <string name="ic_fukuangfangshi">&#xe6d4;</string>
+    <string name="ic_maichu">&#xe69c;</string>
+    <string name="ic_time1">&#xe6a1;</string>
+    <string name="ic_time2">&#xe629;</string>
+    <string name="ic_tongji">&#xe651;</string>
+    <string name="ic_lianjie">&#xe6a0;</string>
+    <string name="ic_zichanjianshe">&#xe635;</string>
+    <string name="list_type_index7">&#xe61c;</string>
+    <string name="list_type_index8">&#xe61d;</string>
+    <string name="list_type_index6">&#xe61f;</string>
+    <string name="list_type_index9">&#xe621;</string>
+    <string name="list_type_index5">&#xe625;</string>
+    <string name="list_type_index10">&#xe626;</string>
+    <string name="ic_jinbi">&#xe631;</string>
+    <string name="ic_liuyan">&#xe674;</string>
+    <string name="ic_jiage">&#xe665;</string>
+    <string name="ic_chenggong">&#xe60a;</string>
+    <string name="ic_shimingrenzheng">&#xe63e;</string>
+
+    <!--helper-->
+    <!--浮动报价-->
+    <string name="str_quote_float_helper">报价会依据实时的市场价格和您设定的溢价比列上下浮动。</string>
+    <!--固定报价-->
+    <string name="str_quote_fixed_buy_helper">你希望以一个怎样的价格出购买特币。</string>
+    <string name="str_quote_fixed_sell_helper">你希望以一个怎样的价格出售比特币。</string>
+    <!--溢价比-->
+    <string name="str_premium_helper">这里的价格 = 当前市场价格×（1+您设置的溢价比例)。</string>
+    <!--单价-->
+    <string name="str_currency_float_helper">这里的价格是根据您填写的溢价比例决定的。不可修改。假设当前价格为30000，溢价比例为-5%，那么价格为28500。</string>
+    <string name="str_currency_fixed_helper">合理设置价格有利于促进交易达成。</string>
+
+    <!--价格上线-->
+    <string name="str_upper_limit_buy_helper">广告最高显示的价格，可帮助您在价格剧烈波动时减少不必要的损失，比如价格上限设定为30000，当市场波动溢价大于30000时，您的广告将依旧以30000的价格展示出来。</string>
+    <string name="str_upper_limit_sell_helper">广告最低显示的价格，可帮助您在价格剧烈波动时减少不必要的损失，比如价格上限设定为30000，当市场波动溢价大于30000时，您的广告将依旧以30000的价格展示出来。</string>
+    <!--买入量-->
+    <string name="str_buy_buy_helper">您希望购买的额度（人民币/比特币），系统会自动为您换算。</string>
+    <string name="str_buy_sell_helper">您希望卖出的额度（人民币/比特币），系统会自动为您换算。</string>
+    <!--最低买入-->
+    <string name="str_starting_buy_buy_helper">设定限额可以调整卖家单次出售的金额区间，您可以依据需求来调整。您可以依据交易方式设定不同的单笔限额，提高"单笔最低"也可避免一直收到交易金额过低的订单，设定合适的限额区间能让您的交易更有效率。</string>
+    <string name="str_starting_buy_sell_helper">设定限额可以调整买家单次购买的金额区间，您可以依据需求来调整。您可以依据交易方式设定不同的单笔限额，提高"单笔最低"也可避免一直收到交易金额过低的订单，设定合适的限额区间能让您的交易更有效率。</string>
+    <!--选择收款账号-->
+    <string name="str_account_helper">交易成功后，钱款会打到您选择的账户之一，交易担保人付款后会与您联系。</string>
+    <!--收币地址-->
+    <string name="str_address_helper">交易成功后，您的收币地址。</string>
+    <!--开放时间-->
+    <string name="str_time_helper">广告仅在开放时间可以被其他用户看到，您可以根据您的实际情况选择广告开放时间。</string>
+
+    <!--nodata-->
+    <string name="str_nodata_home">当前还没有人发布广告，可以刷新试试。或者点击下方“+”发布一个</string>
+    <string name="str_nodata_order">您还没交易过，没有任何订单消息哦</string>
+    <string name="str_nodata_advertising_start">您暂时还没有上架中的广告</string>
+    <string name="str_nodata_advertising_end">您暂时还没有已下架的广告</string>
+    <string name="str_nodata_btcaddress">您还没有添加过收币地址，正确添加收币地址才能使用安全模式购买虚拟资</string>
+    <string name="str_nodata_moneyaddress">您还没有添加过收款地址，添加了收款地址才能开始出售虚拟资产</string>
+    <string name="str_nodata_message">暂时还没人留言咨询过这则广告</string>
+
+    <!--longToast-->
+    <string name="str_toast_authentication">    单笔或累计交易额超过50000元后，需要进行实名认证才能继续交易。您需要提供身份证正反面、手持身份证照，进行实名认证，请在上传手持身份证时另加一张手写纸条注明“仅用于forotc认证”。认证成功后不可修改。\t\t\t\t\t\t\t\t
+    </string>
+
+    <string name="browser_download">浏览器打开</string>
+    <string name="loacation_download">本地下载</string>
+    <string name="update_app_model_prepare">准备下载</string>
+    <string name="update_app_model_progress">正在下载 %1$d%2$s</string>
+    <string name="update_app_model_success">下载成功(点击安装)</string>
+    <string name="update_app_model_error">下载失败(点击浏览器下载)</string>
+    <string name="downloading_apk">正在后台下载...</string>
+    <string name="no_support_msg_type">不支持的消息类型</string>
+
+    <string name="copy">复制</string>
+    <string name="send_to_friend">发送给朋友</string>
+    <string name="recall">撤回</string>
+
+    <string name="recall_success">撤回成功</string>
+    <string name="recall_fail">撤回失败</string>
+    <string name="recall_one_message">%1$s撤回了一条消息</string>
+
+    <string name="you">你</string>
+    <string name="other_party">对方</string>
+    <string name="divided_string">、</string>
+    <string name="disconnect_server">与服务器失联</string>
+
+
+    <!--注册协议-->
+    <string name="str_registration_agreement">与服务器失联</string>
+    <string name="str_wait_toast">近期有大量黑钱涌入虚拟货币市场，为保障投资人权益。请保证您的资金来源合法，且务必保证您汇款的银行卡是本人银行卡。在您汇款后，我们有可能会对您追加视频验证，如果您汇款的银行卡不是本人银行卡，或者您有任何资料造假，平台将会对您的资金进行一段时间冻结，请务必注意该风险。点击“同意”代表您接收我们的条款，黑钱请绕行。</string>
+    <!--挂单买-->
+    <string name="str_advertising_buy_safa_title">购买的币存入您在FOROTC的账户</string>
+    <string name="str_advertising_buy_title">购买的币存入您在FOROTC的账户</string>
+    <string name="str_advertising_buy_safa"> 您当前最多可挂单卖出钱包资产的20倍</string>
+    <string name="str_advertising_buy">您当前最多可挂单卖出钱包资产的20倍 </string>
+
+    <!--挂单卖-->
+    <string name="str_advertising_sale_safa_title"> 安全卖</string>
+    <string name="str_advertising_sale_title">快速卖 </string>
+    <string name="str_advertising_sale_safa">您当前最多可挂单卖出钱包资产的20倍</string>
+    <string name="str_advertising_sale">该模式出售需要先将相应资产充值到平台钱包</string>
+
+
+    <string name="str_advertising_buy_safe_help"> 1.挂单买入的BTC数量至少为1;\n\n
+2.为保证当卖家响应您的订单时，交易可正常进行，您需要提前在平台充值少量比特币作为交易担保；\n\n
+3.您可交易的额度与预存担保值成正比关系，如您在平台BTC钱包可用余额为0.1个，则系统默认您最多只能挂单买入1个BTC（0.1的10倍）\n\n
+4.近期有大量黑钱涌入虚拟货币市场，为保障投资人权益。请保证您的资金来源合法，且务必保证您汇款的银行卡是本人银行卡。在您汇款后，我们有可能会对您追加视频验证，如果您汇款的银行卡不是本人银行卡，或者您有任何资料造假，平台将会对您的资金进行一段时间冻结，请务必注意该风险。黑钱请绕行，正常交易的用户请无须担心。</string>
+    <string name="str_advertising_buy_help"> 1.挂单买入的数量至少为0.01;\n\n
+2.为保证当卖家响应您的订单时，交易可正常进行，您需要提前在平台充值少量比特币作为交易担保；\n\n
+3.您可交易的额度与预存担保值成正比关系，如您在平台BTC钱包可用余额为0.1个，则系统默认您最多只能挂单买入1个BTC（0.1的10倍）\n\n
+4.近期有大量黑钱涌入虚拟货币市场，为保障投资人权益。请保证您的资金来源合法，且务必保证您汇款的银行卡是本人银行卡。在您汇款后，我们有可能会对您追加视频验证，如果您汇款的银行卡不是本人银行卡，或者您有任何资料造假，平台将会对您的资金进行一段时间冻结，请务必注意该风险。黑钱请绕行，正常交易的用户请无须担心。</string>
+
+    <string name="str_advertising_sale_safe_help">1.挂单卖出的BTC数量至少为1;\n\n
+2.为保证当买家响应您的订单并付款时，交易可正常进行，您需要提前在平台充值少量比特币作为交易担保金；\n\n
+3.您可交易的额度与预存担保值成正比关系，如您在平台BTC钱包可用余额为0.1个，则系统默认您最多只能挂单卖出1个BTC（0.1的10倍）\n\n
+4.请保证您要出售的币是存在您个人的钱包地址，非某个交易平台的钱包地址。由于有些交易平台提现时间过长，如果您不能保证转账能快速的在区块网络中查询到，可能会被取消交易。</string>
+    <string name="str_advertising_sale_help">卖家需把币存入平台。</string>
+
+    <!--手续费-->
+    <string name="str_hand_money">活动期间挂单手续费全免。诚邀矿工和做市商家驻，挂单0手续费，更有额外的交易返现和iphoneX免费拿！详情请到【我的-客服中心】联系我们</string>
+    <string name="str_hand_buy_warning">近期有大量黑钱涌入虚拟货币市场，为保障投资人权益。请保证您的资金来源合法，且务必保证您汇款的银行卡是本人银行卡。在您汇款后，我们有可能会对您追加视频验证，如果您汇款的银行卡不是本人银行卡，或者您有任何资料造假，平台将会对您的资金进行一段时间冻结，请务必注意该风险。黑钱请绕行，正常交易的用户请无需担心。</string>
+    <string name="str_hand_sale_warning">平台会对买家做好KYC，对于大额订单，交易担保人还会对买家追加视频验证，确保其身份真实合规，最大程度上杜绝黑钱，请放心交易。</string>
+
+
+    <!--ShareDialog-->
+    <string name="str_share_default_title">FOROTC</string>
+    <string name="str_share_default_content">FOROTC的分享</string>
+    <string name="str_share_nocontent">没有分享内容!</string>
+    <string name="str_share_qq">QQ好友</string>
+    <string name="str_share_wechat">微信好友</string>
+    <string name="str_share_wechat_circle">微信朋友圈</string>
+    <string name="str_share_sina">新浪微博</string>
+    <string name="str_share_no">暂无可分享平台</string>
+    <string name="str_share_no_img">暂无图片可分享</string>
+    <string name="str_share_no_load">图片还未加载成功，请稍后</string>
+
+    <!--file-->
+    <string name="str_file_save">已保存在sd卡根目录</string>
+
+    <!--Permission-->
+    <string name="str_permission_read_write">没有读写权限,请开启权限</string>
+    <string name="str_permission_default">没有相关权限,请开启权限后操作</string>
+
+    <!--warning-->
+    <string name="str_warning_remark">备注长度不能超过6位</string>
+    <string name="str_warning_through_certification">您已通过实名认证</string>
+    <string name="str_warning_islogout">确定退出登陆吗?</string>
+    <string name="str_warning_isadvertising">确定上架该广告吗?</string>
+    <string name="str_warning_isshelves_advertising">确定下架该广告吗?</string>
+
+    <!--title-->
+    <string name="str_title_shareimgactivity">图片分享</string>
+    <string name="str_title_orderfragment">订单消息</string>
+    <string name="str_title_tradersinfo">查看双方信息</string>
+
+    <!--SubTitle-->
+    <string name="str_subtitle_customer_service">客服</string>
+    <string name="str_subtitle_tradersinfo">双方信息</string>
+
+
+    <!--text-->
+    <string name="str_txt_buyerphone">买家(%1$s)电话</string>
+    <string name="str_txt_sellerphone">卖家(%1$s)电话</string>
+
+    <string name="str_txt_seller_addtype">卖家收款方式</string>
+    <string name="str_txt_buyer_allcoin_adds">买家个人地址</string>
+    <string name="str_txt_buyer_coin_add">买家平台地址</string>
+
+    <string-array name="sa_title_userfragemnt">
+        <item>实名认证</item>
+        <item>我的广告</item>
+        <item>收款地址</item>
+        <item>收币地址</item>
+        <item>设置</item>
+        <item>常见问题</item>
+        <item>关于我们</item>
+        <item>客服中心</item>
+        <item>推荐给朋友</item>
+        <item>退出登陆</item>
+    </string-array>
+
+
+</resources>

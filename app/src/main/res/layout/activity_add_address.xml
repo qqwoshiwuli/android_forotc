@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/trans_40px">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BTC地址"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_28px"/>
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:hint="把地址粘贴到这里"
+            android:lines="1"
+            android:paddingBottom="@dimen/trans_20px"
+            android:paddingTop="@dimen/trans_30px"
+            android:textColor="@color/color_font1"
+            android:textColorHint="@color/color_font4"
+            android:textSize="@dimen/text_trans_28px"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_1px"
+            android:background="@color/color_e5e5e5"/>
+
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/trans_20px"
+            android:text="地址备注"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_28px"/>
+
+        <EditText
+            android:id="@+id/et_remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:hint="备注一下方便自己区分"
+            android:lines="1"
+            android:paddingBottom="@dimen/trans_20px"
+            android:paddingTop="@dimen/trans_30px"
+            android:textColor="@color/color_font1"
+            android:textColorHint="@color/color_font4"
+            android:textSize="@dimen/text_trans_28px"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_1px"
+            android:background="@color/color_e5e5e5"/>
+
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/trans_60px"
+            android:background="@drawable/select_blue_radiu"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/trans_25px"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_trans_32px"/>
+
+    </LinearLayout>
+
+</LinearLayout>

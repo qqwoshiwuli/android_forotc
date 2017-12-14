@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/trans_40px">
+
+                <LinearLayout
+                    android:id="@+id/lin_choosetype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="收款方式"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/et_payment_mode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:focusable="false"
+                            android:hint="点击选择付款方式(默认为银行卡)"
+                            android:paddingBottom="@dimen/trans_20px"
+                            android:paddingTop="@dimen/trans_20px"
+                            android:textColor="@color/color_font1"
+                            android:textColorHint="@color/color_font4"
+                            android:textSize="@dimen/text_trans_28px"
+
+                            />
+
+                        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="center"
+                            android:text="@string/ic_zhankai"
+                            android:textColor="@color/color_font4"
+                            android:textSize="@dimen/text_trans_30px"/>
+
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trans_1px"
+                        android:background="@color/color_e5e5e5"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lin_content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="开户行"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <EditText
+                        android:id="@+id/et_content1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="开户行名称"
+                        android:paddingBottom="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:textColor="@color/color_font1"
+                        android:textColorHint="@color/color_font4"
+                        android:textSize="@dimen/text_trans_28px"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trans_1px"
+                        android:background="@color/color_e5e5e5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="支行"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <EditText
+                        android:id="@+id/et_content2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="支行名称"
+                        android:paddingBottom="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:textColor="@color/color_font1"
+                        android:textColorHint="@color/color_font4"
+                        android:textSize="@dimen/text_trans_28px"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trans_1px"
+                        android:background="@color/color_e5e5e5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_content3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="开户人"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <EditText
+                        android:id="@+id/et_content3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="开户人姓名"
+                        android:paddingBottom="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:textColor="@color/color_font1"
+                        android:textColorHint="@color/color_font4"
+                        android:textSize="@dimen/text_trans_28px"
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trans_1px"
+                        android:background="@color/color_e5e5e5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_content4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="收款账号"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <EditText
+                        android:id="@+id/et_content4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="请输入正确的银行卡账号"
+                        android:inputType="number|textEmailAddress"
+                        android:paddingBottom="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:textColor="@color/color_font1"
+                        android:textColorHint="@color/color_font4"
+                        android:textSize="@dimen/text_trans_28px"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/trans_1px"
+                        android:background="@color/color_e5e5e5"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/trans_40px"
+                android:layout_marginTop="@dimen/trans_40px"
+                android:background="@drawable/select_blue_radiu"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="@dimen/trans_25px"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_trans_32px"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

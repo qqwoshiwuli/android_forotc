@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingBottom="@dimen/trans_20px"
+              android:paddingTop="@dimen/trans_20px">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ic_header"
+                android:layout_width="@dimen/trans_60px"
+                android:layout_height="@dimen/trans_60px"
+                android:layout_marginBottom="@dimen/trans_10px"
+                android:src="@color/color_blue"
+                />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="4.8分"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_26px"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/trans_30px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/trans_15px">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="玩币大神"
+                    android:paddingRight="@dimen/trans_20px"
+                    android:textColor="@color/color_font2"
+                    android:textSize="@dimen/text_trans_34px"/>
+
+                <ImageView
+                    android:id="@+id/iv_alpay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_alpay"
+                    android:paddingBottom="@dimen/trans_8px"
+                    android:paddingTop="@dimen/trans_5px"
+                    android:paddingRight="@dimen/trans_20px"
+                    />
+                <ImageView
+                    android:id="@+id/iv_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_yinlian"
+                    android:paddingRight="@dimen/trans_10px"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_guarantee_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/trans_30px"
+                    android:gravity="center"
+                    android:text="担保15632次"
+                    android:textColor="@color/color_font3"
+                    android:textSize="@dimen/text_trans_24px"/>
+
+                <TextView
+                    android:id="@+id/tv_guarantee_btc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="总担保 8888 BTC"
+                    android:textColor="@color/color_font3"
+                    android:textSize="@dimen/text_trans_24px"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="@dimen/trans_50px"
+        android:layout_height="@dimen/trans_50px"
+        android:paddingRight="@dimen/trans_20px"
+        />
+</LinearLayout>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/sv_root"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/iv_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/trans_20px"
+                android:paddingTop="@dimen/trans_20px">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="您已邀请成功"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_26px"/>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/trans_15px"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/trans_10px"
+                            android:gravity="center"
+                            android:text="@string/ic_renqun"
+                            android:textColor="@color/color_f45638"
+                            android:textSize="@dimen/text_trans_26px"/>
+
+                        <TextView
+                            android:id="@+id/tv_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="12 人"
+                            android:textColor="@color/color_f45638"
+                            android:textSize="@dimen/text_trans_26px"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="您已获得奖励"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_26px"/>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/trans_15px"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/trans_10px"
+                            android:gravity="center"
+                            android:text="@string/ic_jianglimingxi"
+                            android:textColor="@color/color_f45638"
+                            android:textSize="@dimen/text_trans_26px"/>
+
+                        <TextView
+                            android:id="@+id/tv_rewards"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="0.00000008 BTC"
+                            android:textColor="@color/color_f45638"
+                            android:textSize="@dimen/text_trans_26px"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_20px"
+                android:background="@color/color_f5f5f5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/trans_20px"
+                android:paddingLeft="@dimen/trans_40px"
+                android:paddingTop="@dimen/trans_20px">
+
+                <View
+                    android:layout_width="@dimen/trans_10px"
+                    android:layout_height="@dimen/trans_28px"
+                    android:layout_marginRight="@dimen/trans_10px"
+                    android:background="@color/color_f45638"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="邀请方式"
+                    android:textColor="@color/color_f45638"
+                    android:textSize="@dimen/text_trans_28px"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginLeft="@dimen/trans_40px"
+                android:layout_marginRight="@dimen/trans_40px"
+                android:background="@color/color_e5e5e5"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/trans_10px"
+                android:paddingTop="@dimen/trans_35px">
+
+                <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/ic_tupian"
+                    android:textColor="@color/color_f45638"
+                    android:textSize="@dimen/text_trans_60px"/>
+
+                <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/trans_70px"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|top"
+                    android:text="@string/ic_wenben"
+                    android:textColor="@color/color_f45638"
+                    android:textSize="@dimen/text_trans_55px"/>
+
+                <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/ic_lianjie"
+                    android:textColor="@color/color_f45638"
+                    android:textSize="@dimen/text_trans_60px"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/trans_20px"
+                >
+
+                <LinearLayout
+                    android:id="@+id/lin_img"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/trans_20px"
+                    android:paddingTop="@dimen/trans_15px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_red_max_radiu"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/trans_5px"
+                        android:paddingLeft="@dimen/trans_20px"
+                        android:paddingRight="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_5px"
+                        android:text="图片邀请"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_trans_28px"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_literals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/trans_20px"
+                    android:paddingTop="@dimen/trans_15px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_red_max_radiu"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/trans_5px"
+                        android:paddingLeft="@dimen/trans_20px"
+                        android:paddingRight="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_5px"
+                        android:text="文字邀请"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_trans_28px"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lin_url"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/trans_20px"
+                    android:paddingTop="@dimen/trans_15px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_red_max_radiu"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/trans_5px"
+                        android:paddingLeft="@dimen/trans_20px"
+                        android:paddingRight="@dimen/trans_20px"
+                        android:paddingTop="@dimen/trans_5px"
+                        android:text="链接邀请"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_trans_28px"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/trans_20px"
+                android:paddingLeft="@dimen/trans_40px"
+                android:paddingTop="@dimen/trans_20px">
+
+                <View
+                    android:layout_width="@dimen/trans_10px"
+                    android:layout_height="@dimen/trans_28px"
+                    android:layout_marginRight="@dimen/trans_10px"
+                    android:background="@color/color_f45638"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动说明"
+                    android:textColor="@color/color_f45638"
+                    android:textSize="@dimen/text_trans_28px"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginLeft="@dimen/trans_40px"
+                android:layout_marginRight="@dimen/trans_40px"
+                android:background="@color/color_e5e5e5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/trans_40px"
+                android:text="1 您可以任选以上任一种邀请方式将红包分享给好友。\n\n
+2 活动期间您邀请的好友在平台的每一次成功交易您都会获得40%手续费返现。\n\n
+3 返现奖励将以BTC形式充入您的账户。\n\n
+4 同一用户只能被邀请一次。\n\n
+5 本活动最终解释权归FOROTC所有。\n\n"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_trans_28px"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

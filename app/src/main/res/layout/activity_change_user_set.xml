@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <LinearLayout
+        android:id="@+id/lin_content1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px"
+        android:paddingTop="@dimen/trans_20px"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/trans_20px"
+            android:text="输入原密码"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_28px"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/trans_10px"
+            android:paddingTop="@dimen/trans_20px">
+
+            <TextView
+                android:id="@+id/tv_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/trans_20px"
+                android:text="密码"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_30px"/>
+
+            <com.gqfbtc.widget.TextInputClearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/et_input1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="6-20位字母或数字"
+                    android:padding="@dimen/trans_20px"
+                    android:paddingBottom="@dimen/trans_20px"
+                    android:textColor="@color/color_font2"
+                    android:textColorHint="@color/color_font4"
+                    android:textSize="@dimen/text_trans_28px"
+                    />
+            </com.gqfbtc.widget.TextInputClearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_1px"
+            android:background="@color/color_e5e5e5"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_content2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px"
+        android:paddingTop="@dimen/trans_20px"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/trans_20px"
+            android:text="输入新密码"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_28px"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/trans_10px"
+            android:paddingTop="@dimen/trans_20px">
+
+            <TextView
+                android:id="@+id/tv_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/trans_20px"
+                android:text="密码"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_30px"/>
+
+            <com.gqfbtc.widget.TextInputClearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/et_input2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="6-20位字母或数字"
+                    android:padding="@dimen/trans_20px"
+                    android:paddingBottom="@dimen/trans_20px"
+                    android:textColor="@color/color_font2"
+                    android:textColorHint="@color/color_font4"
+                    android:textSize="@dimen/text_trans_28px"
+                    />
+            </com.gqfbtc.widget.TextInputClearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_1px"
+            android:background="@color/color_e5e5e5"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/trans_40px"
+        android:layout_marginRight="@dimen/trans_40px"
+        android:layout_marginTop="@dimen/trans_100px"
+        android:background="@drawable/select_blue_radiu"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="@dimen/trans_25px"
+        android:text="确定修改"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_trans_32px"/>
+
+</LinearLayout>

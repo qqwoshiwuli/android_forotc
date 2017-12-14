@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="." name="external_storage_root" />
+    <external-path name="files_root"  path="Android/data/com.gqfbtc/"/>
+    <external-path name="rc_external_path" path="."/>
+    <external-path name="camera_photos"  path="."/>
+    <external-files-path name="name1" path="." />
+    <external-cache-path name="name2" path="." />
+    <files-path name="name3" path="." />
+    <cache-path name="name4" path="." />
+</paths>

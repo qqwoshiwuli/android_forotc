@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/root_view"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:id="@+id/lin_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:descendantFocusability="afterDescendants"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px"
+        >
+
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:id="@+id/tv_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/trans_10px"
+            android:layout_marginRight="@dimen/trans_25px"
+            android:gravity="center"
+            android:text="@string/ic_qianbao"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_35px"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/trans_10px"
+                android:paddingBottom="@dimen/trans_25px"
+                android:paddingTop="@dimen/trans_25px"
+                android:text="设置"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_32px"
+                />
+
+            <TextView
+                android:id="@+id/sutitle_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="10"
+                android:paddingBottom="@dimen/trans_10px"
+                android:text="公告"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/checkbox"
+            style="@style/SwitchButtonStyle"
+            android:layout_width="@dimen/trans_70px"
+            android:layout_height="@dimen/trans_80px"
+            android:layout_centerInParent="true"
+            android:checked="false"
+            android:visibility="gone"
+            app:kswAnimationDuration="300"
+            app:kswBackDrawable="@drawable/ios_back_drawable"
+            app:kswBackMeasureRatio="1.4"
+            app:kswThumbDrawable="@drawable/ios_thumb_selector"
+            app:kswThumbMarginBottom="-8dp"
+            app:kswThumbMarginLeft="-5dp"
+            app:kswThumbMarginRight="-5dp"
+            app:kswThumbMarginTop="-2.5dp"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_header_img"
+            android:layout_width="@dimen/trans_60px"
+            android:layout_height="@dimen/trans_60px"
+            android:layout_marginLeft="@dimen/trans_20px"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="@color/color_font3"
+            android:textSize="@dimen/text_trans_28px"
+            android:visibility="gone"/>
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:id="@+id/tv_right_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:rotation="-90"
+            android:text="@string/ic_zhankai"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/text_trans_28px"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_20px"
+        android:background="@color/color_f5f5f5"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:layout_marginLeft="@dimen/trans_40px"
+        android:layout_marginRight="@dimen/trans_40px"
+        android:background="@color/color_e5e5e5"
+        />
+</LinearLayout>

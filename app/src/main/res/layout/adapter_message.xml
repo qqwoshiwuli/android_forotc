@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingTop="@dimen/trans_20px">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ic_pic"
+            android:layout_width="@dimen/trans_60px"
+            android:layout_height="@dimen/trans_60px"
+            android:src="@color/color_44c745"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/trans_20px">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="1"
+                android:paddingRight="@dimen/trans_40px"
+                android:text="玩币大神"
+                android:textColor="@color/color_font3"
+                android:textSize="@dimen/text_trans_26px"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trans_10px"/>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2017-08-9-09"
+                android:textColor="@color/color_font3"
+                android:textSize="@dimen/text_trans_22px"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trans_10px"/>
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/trans_40px"
+                android:text="玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说，玩币大神说"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_28px"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/trans_1px"
+                android:layout_marginTop="@dimen/trans_20px"
+                android:background="@color/color_e5e5e5"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/trans_50px"
+              android:layout_marginRight="@dimen/trans_50px"
+              android:background="@drawable/shap_write_t20_radiu"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/trans_40px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/trans_20px"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_28px"
+            android:visibility="visible"
+            tools:text="买家会往您的以下账户之一付款，且付款后会告知具体付款账户。如账户有误，请及时联系修改。"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/trans_30px"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:background="@color/color_e5e5e5"/>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/trans_25px"
+        android:text="取消"
+        android:textColor="@color/color_font1"
+        android:textSize="@dimen/text_trans_30px"/>
+
+</LinearLayout>

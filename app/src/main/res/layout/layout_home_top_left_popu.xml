@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rel_root"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/trans_20px"
+    >
+
+
+    <com.fivefivelike.mybaselibrary.view.PopupBackView
+        android:id="@+id/popupBackView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/recyclerView"
+        android:layout_alignLeft="@+id/recyclerView"
+        android:layout_alignRight="@+id/recyclerView"
+        android:layout_alignTop="@+id/recyclerView"
+        app:arrow_gravity="left"
+        app:arrow_margin_left="@dimen/trans_50px"
+        app:backageColor="@color/white"
+        app:roundConner="@dimen/trans_20px">
+
+
+    </com.fivefivelike.mybaselibrary.view.PopupBackView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/trans_20px"/>
+
+
+
+</RelativeLayout>

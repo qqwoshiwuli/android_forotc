@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:id="@+id/lin_top"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/trans_40px"
+        android:paddingRight="@dimen/trans_40px">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_20px"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交易金额"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/trans_10px"
+                android:paddingRight="@dimen/trans_20px"
+                android:text="20000 CNY"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手\u0020 续\u0020 费"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:id="@+id/tv_poundage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="17"
+                android:gravity="right"
+                android:paddingLeft="@dimen/trans_10px"
+                android:text="200 CNY"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_20px"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交易单价"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_unit_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/trans_10px"
+                android:paddingRight="@dimen/trans_20px"
+                android:text="2000000 CNY"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交易数量"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <TextView
+                android:id="@+id/tv_btc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="17"
+                android:gravity="center_vertical|right"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/trans_10px"
+                android:text="10.12345678 BTC"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/trans_20px"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:layout_marginLeft="@dimen/trans_40px"
+        android:layout_marginRight="@dimen/trans_40px"
+        android:background="@color/color_e5e5e5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/trans_40px"
+            android:paddingTop="@dimen/trans_20px">
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_freeze"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="您已被冻结 1 BTC"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_30px"/>
+
+
+            <com.gqfbtc.widget.SingleLineZoomTextView
+                android:id="@+id/tv_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/trans_20px"
+                android:paddingTop="@dimen/trans_10px"
+                android:text="等待买家付款 20000 CNY"
+                android:textColor="@color/color_font2"
+                android:textSize="@dimen/text_trans_24px"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_my_pay_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/trans_20px"
+            android:paddingTop="@dimen/trans_20px">
+
+            <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ic_qianbao"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/text_trans_45px"/>
+
+            <TextView
+                android:id="@+id/tv_paytype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="@dimen/trans_20px"
+                android:text="我的收款方式"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/text_trans_32px"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/fl_collection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/tv_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/trans_40px"
+                android:layout_marginLeft="@dimen/trans_30px"
+                android:layout_marginRight="@dimen/trans_30px"
+                android:layout_marginTop="@dimen/trans_15px"
+                android:background="@drawable/shape_blue_t15_radiu"
+                android:gravity="center"
+                android:paddingBottom="@dimen/trans_12px"
+                android:paddingTop="@dimen/trans_12px"
+                android:text="已收到款"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_trans_28px"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_call_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/tv_call_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/trans_40px"
+                android:layout_marginLeft="@dimen/trans_30px"
+                android:layout_marginRight="@dimen/trans_30px"
+                android:layout_marginTop="@dimen/trans_15px"
+                android:background="@drawable/shap_blue_border_radiu"
+                android:gravity="center"
+                android:paddingBottom="@dimen/trans_12px"
+                android:paddingTop="@dimen/trans_12px"
+                android:text="要求客服介入"
+                android:textColor="@color/color_blue"
+                android:textSize="@dimen/text_trans_28px"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/trans_1px"
+        android:background="@color/color_e5e5e5"/>
+
+</LinearLayout>

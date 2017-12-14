@@ -1,0 +1,3 @@
+include ':app', ':mybaselibrary', ':IMLib2', ':IMKit2'
+project(':IMLib2').projectDir = new File('IMLib')
+project(':IMKit2').projectDir = new File('IMKit')

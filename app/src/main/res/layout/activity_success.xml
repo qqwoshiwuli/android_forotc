@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+
+    <com.fivefivelike.mybaselibrary.view.IconFontTextview
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/trans_100px"
+        android:text="@string/ic_chenggong"
+        android:textColor="@color/color_44c745"
+        android:textSize="@dimen/text_trans_160px"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/trans_60px"
+        android:gravity="center"
+        android:text="密码设置成功"
+        android:textColor="@color/color_font1"
+        android:textSize="@dimen/text_trans_30px"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/trans_70px"
+        android:gravity="center"
+        android:text="已为您重新登陆，正在为您跳转到首页"
+        android:textColor="@color/color_font3"
+        android:textSize="@dimen/text_trans_28px"/>
+
+    <TextView
+        android:id="@+id/tv_tosat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/trans_100px"
+        android:gravity="center"
+        android:padding="@dimen/trans_20px"
+        android:text="立即前往"
+        android:textColor="@drawable/color_blue_dark"
+        android:textSize="@dimen/text_trans_28px"/>
+
+</LinearLayout>

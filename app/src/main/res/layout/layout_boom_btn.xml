@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/boom_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/color_blue"/>
+
+
+    <LinearLayout
+        android:id="@+id/boom_lin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+            android:id="@+id/boom_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"/>
+
+        <com.gqfbtc.widget.SingleLineZoomTextView
+            android:id="@+id/boom_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gqf"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_20px"/>
+
+        <com.gqfbtc.widget.SingleLineZoomTextView
+            android:id="@+id/boom_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="gqf"
+            android:textColor="@color/color_font1"
+            android:textSize="@dimen/text_trans_18px"
+            android:visibility="gone"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</FrameLayout>

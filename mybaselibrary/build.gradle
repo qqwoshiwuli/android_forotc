@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    api "com.android.support:appcompat-v7:${rootProject.ext.android.VSupportSdk}"
+    api "com.android.support:cardview-v7:${rootProject.ext.android.VSupportSdk}"
+    testCompile 'junit:junit:4.12'
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["design"]
+    compile rootProject.ext.dependencies["annotations"]
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+    compile rootProject.ext.dependencies["glide"]
+    compile rootProject.ext.dependencies["avi-loading"]
+    compile rootProject.ext.dependencies["gson"]
+    compile rootProject.ext.dependencies["EventBus"]
+    //compile rootProject.ext.dependencies["rxbus"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["nohttp"]
+    compile rootProject.ext.dependencies["circleimageview"]
+    compile rootProject.ext.dependencies["chipsLayoutManager"]
+    compile rootProject.ext.dependencies["crop-photo"]
+    compile rootProject.ext.dependencies["rvadapter"]
+    compile rootProject.ext.dependencies["lvadapter"]
+    compile rootProject.ext.dependencies["circular"]
+    compile rootProject.ext.dependencies["album"]
+    compile rootProject.ext.dependencies["swiperecyclerview"]
+    compile rootProject.ext.dependencies["andpermission"]
+    compile rootProject.ext.dependencies["durban"]
+    compile rootProject.ext.dependencies["progresspieview"]
+    compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["okhttp3-integration"]
+    compile rootProject.ext.dependencies["status-bar"]
+    annotationProcessor rootProject.ext.dependencies["bumptech"]
+
+}
