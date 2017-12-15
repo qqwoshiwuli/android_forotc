@@ -257,5 +257,27 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
      * 我的广告
      */
 
+    /**
+     * 订单列表
+     */
 
+    public Disposable orderList(
+            RequestCallback requestCallback
+    ) {
+        getBaseMapWithUid();
+        return new HttpRequest.Builder()
+                .setRequestCode(0x123)
+                .setRequestUrl(HttpUrl.getIntance().orderList + "/" + viewDelegate.page)
+                .setRequestName("个人中心")
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+    }
+
+    /**
+     * 订单列表
+     */
 }

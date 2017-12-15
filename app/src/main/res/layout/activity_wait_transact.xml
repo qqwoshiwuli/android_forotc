@@ -55,6 +55,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_title1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="交易金额"
@@ -74,6 +75,7 @@
                                 android:textSize="@dimen/text_trans_24px"/>
 
                             <TextView
+                                android:id="@+id/tv_title2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="手\u0020 续\u0020 费"
@@ -104,6 +106,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_title3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="交易单价"
@@ -123,6 +126,7 @@
                                 android:textSize="@dimen/text_trans_24px"/>
 
                             <TextView
+                                android:id="@+id/tv_title4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="交易数量"
@@ -157,6 +161,7 @@
                         android:background="@color/color_e5e5e5"/>
 
                     <LinearLayout
+                        android:id="@+id/lin_default"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -223,6 +228,19 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_bigdeals_toast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/trans_30px"
+                        android:paddingLeft="@dimen/trans_40px"
+                        android:paddingRight="@dimen/trans_40px"
+                        android:paddingTop="@dimen/trans_30px"
+                        android:text="请在10分钟内开始交易"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/text_trans_24px"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

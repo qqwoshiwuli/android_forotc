@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
     >
 
-    <de.hdodenhof.circleimageview.CircleImageView
+
+
+    <ImageView
         android:id="@+id/boom_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/color_blue"/>
+        android:scaleType="centerInside"
+        android:elevation="@dimen/trans_20px"
+        android:src="@color/color_blue"
+        />
 
 
     <LinearLayout
@@ -20,7 +29,6 @@
         android:gravity="center"
         android:orientation="vertical"
         >
-
 
         <Space
             android:layout_width="wrap_content"
@@ -63,4 +71,18 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
+    <com.gqfbtc.widget.SingleLineZoomTextView
+        android:id="@+id/boom_bottom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="-10dp"
+        android:gravity="center"
+        android:text="dsadasdasdasda"
+        android:textColor="@color/color_font1"
+        android:textSize="@dimen/text_trans_24px"
+        android:visibility="visible"/>
 </FrameLayout>
+
+
+

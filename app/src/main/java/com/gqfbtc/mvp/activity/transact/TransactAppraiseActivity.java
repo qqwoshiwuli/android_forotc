@@ -1,4 +1,4 @@
-package com.gqfbtc.mvp.activity;
+package com.gqfbtc.mvp.activity.transact;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.gqfbtc.entity.bean.TransactAppraise;
+import com.gqfbtc.mvp.activity.SuccessActivity;
 import com.gqfbtc.mvp.databinder.TransactAppraiseBinder;
 import com.gqfbtc.mvp.delegate.TransactAppraiseDelegate;
 import com.hedgehog.ratingbar.RatingBar;

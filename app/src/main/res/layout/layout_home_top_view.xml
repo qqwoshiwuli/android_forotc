@@ -29,7 +29,9 @@
             android:id="@+id/lin_coin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/trans_40px">
+
 
             <com.fivefivelike.mybaselibrary.view.IconFontTextview
                 android:layout_width="wrap_content"
@@ -42,19 +44,18 @@
                 android:paddingRight="@dimen/trans_35px"
                 android:text="@string/ic_bizhong"
                 android:textColor="@color/color_b6b6b6"
-                android:textSize="@dimen/text_trans_40px"/>
-
+                android:textSize="@dimen/text_trans_34px"/>
             <com.gqfbtc.widget.CommonTabLayout
                 android:id="@+id/tl_8"
-                android:layout_width="@dimen/trans_150px"
+                android:layout_width="@dimen/trans_360px"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="#00000000"
                 android:paddingLeft="@dimen/trans_10px"
-                android:paddingRight="0dp"
+                android:paddingRight="@dimen/trans_10px"
                 tl:tl_iconVisible="false"
                 tl:tl_indicator_style="BLOCK"
-                tl:tl_indicator_width="@dimen/trans_100px"
+                tl:tl_indicator_width="@dimen/trans_110px"
                 tl:tl_textSelectColor="@color/color_font1"
                 tl:tl_textUnselectColor="@color/color_font2"
                 tl:tl_textsize="@dimen/text_trans_26px"/>
@@ -95,7 +96,7 @@
                 android:paddingRight="@dimen/trans_10px"
                 tl:tl_iconVisible="false"
                 tl:tl_indicator_style="BLOCK"
-                tl:tl_indicator_width="@dimen/trans_130px"
+                tl:tl_indicator_width="@dimen/trans_110px"
                 tl:tl_textSelectColor="@color/color_font1"
                 tl:tl_textUnselectColor="@color/color_font2"
                 tl:tl_textsize="@dimen/text_trans_26px"/>

@@ -35,8 +35,16 @@ public class HomeLeftPopu extends BasePopupWindow {
     PopuListOnItemClick popuListOnItemClick;
     int selectPositon = 0;
 
-    public void setSelectPositon(int selectPositon) {
-        this.selectPositon = selectPositon;
+    public void setSelectPositon(int firstPositon, int secondPosition) {
+        if (firstPositon == 0 && secondPosition == 0) {
+            this.selectPositon = 0;
+        } else if (firstPositon == 0 && secondPosition == 1) {
+            this.selectPositon = 1;
+        } else if (firstPositon == 1 && secondPosition == 0) {
+            this.selectPositon = 2;
+        } else if (firstPositon == 1 && secondPosition == 1) {
+            this.selectPositon = 3;
+        }
     }
 
     public HomeLeftPopu(Context context) {

@@ -99,6 +99,7 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     //
     compile 'com.android.support:multidex:1.0.2'
+
     implementation files('libs/joda-time-2.5-sources.jar')
     implementation files('libs/joda-time-2.5.jar')
     implementation files('libs/MobCommons-2017.0914.1125.jar')

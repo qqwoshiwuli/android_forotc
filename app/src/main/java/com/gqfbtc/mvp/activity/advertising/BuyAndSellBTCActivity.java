@@ -1,4 +1,4 @@
-package com.gqfbtc.mvp.activity;
+package com.gqfbtc.mvp.activity.advertising;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import com.gqfbtc.entity.bean.HandlingCharge;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
 import com.gqfbtc.mvp.databinder.BaseActivityPullBinder;
 import com.gqfbtc.mvp.delegate.BuyAndSellBTCDelegate;
 import com.gqfbtc.widget.FoucsLinearLayoutManager;
@@ -34,7 +35,6 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
     HandlingCharge handlingCharge = null;
     AdvertisingDetails advertisingDetails;
     UserLogin userLogin;
-    View bottomView;
     String str;//提示文字
 
     @Override
@@ -71,16 +71,41 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
 
 
     private void initBottomView() {
-        bottomView = getLayoutInflater().inflate(R.layout.layout_buy_bottom, null);
-        bottomView.findViewById(R.id.tv_commit).setOnClickListener(new View.OnClickListener() {
+        viewDelegate.initBottomView(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                gotoActivity(WaitTransactActivity.class).startAct();
+            public void onClick(View view) {
+                if (SingSettingDBUtil.isLogin(BuyAndSellBTCActivity.this)) {
+                    UiHeplUtils.initDefaultDialog(BuyAndSellBTCActivity.this, "确定要" + ((TextView) view).getText().toString() + "吗?", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //计算手续费
+                            if (!UiHeplUtils.judgeRequestContentIsNull(viewDelegate.et_forecast_btc.getText().toString(), "请输入" + str + "数量")) {
+                                String id;
+                                if (viewDelegate.checkbox.isChecked()) {
+                                    id = "0";
+                                } else {
+                                    if (viewDelegate.selectGuarantorAdapter.getSelectPositon() == -1) {
+                                        ToastUtil.show("请选择中介，或交由系统分配");
+                                        return;
+                                    } else {
+                                        id = advertisingDetails.getIntermediaryList().get(viewDelegate.selectGuarantorAdapter.getSelectPositon()).getIntermediaryId();
+                                    }
+                                }
+                                addRequest(binder.beforeSaveDeal(homeAdvertising.getAdId(),
+                                        advertisingDetails.getPrice() + "",
+                                        viewDelegate.et_forecast_btc.getText().toString(),
+                                        viewDelegate.et_forecast_cny.getText().toString(),
+                                        id,
+                                        BuyAndSellBTCActivity.this
+                                ));
+                            }
+                        }
+                    }).show();
+                }
             }
-        });
-        bottomView.findViewById(R.id.lin_message).setOnClickListener(new View.OnClickListener() {
+        }, new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (userLogin != null) {
                     UiHeplUtils.initDefaultInputDialog(BuyAndSellBTCActivity.this, "添加留言", "对广告有任何问题可在这里补充", "留言", new OnInputClickListener() {
                         @Override
@@ -100,41 +125,7 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
         } else {
             str = "出售";
         }
-        viewDelegate.viewHolder.lin_pull.addView(bottomView);
-        ((TextView) bottomView.findViewById(R.id.tv_commit)).setText(str);
-        ((TextView) bottomView.findViewById(R.id.tv_commit)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SingSettingDBUtil.isLogin(BuyAndSellBTCActivity.this)) {
-                    UiHeplUtils.initDefaultDialog(BuyAndSellBTCActivity.this, "确定要" + ((TextView) view).getText().toString() + "吗?", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            //计算手续费
-                            if (!UiHeplUtils.judgeRequestContentIsNull(viewDelegate.et_forecast_btc.getText().toString(), "请输入" + str + "数量")) {
-                                String id;
-                                if(viewDelegate.checkbox.isChecked()){
-                                    id="0";
-                                }else{
-                                    if(viewDelegate.selectGuarantorAdapter.getSelectPositon()==-1){
-                                        ToastUtil.show("请选择中介，或交由系统分配");
-                                        return;
-                                    }else{
-                                        id=advertisingDetails.getIntermediaryList().get(viewDelegate.selectGuarantorAdapter.getSelectPositon()).getIntermediaryId();
-                                    }
-                                }
-                                addRequest(binder.beforeSaveDeal(homeAdvertising.getAdId(),
-                                        advertisingDetails.getPrice() + "",
-                                        viewDelegate.et_forecast_btc.getText().toString(),
-                                        viewDelegate.et_forecast_cny.getText().toString(),
-                                        id,
-                                        BuyAndSellBTCActivity.this
-                                ));
-                            }
-                        }
-                    }).show();
-                }
-            }
-        });
+        ((TextView) viewDelegate.bottomView.findViewById(R.id.tv_commit)).setText(str);
     }
 
     private void initList() {
@@ -145,7 +136,6 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
         initRecycleViewPull(adapter, adapter.getHeadersCount(), new FoucsLinearLayoutManager(this));
         viewDelegate.setIsLoadMore(false);
         viewDelegate.setIsPullDown(false);
-
     }
 
     @Override
@@ -172,7 +162,7 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
                 if (userLogin != null) {
                     if ((userLogin.getId() + "").equals(advertisingDetails.getUserId())) {
                         //用户自己的广告，只能留言
-                        bottomView.findViewById(R.id.tv_commit).setVisibility(View.GONE);
+                        viewDelegate.bottomView.findViewById(R.id.tv_commit).setVisibility(View.GONE);
                     }
                 }
                 break;

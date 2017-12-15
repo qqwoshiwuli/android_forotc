@@ -40,15 +40,17 @@
 
         </com.gqfbtc.widget.CommonTabLayout>
 
-        <com.gqfbtc.widget.BoomButtom
+        <com.gqfbtc.widget.BoomButtomIconText
             android:id="@+id/boom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal|bottom"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="horizontal">
 
 
-        </com.gqfbtc.widget.BoomButtom>
+        </com.gqfbtc.widget.BoomButtomIconText>
 
         <com.fivefivelike.mybaselibrary.view.IconFontTextview
             android:id="@+id/tv_center_btn"

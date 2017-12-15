@@ -10,7 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import com.gqfbtc.R;
 import com.gqfbtc.entity.event.CustomerServiceEvent;
 import com.gqfbtc.entity.event.TransactEvent;
-import com.gqfbtc.mvp.activity.WaitTransactActivity;
+import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.activity.user.ConversationActivity;
 
 /**

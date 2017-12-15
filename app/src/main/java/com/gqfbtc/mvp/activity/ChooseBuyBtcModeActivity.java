@@ -18,6 +18,8 @@ import com.gqfbtc.entity.bean.BeforeSaveAd;
 import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.HandlingCharge;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
+import com.gqfbtc.mvp.activity.posted.AdvertisingBuyActivity;
+import com.gqfbtc.mvp.activity.posted.AdvertisingSellActivity;
 import com.gqfbtc.mvp.databinder.ChooseBuyBtcModeBinder;
 import com.gqfbtc.mvp.delegate.ChooseBuyBtcModeDelegate;
 

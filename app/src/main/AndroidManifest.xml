@@ -111,7 +111,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.BuyAndSellBTCActivity"
+            android:name=".mvp.activity.advertising.BuyAndSellBTCActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
@@ -126,17 +126,17 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.AdvertisingBuyActivity"
+            android:name=".mvp.activity.posted.AdvertisingBuyActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.AdvertisingSellActivity"
+            android:name=".mvp.activity.posted.AdvertisingSellActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.TransactAppraiseActivity"
+            android:name=".mvp.activity.transact.TransactAppraiseActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
@@ -156,12 +156,12 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.WaitTransactActivity"
+            android:name=".mvp.activity.transact.WaitTransactActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".mvp.activity.MyAdvertisingActivity"
+            android:name=".mvp.activity.user.MyAdvertisingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>
@@ -202,6 +202,26 @@
         </activity>
         <activity
             android:name=".mvp.activity.TradersInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".mvp.activity.advertising.BigDealsAdvertisingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".mvp.activity.transact.BigDealsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".mvp.activity.posted.PostedBigDealBuyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".mvp.activity.posted.PostedBigDealSellActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
         </activity>

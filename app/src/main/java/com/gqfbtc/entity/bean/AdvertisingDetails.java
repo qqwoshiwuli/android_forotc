@@ -94,6 +94,13 @@ public class AdvertisingDetails {
     private List<Intermediary> intermediaryList;//中介列表
     private List<AdvertisingMessage> adMessageList;
 
+    private String score;//成交次数
+    private String title;//标题
+    private String dealTypeStr;//币种
+    private String respondTime; //响应时间
+    private String respondChance; //响应概率
+
+
     public String getId() {
         return id;
     }
@@ -396,5 +403,45 @@ public class AdvertisingDetails {
 
     public void setAdMessageList(List<AdvertisingMessage> adMessageList) {
         this.adMessageList = adMessageList;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDealTypeStr() {
+        return dealTypeStr;
+    }
+
+    public void setDealTypeStr(String dealTypeStr) {
+        this.dealTypeStr = dealTypeStr;
+    }
+
+    public String getRespondTime() {
+        return respondTime;
+    }
+
+    public void setRespondTime(String respondTime) {
+        this.respondTime = respondTime;
+    }
+
+    public String getRespondChance() {
+        return respondChance;
+    }
+
+    public void setRespondChance(String respondChance) {
+        this.respondChance = respondChance;
     }
 }

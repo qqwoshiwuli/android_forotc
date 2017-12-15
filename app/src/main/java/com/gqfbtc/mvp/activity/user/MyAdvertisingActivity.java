@@ -1,4 +1,4 @@
-package com.gqfbtc.mvp.activity;
+package com.gqfbtc.mvp.activity.user;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;

@@ -215,6 +215,7 @@
 
     <!--SubTitle-->
     <string name="str_subtitle_customer_service">客服</string>
+    <string name="str_subtitle_help">帮助</string>
     <string name="str_subtitle_tradersinfo">双方信息</string>
 
 

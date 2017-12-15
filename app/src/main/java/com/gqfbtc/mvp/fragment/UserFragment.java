@@ -24,7 +24,7 @@ import com.gqfbtc.entity.bean.UserData;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.gqfbtc.http.HttpUrl;
-import com.gqfbtc.mvp.activity.MyAdvertisingActivity;
+import com.gqfbtc.mvp.activity.user.MyAdvertisingActivity;
 import com.gqfbtc.mvp.activity.main.LoginActivity;
 import com.gqfbtc.mvp.activity.user.AboutUsActivity;
 import com.gqfbtc.mvp.activity.user.CollectionAddressActivity;
@@ -302,16 +302,6 @@ public class UserFragment extends BasePullFragment<BaseActivityPullDelegate, Bas
         if (SingSettingDBUtil.isUser()) {
             iv_real_name.setVisibility(View.VISIBLE);
             iv_real_name.setImageResource(userData.isIsAuth() ? R.drawable.ic_user_real_yes : R.drawable.ic_user_real_no);
-            if (userData.isIsAuth()) {
-                iv_real_name.setOnClickListener(null);
-            } else {
-                iv_real_name.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        gotoActivity(RealNameAuthenticationActivity.class).startAct();
-                    }
-                });
-            }
             this.userData = userData;
             initList();
         }

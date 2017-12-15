@@ -206,19 +206,19 @@ public class BaseActivityPullBinder<T extends BaseActivityPullDelegate> extends 
      * 个人中心
      */
 
-
     /**
-     * 订单列表
+     * 大宗交易
      */
-
-    public Disposable orderList(
+    public Disposable adwkc_getAdDetail(
             RequestCallback requestCallback
     ) {
         getBaseMapWithUid();
         return new HttpRequest.Builder()
                 .setRequestCode(0x123)
-                .setRequestUrl(HttpUrl.getIntance().orderList + "/" + viewDelegate.page)
-                .setRequestName("个人中心")
+                .setRequestUrl(HttpUrl.getIntance().adwkc_getAdDetail)
+                .setRequestName("大宗交易广告详情")
+                .setShowDialog(true)
+                .setDialog(viewDelegate.getNetConnectDialog())
                 .setRequestMode(HttpRequest.RequestMode.GET)
                 .setParameterMode(HttpRequest.ParameterMode.KeyValue)
                 .setRequestObj(baseMap)
@@ -227,7 +227,33 @@ public class BaseActivityPullBinder<T extends BaseActivityPullDelegate> extends 
                 .RxSendRequest();
     }
 
+    public Disposable dealwkc_saveDeal(
+            String adId,
+            String dealPrice,
+            String dealQuantity,
+            String intermediaryId,
+            RequestCallback requestCallback
+    ) {
+        getBaseMapWithUid();
+        baseMap.put("adId", adId);
+        baseMap.put("dealPrice", dealPrice);
+        baseMap.put("dealQuantity", dealQuantity);
+        baseMap.put("intermediaryId", intermediaryId);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x126)
+                .setRequestUrl(HttpUrl.getIntance().dealwkc_saveDeal)
+                .setRequestName("大宗交易保存订单")
+                .setShowDialog(true)
+                .setDialog(viewDelegate.getNetConnectDialog())
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+    }
     /**
-     * 订单列表
+     * 大宗交易
      */
+
 }

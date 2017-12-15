@@ -30,10 +30,10 @@ import android.widget.TextView;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.flyco.tablayout.utils.UnreadMsgUtils;
 import com.flyco.tablayout.widget.MsgView;
+import com.gqfbtc.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import com.gqfbtc.R;
 
 /**
  * 滑动TabLayout,对于ViewPager的依赖性强
@@ -249,7 +249,22 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
         this.mViewPager.addOnPageChangeListener(this);
         notifyDataSetChanged();
     }
+    public void setViewPager(ViewPager vp, String[] titles, Fragment fa, ArrayList<Fragment> fragments) {
+        if (vp == null) {
+            throw new IllegalStateException("ViewPager can not be NULL !");
+        }
 
+        if (titles == null || titles.length == 0) {
+            throw new IllegalStateException("Titles can not be EMPTY !");
+        }
+
+        this.mViewPager = vp;
+        this.mViewPager.setAdapter(new InnerPagerAdapter(fa.getChildFragmentManager(), fragments, titles));
+
+        this.mViewPager.removeOnPageChangeListener(this);
+        this.mViewPager.addOnPageChangeListener(this);
+        notifyDataSetChanged();
+    }
     /**
      * 更新数据
      */

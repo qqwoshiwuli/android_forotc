@@ -28,9 +28,11 @@ import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.HomeBanner;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
-import com.gqfbtc.mvp.activity.BuyAndSellBTCActivity;
 import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
+import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
 import com.gqfbtc.mvp.activity.main.WebVeiwActivity;
+import com.gqfbtc.mvp.activity.posted.PostedBigDealBuyActivity;
+import com.gqfbtc.mvp.activity.posted.PostedBigDealSellActivity;
 import com.gqfbtc.mvp.activity.user.RecommendActivity;
 import com.gqfbtc.mvp.databinder.HomeBinder;
 import com.gqfbtc.mvp.delegate.HomeDelegate;
@@ -57,13 +59,13 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     HeaderAndFooterWrapper adapter;
     AdvertisingAdapter advertisingAdapter;
     String[] selectLeft = {"买BTC", "卖BTC"
-            //  , "买ETH", "卖ETH"
+            , "买链克", "卖链克"
     };
     String[] selectRight = {"挂单卖BTC", "挂单买BTC"
-            //, "挂单买ETH", "挂单卖ETH"
+            , "挂单卖链克", "挂单买链克"
     };
     int[] selectRightIds = {R.string.ic_btc, R.string.ic_btc
-            //, R.string.ic_eth, R.string.ic_eth
+            , R.string.ic_eth, R.string.ic_eth
     };
     HomeRightPopu homeRightPopu;
     HomeLeftPopu homeLeftPopu;
@@ -72,6 +74,8 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     int chooseType;
     private static final int buy_btc = 0;
     private static final int sell_btc = 1;
+    private static final int buy_ucx = 2;
+    private static final int sell_ucx = 3;
 
     @Override
     protected void bindEvenListener() {
@@ -94,8 +98,18 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     }
 
     private void changeSelect(int position) {
-        isBuy = position == 0;
-        viewDelegate.viewHolder.tv_select.setText(isBuy ? "买BTC" : "卖BTC");
+        isBuy = position == 0 || position == 2;
+        String type = "";
+        if (position == 0) {
+            type = "买BTC";
+        } else if (position == 1) {
+            type = "卖BTC";
+        } else if (position == 2) {
+            type = "买链克";
+        } else if (position == 3) {
+            type = "卖链克";
+        }
+        viewDelegate.viewHolder.tv_select.setText(type);
         onRefresh();
     }
 
@@ -104,17 +118,29 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
         if (homeLeftPopu == null) {
             homeLeftPopu = new HomeLeftPopu(getActivity());
             homeLeftPopu.setSelectItem(selectLeft);
-            homeLeftPopu.setSelectPositon(tl_9.getCurrentTab());
+            homeLeftPopu.setSelectPositon(tl_8.getCurrentTab(), tl_9.getCurrentTab());
             homeLeftPopu.setPopuListOnItemClick(new PopuListOnItemClick() {
                 @Override
                 public void onItemClick(int position) {
                     changeSelect(position);
-                    tl_9.setCurrentTab(position);
+                    if (position == 0) {
+                        tl_8.setCurrentTab(0);
+                        tl_9.setCurrentTab(0);
+                    } else if (position == 1) {
+                        tl_8.setCurrentTab(0);
+                        tl_9.setCurrentTab(1);
+                    } else if (position == 2) {
+                        tl_8.setCurrentTab(1);
+                        tl_9.setCurrentTab(0);
+                    } else if (position == 3) {
+                        tl_8.setCurrentTab(1);
+                        tl_9.setCurrentTab(1);
+                    }
                 }
             });
             homeLeftPopu.showDropDown(view);
         } else {
-            homeLeftPopu.setSelectPositon(tl_9.getCurrentTab());
+            homeLeftPopu.setSelectPositon(tl_8.getCurrentTab(), tl_9.getCurrentTab());
             homeLeftPopu.showDropDown(view);
         }
     }
@@ -123,12 +149,12 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntitie2s = new ArrayList<>();
     CommonTabLayout tl_9;
+    CommonTabLayout tl_8;
     BGABanner bgaBanner;
 
     public View initTopView() {
         View view = getActivity().getLayoutInflater().inflate(R.layout.layout_home_top_view, null);
         bgaBanner = (BGABanner) view.findViewById(R.id.banner_guide_content);
-        view.findViewById(R.id.lin_coin).setVisibility(View.GONE);
         //轮播初始化
         List<View> views = new ArrayList<>();
         views.add(BGABannerUtil.getItemImageView(getActivity(), R.drawable.banner1));
@@ -140,35 +166,46 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
         layoutParams.height = ScreenUtils.getScreenWidth() * 240 / 750;
         bgaBanner.setLayoutParams(layoutParams);
         String[] mTitles = {"BTC"
-                //, "ETH"
+                , "链克"
         };
-        String[] mTitle2s = {"去买币", "去卖币"};
-
-        CommonTabLayout tl_8 = (CommonTabLayout) view.findViewById(R.id.tl_8);
+        String[] mTitle2s = {"买币", "卖币"};
+        tl_8 = (CommonTabLayout) view.findViewById(R.id.tl_8);
         tl_9 = (CommonTabLayout) view.findViewById(R.id.tl_9);
-        mTabEntities.add(new TabEntity(mTitles[0], 0, 0));
         for (int i = 0; i < mTitle2s.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
             mTabEntitie2s.add(new TabEntity(mTitle2s[i], 0, 0));
         }
         tl_8.setmIndicatorId(R.drawable.shap_gray_border_max_radiu);
         tl_9.setmIndicatorId(R.drawable.shap_gray_border_max_radiu);
         tl_8.setTabData(mTabEntities);
         tl_9.setTabData(mTabEntitie2s);
-        tl_9.setOnTabSelectListener(new OnTabSelectListener() {
+        OnTabSelectListener linsener = new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
                 //同步左上角弹窗选项
                 if (homeLeftPopu != null) {
-                    homeLeftPopu.setSelectPositon(position);
+                    homeLeftPopu.setSelectPositon(tl_8.getCurrentTab(), tl_9.getCurrentTab());
                 }
-                changeSelect(position);
+                int firstPositon = tl_8.getCurrentTab();
+                int secondPosition = tl_9.getCurrentTab();
+                if (firstPositon == 0 && secondPosition == 0) {
+                    changeSelect(0);
+                } else if (firstPositon == 0 && secondPosition == 1) {
+                    changeSelect(1);
+                } else if (firstPositon == 1 && secondPosition == 0) {
+                    changeSelect(2);
+                } else if (firstPositon == 1 && secondPosition == 1) {
+                    changeSelect(3);
+                }
             }
 
             @Override
             public void onTabReselect(int position) {
 
             }
-        });
+        };
+        tl_9.setOnTabSelectListener(linsener);
+        tl_8.setOnTabSelectListener(linsener);
         return view;
 
     }
@@ -208,6 +245,10 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                     advertisingSellBtc();
                 } else if (position == 1) {
                     advertisingBuyBtc();
+                } else if (position == 2) {
+                    advertisingSellUcx();
+                } else if (position == 3) {
+                    advertisingBuyUcx();
                 }
             }
         });
@@ -220,12 +261,21 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
             addRequest(binder.checkUserIsFrozen("1", true, this));
         }
     }
+
     //发布买广告
     public void advertisingBuyBtc() {
         if (SingSettingDBUtil.isLogin(getActivity())) {
             chooseType = buy_btc;
             addRequest(binder.checkUserIsFrozen("1", false, this));
         }
+    }
+
+    public void advertisingSellUcx() {
+        gotoActivity(PostedBigDealSellActivity.class).startAct();
+    }
+
+    public void advertisingBuyUcx() {
+        gotoActivity(PostedBigDealBuyActivity.class).startAct();
     }
 
     @Override

@@ -325,5 +325,32 @@ public class HttpUrl {
      */
     public String getQRCode = baseUrl + shareUrl + "/getQRCode";
 
+    /**
+     * 大宗交易
+     */
+    String adwkcUrl = "/adwkc";
+    /**
+     * 保存大宗交易广告
+     */
+    public String adwkc_saveAd = baseUrl + adwkcUrl + "/saveAd";
+    /**
+     * 大宗交易广告详情
+     */
+    public String adwkc_getAdDetail = baseUrl + adwkcUrl + "/getAdDetail";
+
+
+    /**
+     * 大宗交易
+     */
+    String dealwkcUrl = "/dealwkc";
+    /**
+     * 大宗交易订单推进
+     */
+    public String dealwkc_change = baseUrl + dealwkcUrl + "/change";
+    /**
+     * 大宗交易订单 保存
+     */
+    public String dealwkc_saveDeal = baseUrl + dealwkcUrl + "/saveDeal";
+
 
 }

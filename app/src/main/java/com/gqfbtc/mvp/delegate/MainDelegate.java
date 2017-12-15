@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 
 import com.fivefivelike.mybaselibrary.view.IconFontTextview;
 import com.gqfbtc.R;
-import com.gqfbtc.widget.BoomButtom;
+import com.gqfbtc.widget.BoomButtomIconText;
 import com.gqfbtc.widget.CommonTabLayout;
 
 /**
@@ -45,14 +45,14 @@ public class MainDelegate extends IMDelegate {
         public FrameLayout fl_root;
         public CommonTabLayout tl_2;
         public IconFontTextview tv_center_btn;
-        public BoomButtom boom;
+        public BoomButtomIconText boom;
 
         public ViewHolder(View rootView) {
             this.rootView = rootView;
             this.fl_root = (FrameLayout) rootView.findViewById(R.id.fl_root);
             this.tl_2 = (CommonTabLayout) rootView.findViewById(R.id.tl_2);
             this.tv_center_btn = (IconFontTextview) rootView.findViewById(R.id.tv_center_btn);
-            this.boom = (BoomButtom) rootView.findViewById(R.id.boom);
+            this.boom = (BoomButtomIconText) rootView.findViewById(R.id.boom);
         }
 
     }

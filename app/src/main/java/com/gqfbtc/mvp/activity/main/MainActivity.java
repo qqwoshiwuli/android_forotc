@@ -20,8 +20,8 @@ import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.glide.GlideUtils;
 import com.gqfbtc.Utils.UiHeplUtils;
+import com.gqfbtc.Utils.glide.GlideUtils;
 import com.gqfbtc.base.Application;
 import com.gqfbtc.dialog.UpdateDialog;
 import com.gqfbtc.entity.TabEntity;
@@ -39,7 +39,7 @@ import com.gqfbtc.mvp.fragment.OrderFragment;
 import com.gqfbtc.mvp.fragment.UserFragment;
 import com.gqfbtc.server.NotificationHelper;
 import com.gqfbtc.server.UpdateService;
-import com.gqfbtc.widget.BoomButtom;
+import com.gqfbtc.widget.BoomButtomIconText;
 import com.gqfbtc.widget.spotlight.OnSpotlightEndedListener;
 import com.gqfbtc.widget.spotlight.OnSpotlightStartedListener;
 import com.gqfbtc.widget.spotlight.OnTargetStateChangedListener;
@@ -66,27 +66,27 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
 
     private int[] mIconBoomIds = {
             R.string.ic_btc, R.string.ic_btc
-            //,R.string.ic_eth, R.string.ic_eth
+            , R.string.ic_eth, R.string.ic_eth
     };
 
     private int[] mIconBoomColorIds = {
             R.color.white, R.color.color_f5a623
-            // , R.color.white, R.color.color_555555
+            , R.color.white, R.color.color_555555
     };
 
     private int[] mIconBoomBgColorIds = {
-            R.color.color_f5a623, R.color.white
-            //, R.color.color_555555, R.color.white
+            R.drawable.btc_buy_icon, R.drawable.btc_sell_icon
+            , R.drawable.ucx_buy_icon, R.drawable.ucx_sell_icon
     };
 
-    private String[] mBoomTitles = {"发布购买", "发布出售"
-            // , "挂单买", "挂单卖"
+    private String[] mBoomTitles = {"买BTC", "卖BTC"
+            , "买链克", "卖链克"
     };
     private String[] mBoomSubtitles = {"广告", "广告"
-            //  , "ETH", "ETH"
+            , "广告", "广告"
     };
 
-    List<BoomButtom.BoomBtnEntity> entities;
+    List<BoomButtomIconText.BoomBtnEntity> entities;
     List<View> views;
     HomeFragment homeFragment;
     OrderFragment orderFragment;
@@ -221,12 +221,14 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
         views = new ArrayList<>();
 
         for (int i = 0; i < mBoomTitles.length; i++) {
-            entities.add(new BoomButtom.BoomBtnEntity().setmIcon(mIconBoomIds[i])
+            entities.add(new BoomButtomIconText.BoomBtnEntity().setmIcon(mIconBoomIds[i])
                     .setmTitle(mBoomTitles[i]).setmSubTitle(mBoomSubtitles[i])
-                    .setBgColor(mIconBoomBgColorIds[i])
+                    .setBgIcon(mIconBoomBgColorIds[i])
                     .setTxtColor(mIconBoomColorIds[i])
                     .setPadding(getResources().getDimensionPixelOffset(R.dimen.trans_15px))
-                    .setxPositions((ScreenUtils.getScreenWidth() - getResources().getDimensionPixelOffset(R.dimen.trans_40px)) / 8 + ((ScreenUtils.getScreenWidth() - getResources().getDimensionPixelOffset(R.dimen.trans_50px)) / mBoomTitles.length * (i)) + getResources().getDimensionPixelOffset(R.dimen.trans_25px)
+                    .setxPositions(
+                            ((ScreenUtils.getScreenWidth() - getResources().getDimensionPixelOffset(R.dimen.trans_50px)) / mBoomTitles.length * (i)) +
+                                    getResources().getDimensionPixelOffset(R.dimen.trans_25px)
                             , getResources().getDimensionPixelOffset(R.dimen.trans_160px))
                     .setWidth((ScreenUtils.getScreenWidth() - getResources().getDimensionPixelOffset(R.dimen.trans_40px)) / 4));
         }
@@ -244,6 +246,10 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
                         homeFragment.advertisingBuyBtc();
                     } else if (position == 1) {
                         homeFragment.advertisingSellBtc();
+                    } else if (position == 2) {
+                        homeFragment.advertisingBuyUcx();
+                    } else if (position == 3) {
+                        homeFragment.advertisingSellUcx();
                     }
                 }
             }

@@ -1,25 +1,20 @@
-package com.gqfbtc.mvp.activity;
+package com.gqfbtc.mvp.activity.transact;
 
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
-import com.fivefivelike.mybaselibrary.utils.AndroidUtil;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
@@ -27,24 +22,21 @@ import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.KeyboardChangeListener;
 import com.gqfbtc.Utils.UiHeplUtils;
-import com.gqfbtc.Utils.glide.GlideUtils;
 import com.gqfbtc.dialog.AddressDialog;
 import com.gqfbtc.dialog.DefaultLongContentDialog;
 import com.gqfbtc.entity.bean.OrderDetails;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.TradersInfoActivity;
 import com.gqfbtc.mvp.databinder.WaitTransactBinder;
 import com.gqfbtc.mvp.delegate.WaitTransactDelegate;
-import com.gqfbtc.mvp.fragment.ConversationFragmentEx;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.rong.imkit.RongExtension;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
-import io.rong.imlib.model.UserInfo;
 
 
 public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDelegate, WaitTransactBinder> implements KeyboardChangeListener.KeyBoardListener {
@@ -52,9 +44,6 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
     OrderDetails orderDetails;
     PaymentBTCETHAddress paymentBTCETHAddress;
     private KeyboardChangeListener mKeyboardChangeListener;
-    RongExtension rongExtension;
-    int screenHeight;
-    boolean isKeySorftShow = false;
     UserLogin userLogin;
 
     @Override
@@ -68,10 +57,10 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         getIntentData();
         initToolbar(new ToolbarBuilder().setTitle("交易详情"));
         userLogin = SingSettingDBUtil.getUserLogin();
-        screenHeight = AndroidUtil.getScreenSize(this, 2) / 3;
         mKeyboardChangeListener = new KeyboardChangeListener(this);
         mKeyboardChangeListener.setKeyBoardListener(this);
         RongIM.getInstance().setMessageAttachedUserInfo(true);
+        viewDelegate.initDefaultView();
         initRefush();
     }
 
@@ -92,7 +81,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
 
     @Override
     public void onKeyboardChange(boolean isShow, int keyboardHeight) {
-        isKeySorftShow = isShow;
+        viewDelegate.isKeySorftShow = isShow;
         viewDelegate.viewHolder.fl_top.setVisibility(!isShow ? View.VISIBLE : View.GONE);
         handler.sendEmptyMessageDelayed(1, 100);
     }
@@ -102,7 +91,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
             switch (msg.what) {
                 case 1:
                     //界面上部显隐
-                    linsenerLayout();
+                    viewDelegate.linsenerLayout();
                     break;
                 case 2:
                     //中介刷新
@@ -127,63 +116,6 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
         super.onDestroy();
-    }
-
-    ConversationFragmentEx fragment;
-
-    private void initServiceFragment() {
-        setWindowManagerLayoutParams(0);
-
-        fragment = new ConversationFragmentEx();
-        Uri uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
-                .appendPath("conversation").appendPath(Conversation.ConversationType.GROUP.getName().toLowerCase())
-                .appendQueryParameter("targetId", orderDetails.getId() + "_" + orderDetails.getCode()).build();
-        //设置传递用户数据
-        if (SingSettingDBUtil.isUser()) {
-            RongIM.getInstance().setCurrentUserInfo(new UserInfo(userLogin.getId() + "u", userLogin.getNickName(), Uri.parse(GlideUtils.getBaseUrl() + userLogin.getAvatar())));
-        } else {
-            RongIM.getInstance().setCurrentUserInfo(new UserInfo(userLogin.getId() + "i", userLogin.getName(), Uri.parse(userLogin.getAvatar())));
-        }
-        fragment.setUri(uri);
-        /* 加载 ConversationFragment */
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fl_root, fragment);
-        transaction.commit();
-        fragment.setDefaultClickLinsener(new DefaultClickLinsener() {
-            @Override
-            public void onClick(View view, int position, Object item) {
-                if (position == 1) {
-                    rongExtension = (RongExtension) view;
-                }
-                linsenerLayout();
-            }
-        });
-    }
-
-    ViewTreeObserver vto;
-
-    private void linsenerLayout() {
-        //上部分显示判断
-        if (rongExtension != null) {
-            ViewGroup.LayoutParams layoutParams = rongExtension.getLayoutParams();
-            int height = layoutParams.height;
-            int width = layoutParams.width;
-            Log.i("gqf", height + "---" + width);
-            if (vto == null) {
-                vto = rongExtension.getViewTreeObserver();
-                vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        int height = rongExtension.getHeight();
-                        if (height > screenHeight || isKeySorftShow) {
-                            viewDelegate.viewHolder.fl_top.setVisibility(View.GONE);
-                        } else {
-                            viewDelegate.viewHolder.fl_top.setVisibility(View.VISIBLE);
-                        }
-                    }
-                });
-            }
-        }
     }
 
     public static void startAct(Activity activity,
@@ -258,8 +190,9 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         viewDelegate.viewHolder.lin_my_pay_type.setVisibility(orderDetails.getBankInfoList().size() == 0 ? View.GONE : View.VISIBLE);
 
         viewDelegate.setOnClickListener(this, R.id.fl_collection, R.id.fl_call_service, R.id.lin_my_pay_type, R.id.tv_payment);
-        if (fragment == null) {
-            initServiceFragment();
+        if (viewDelegate.fragment == null) {
+            setWindowManagerLayoutParams(0);
+            viewDelegate.initChatView(getSupportFragmentManager().beginTransaction(), userLogin, orderDetails.getId(), orderDetails.getCode());
         }
     }
 

@@ -14,7 +14,7 @@ import com.gqfbtc.entity.event.CustomerServiceEvent;
 import com.gqfbtc.entity.event.FilePathsEvent;
 import com.gqfbtc.entity.event.TransactEvent;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
-import com.gqfbtc.mvp.activity.WaitTransactActivity;
+import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.activity.user.AddAddressActivity;
 import com.gqfbtc.mvp.activity.user.AddCollectionAddressActivity;
 import com.gqfbtc.mvp.activity.user.ConversationActivity;

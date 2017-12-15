@@ -12,6 +12,8 @@ import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.ActUtil;
 import com.gqfbtc.R;
 import com.gqfbtc.entity.bean.HomeAdvertising;
+import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
+import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.delegate.SuccessDelegate;
 
 import org.greenrobot.eventbus.EventBus;
