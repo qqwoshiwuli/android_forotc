@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
-import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.gqfbtc.R;
@@ -13,7 +12,7 @@ import com.gqfbtc.adapter.OrderListAdapter;
 import com.gqfbtc.base.Application;
 import com.gqfbtc.entity.bean.OrderListItem;
 import com.gqfbtc.entity.event.TransactEvent;
-import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
+import com.gqfbtc.mvp.activity.transact.BigDealsActivity;
 import com.gqfbtc.mvp.databinder.BaseFragmentPullBinder;
 import com.gqfbtc.mvp.delegate.BaseFragentPullDelegate;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -59,7 +58,7 @@ public class OrderUcxFragment extends BasePullFragment<BaseFragentPullDelegate, 
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 adapter.removeDot(position);
                 if (!adapter.getDatas().get(position).getCancel()) {
-                    WaitTransactActivity.startAct(getActivity(), adapter.getDatas().get(position).getId());
+                    BigDealsActivity.startAct(getActivity(), adapter.getDatas().get(position).getId());
                 }
             }
 
@@ -105,7 +104,7 @@ public class OrderUcxFragment extends BasePullFragment<BaseFragentPullDelegate, 
 
     @Override
     protected void refreshData() {
-        addRequest(binder.orderList(this));
+        addRequest(binder.dealwkcList(this));
     }
 }
 

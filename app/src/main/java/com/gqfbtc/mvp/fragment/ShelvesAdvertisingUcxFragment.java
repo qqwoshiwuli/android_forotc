@@ -105,6 +105,6 @@ public class ShelvesAdvertisingUcxFragment extends BasePullFragment<BaseFragentP
 
     @Override
     protected void refreshData() {
-        addRequest(binder.ads(ACTION_CLOSE, this));
+        addRequest(binder.adsucx(ACTION_CLOSE, this));
     }
 }

@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.fivefivelike.mybaselibrary.base.BaseDelegate;
 import com.fivefivelike.mybaselibrary.view.IconFontTextview;
 import com.gqfbtc.R;
+import com.gqfbtc.dialog.HelperTostDialog;
 import com.gqfbtc.dialog.TimeChooseDialog;
+import com.gqfbtc.entity.bean.CheckFrozen;
 
 import java.math.BigDecimal;
 
@@ -21,7 +23,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
     public String choosetime1 = "10:00";
     public String chooseday2 = "每日";
     public String choosetime2 = "23:00";
-
+    CheckFrozen checkFrozen;
     public boolean isBuy = false;
 
     @Override
@@ -62,7 +64,8 @@ public class PostedBigDealDelegate extends BaseDelegate {
         }
     }
 
-    public void initBuyView() {
+    public void initBuyView(CheckFrozen checkFrozen) {
+        this.checkFrozen = checkFrozen;
         viewHolder.tv_coin_type.setText("求购币种");
         viewHolder.tv_unit_price.setText("求购单价");
         viewHolder.tv_amount.setText("买\u0020 入\u0020 量");
@@ -78,8 +81,40 @@ public class PostedBigDealDelegate extends BaseDelegate {
         viewHolder.et_unit_price.addTextChangedListener(et_unit_price_linsener);
         viewHolder.tv_time.setOnClickListener(timeChoose);
         viewHolder.tv_time.setText(chooseday1 + choosetime1 + "-" + chooseday2 + choosetime2);
+        viewHolder.lin_toast.setOnClickListener(onHelperClick);
+        viewHolder.tv_coin_type_helper.setOnClickListener(onHelperClick);
+        viewHolder.tv_buy_helper.setOnClickListener(onHelperClick);
+        viewHolder.tv_starting_buy_helper.setOnClickListener(onHelperClick);
+        viewHolder.tv_account_helper.setOnClickListener(onHelperClick);
+        viewHolder.tv_time_helper.setOnClickListener(onHelperClick);
+
     }
 
+    View.OnClickListener onHelperClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.lin_toast:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getPrompt());
+                    break;
+                case R.id.tv_coin_type_helper:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getCointypePro());
+                    break;
+                case R.id.tv_buy_helper:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getQuantityAdPro());
+                    break;
+                case R.id.tv_starting_buy_helper:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getThresholdPro());
+                    break;
+                case R.id.tv_account_helper:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getBankInfoPro());
+                    break;
+                case R.id.tv_time_helper:
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), checkFrozen.getTimePro());
+                    break;
+            }
+        }
+    };
     View.OnClickListener timeChoose = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -101,7 +136,8 @@ public class PostedBigDealDelegate extends BaseDelegate {
     }
 
 
-    public void initSellView() {
+    public void initSellView(CheckFrozen checkFrozen) {
+        this.checkFrozen = checkFrozen;
         viewHolder.tv_coin_type.setText("出售币种");
         viewHolder.tv_unit_price.setText("出售单价");
         viewHolder.tv_amount.setText("卖\u0020 出\u0020 量");
@@ -115,6 +151,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
 
     public static class ViewHolder {
         public View rootView;
+        public LinearLayout lin_toast;
         public TextView tv_coin_type;
         public IconFontTextview tv_coin_type_helper;
         public TextView tv_unit_price;
@@ -139,6 +176,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
 
         public ViewHolder(View rootView) {
             this.rootView = rootView;
+            this.lin_toast = (LinearLayout) rootView.findViewById(R.id.lin_toast);
             this.tv_coin_type = (TextView) rootView.findViewById(R.id.tv_coin_type);
             this.tv_coin_type_helper = (IconFontTextview) rootView.findViewById(R.id.tv_coin_type_helper);
             this.tv_unit_price = (TextView) rootView.findViewById(R.id.tv_unit_price);

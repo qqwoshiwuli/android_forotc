@@ -4,6 +4,7 @@ package com.gqfbtc.mvp.delegate;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import com.fivefivelike.mybaselibrary.utils.GlobleContext;
 import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.glide.GlideUtils;
+import com.gqfbtc.entity.bean.OrderDetails;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.transact.TransactAppraiseActivity;
 import com.gqfbtc.mvp.fragment.ConversationFragmentEx;
 import com.gqfbtc.widget.SingleLineZoomTextView;
 import com.gqfbtc.widget.WaitTransactSwipeRefreshLayout;
@@ -75,6 +78,18 @@ public class WaitTransactDelegate extends BaseDelegate {
 
     ViewTreeObserver vto;
 
+    public void isNeedAppraise(FragmentActivity activity, OrderDetails orderDetails) {
+        //去评价
+        TransactAppraiseActivity.startAct(activity,
+                orderDetails.getId(),
+                orderDetails.getAdOwnerId(),
+                orderDetails.getDealOwnerId(),
+                orderDetails.getIntermediaryId(),
+                orderDetails.getCurrency(),
+                0x123
+        );
+    }
+
     public void linsenerLayout() {
         //上部分显示判断
         if (rongExtension != null) {
@@ -102,12 +117,51 @@ public class WaitTransactDelegate extends BaseDelegate {
 
     public void initDefaultView() {
         viewHolder.tv_bigdeals_toast.setVisibility(View.GONE);
+        viewHolder.fl_top.setVisibility(View.GONE);
     }
 
     public void initBigDealsView() {
         viewHolder.tv_title1.setText("交易币种");
         viewHolder.tv_title3.setText("成交单价");
+        viewHolder.tv_title4.setText("交易金额");
+        viewHolder.tv_title2.setText("交易数量");
         viewHolder.lin_default.setVisibility(View.GONE);
+        viewHolder.fl_top.setVisibility(View.GONE);
+    }
+
+    public void initDataView(OrderDetails orderDetails) {
+        viewHolder.fl_top.setVisibility(View.VISIBLE);
+        viewHolder.tv_total_price.setText(orderDetails.getDealMoneyStr());
+        viewHolder.tv_poundage.setText(orderDetails.getPoundageStr());
+        viewHolder.tv_unit_price.setText(orderDetails.getDealPriceStr());
+        viewHolder.tv_btc.setText(orderDetails.getDealQuantityStr());
+        viewHolder.tv_freeze.setText(orderDetails.getFrozenCoin());
+        viewHolder.tv_payment.setText(orderDetails.getDealRemark());
+        viewHolder.tv_collection.setText(orderDetails.getDealPushBtn());
+        viewHolder.tv_call_service.setText(orderDetails.getCustomJoin());
+        viewHolder.tv_paytype.setText(orderDetails.getPayType());
+
+        ViewTreeObserver viewTreeObserver = viewHolder.lin_top.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                viewHolder.lin_top.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                int height = viewHolder.lin_top.getHeight();
+                viewHolder.swipeRefreshLayout.setHeight(height);
+            }
+        });
+
+        viewHolder.swipeRefreshLayout.setRefreshing(false);
+
+        viewHolder.fl_collection.setVisibility(TextUtils.isEmpty(orderDetails.getDealPushBtn()) ? View.INVISIBLE : View.VISIBLE);
+        viewHolder.fl_call_service.setVisibility(TextUtils.isEmpty(orderDetails.getCustomJoin()) ? View.INVISIBLE : View.VISIBLE);
+        viewHolder.lin_my_pay_type.setVisibility(TextUtils.isEmpty(orderDetails.getPayType()) ? View.GONE : View.VISIBLE);
+        viewHolder.lin_my_pay_type.setVisibility(orderDetails.getBankInfoList().size() == 0 ? View.GONE : View.VISIBLE);
+        if (TextUtils.isEmpty(orderDetails.getDealPushBtn()) && TextUtils.isEmpty(orderDetails.getCustomJoin())) {
+            viewHolder.fl_collection.setVisibility(View.GONE);
+            viewHolder.fl_call_service.setVisibility(View.GONE);
+        }
+
     }
 
 

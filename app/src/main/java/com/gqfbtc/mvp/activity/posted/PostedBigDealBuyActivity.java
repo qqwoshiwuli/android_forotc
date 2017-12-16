@@ -1,16 +1,23 @@
 package com.gqfbtc.mvp.activity.posted;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
+import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.UiHeplUtils;
+import com.gqfbtc.entity.bean.CheckFrozen;
+import com.gqfbtc.entity.bean.HomeAdvertising;
+import com.gqfbtc.mvp.activity.SuccessActivity;
 import com.gqfbtc.mvp.databinder.PostedBigDealBinder;
 import com.gqfbtc.mvp.delegate.PostedBigDealDelegate;
 
 public class PostedBigDealBuyActivity extends BaseDataBindActivity<PostedBigDealDelegate, PostedBigDealBinder> {
+    HomeAdvertising advertising;
 
     @Override
     protected Class<PostedBigDealDelegate> getDelegateClass() {
@@ -22,11 +29,27 @@ public class PostedBigDealBuyActivity extends BaseDataBindActivity<PostedBigDeal
         return new PostedBigDealBinder(viewDelegate);
     }
 
+    public static void startAct(Activity activity,
+                                CheckFrozen checkFrozen,
+                                int requestCode) {
+        Intent intent = new Intent(activity, PostedBigDealBuyActivity.class);
+        intent.putExtra("checkFrozen", checkFrozen);
+        activity.startActivity(intent);
+    }
+
+    CheckFrozen checkFrozen;
+
+    private void getIntentData() {
+        Intent intent = getIntent();
+        checkFrozen = intent.getParcelableExtra("checkFrozen");
+    }
+
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
         initToolbar(new ToolbarBuilder().setTitle("求购其它币种").setSubTitle(CommonUtils.getString(R.string.str_subtitle_help)));
-        viewDelegate.initBuyView();
+        getIntentData();
+        viewDelegate.initBuyView(checkFrozen);
         viewDelegate.viewHolder.tv_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,13 +72,14 @@ public class PostedBigDealBuyActivity extends BaseDataBindActivity<PostedBigDeal
         });
     }
 
-
     @Override
     protected void onServiceSuccess(String data, String info, int status, int requestCode) {
         super.onServiceError(data, info, status, requestCode);
         switch (requestCode) {
             case 0x123:
-                //发不成功
+                //广告发布成功
+                advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
+                SuccessActivity.startActWithAdvertising(PostedBigDealBuyActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, 0x123);
                 break;
         }
     }

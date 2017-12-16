@@ -39,6 +39,47 @@ public class WaitTransactBinder extends BaseDataBind<WaitTransactDelegate> {
 
     }
 
+    public Disposable dealwkc_dealdt(
+            String dealId,
+            boolean isShowDialog,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        baseMap.put("dealId", dealId);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x123)
+                .setRequestUrl(HttpUrl.getIntance().dealwkc_dealdt)
+                .setShowDialog(isShowDialog)
+                .setDialog(viewDelegate.getNetConnectDialog())
+                .setRequestName("ucx订单详情")
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+
+    }
+
+    public Disposable dealwkc_dealCancle(
+            String id,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        baseMap.put("id", id);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x125)
+                .setRequestUrl(HttpUrl.getIntance().dealwkc_dealCancle)
+                .setRequestName("ucx广告下架")
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.Json)
+                .setRequestObj(baseMap)
+                .setDialog(viewDelegate.getNetConnectDialog())
+                .setShowDialog(true)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+
+    }
+
     public Disposable change(
             String id,
             String dealStatus,
@@ -56,6 +97,29 @@ public class WaitTransactBinder extends BaseDataBind<WaitTransactDelegate> {
         return new HttpRequest.Builder()
                 .setRequestCode(0x124)
                 .setRequestUrl(HttpUrl.getIntance().change)
+                .setShowDialog(true)
+                .setDialog(viewDelegate.getNetConnectDialog())
+                .setRequestName("修改订单状态")
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.Json)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+
+    }
+
+    public Disposable dealwkc_change(
+            String id,
+            String dealStatus,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        viewDelegate.commitEnableView(false);
+        baseMap.put("id", id + "");
+        baseMap.put("dealStatus", dealStatus + "");
+        return new HttpRequest.Builder()
+                .setRequestCode(0x124)
+                .setRequestUrl(HttpUrl.getIntance().dealwkc_change)
                 .setShowDialog(true)
                 .setDialog(viewDelegate.getNetConnectDialog())
                 .setRequestName("修改订单状态")

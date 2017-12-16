@@ -1,5 +1,7 @@
 package com.gqfbtc.mvp.activity.posted;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +14,10 @@ import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.TransactAdvertisingAdapter;
+import com.gqfbtc.entity.bean.CheckFrozen;
+import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
+import com.gqfbtc.mvp.activity.SuccessActivity;
 import com.gqfbtc.mvp.databinder.PostedBigDealBinder;
 import com.gqfbtc.mvp.delegate.PostedBigDealDelegate;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -22,14 +27,31 @@ import java.util.List;
 public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDealDelegate, PostedBigDealBinder> {
     List<PaymentBTCETHAddress> paymentBTCETHAddresses;
     TransactAdvertisingAdapter transactAdvertisingAdapter;
+    HomeAdvertising advertising;
 
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
         initToolbar(new ToolbarBuilder().setTitle("出售其它币种").setSubTitle(CommonUtils.getString(R.string.str_subtitle_help)));
-        viewDelegate.initSellView();
+        getIntentData();
+        viewDelegate.initSellView(checkFrozen);
         addRequest(binder.getPaymentAddressList(this));
 
+    }
+
+    public static void startAct(Activity activity,
+                                CheckFrozen checkFrozen,
+                                int requestCode) {
+        Intent intent = new Intent(activity, PostedBigDealSellActivity.class);
+        intent.putExtra("checkFrozen", checkFrozen);
+        activity.startActivity(intent);
+    }
+
+    CheckFrozen checkFrozen;
+
+    private void getIntentData() {
+        Intent intent = getIntent();
+        checkFrozen = intent.getParcelableExtra("checkFrozen");
     }
 
     private void initAddress() {
@@ -87,8 +109,9 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
         super.onServiceError(data, info, status, requestCode);
         switch (requestCode) {
             case 0x123:
-                //发不成功
-
+                //广告发布成功
+                advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
+                SuccessActivity.startActWithAdvertising(PostedBigDealSellActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, 0x123);
                 break;
             case 0x124:
                 //收款地址

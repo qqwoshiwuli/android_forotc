@@ -60,9 +60,15 @@ public class HttpUrl {
     //public static final String baseUrl = "http://forotc.com";
     public static final String baseUrl = httpBaseUrl;
     /**
-     * 订单列表
+     * btc订单列表
      */
     public String orderList = baseUrl + "/deal/list";
+
+    /**
+     * ucx订单列表
+     */
+    public String dealwkcList = baseUrl + "/dealwkc/list";
+
 
     /**
      * 用户
@@ -149,6 +155,10 @@ public class HttpUrl {
      * 校验比特币地址信息
      */
     public String checkCoinAddress = baseUrl + userUrl + "/checkCoinAddress";
+    /**
+     * 链克 我的广告
+     */
+    public String adsucx = baseUrl + userUrl + "/adsucx";
 
 
     /**
@@ -188,6 +198,10 @@ public class HttpUrl {
      * 版本更新
      */
     public String getAPPVersion = baseUrl + idxUrl + "/getAPPVersion/1";
+    /**
+     * ucx广告
+     */
+    public String adUcx = baseUrl + idxUrl + "/adUcx";
 
 
     /**
@@ -337,6 +351,10 @@ public class HttpUrl {
      * 大宗交易广告详情
      */
     public String adwkc_getAdDetail = baseUrl + adwkcUrl + "/getAdDetail";
+    /**
+     * 发起广告前校验
+     */
+    public String adwkc_beforeSaveAd = baseUrl + adwkcUrl + "/beforeSaveAd";
 
 
     /**
@@ -351,6 +369,14 @@ public class HttpUrl {
      * 大宗交易订单 保存
      */
     public String dealwkc_saveDeal = baseUrl + dealwkcUrl + "/saveDeal";
+    /**
+     * 大宗交易订单 详情
+     */
+    public String dealwkc_dealdt = baseUrl + dealwkcUrl + "/dealdt";
+    /**
+     * 大宗交易订单 下架
+     */
+    public String dealwkc_dealCancle = baseUrl + dealwkcUrl + "/dealCancle";
 
 
 }

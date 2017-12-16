@@ -29,6 +29,7 @@ import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.HomeBanner;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
+import com.gqfbtc.mvp.activity.advertising.BigDealsAdvertisingActivity;
 import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
 import com.gqfbtc.mvp.activity.main.WebVeiwActivity;
 import com.gqfbtc.mvp.activity.posted.PostedBigDealBuyActivity;
@@ -47,6 +48,7 @@ import java.util.List;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.BGABannerUtil;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by 郭青枫 on 2017/10/16.
@@ -65,13 +67,15 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
             , "挂单卖链克", "挂单买链克"
     };
     int[] selectRightIds = {R.string.ic_btc, R.string.ic_btc
-            , R.string.ic_eth, R.string.ic_eth
+            , R.string.ic_ucx, R.string.ic_ucx
     };
     HomeRightPopu homeRightPopu;
     HomeLeftPopu homeLeftPopu;
     boolean isBuy = true;
     List<HomeBanner> homeBanners;
     int chooseType;
+    boolean isRefushBanner = true;
+    Disposable disposable;
     private static final int buy_btc = 0;
     private static final int sell_btc = 1;
     private static final int buy_ucx = 2;
@@ -110,6 +114,9 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
             type = "卖链克";
         }
         viewDelegate.viewHolder.tv_select.setText(type);
+        //禁止banner刷新
+        isRefushBanner = false;
+        //刷新
         onRefresh();
     }
 
@@ -216,7 +223,11 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
         advertisingAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-                BuyAndSellBTCActivity.startAct(getActivity(), advertisingAdapter.getDatas().get(position - adapter.getHeadersCount()));
+                if (HomeAdvertising.coin_type_btc.equals(advertisingAdapter.getDatas().get(position - adapter.getHeadersCount()).getCurrency())) {
+                    BuyAndSellBTCActivity.startAct(getActivity(), advertisingAdapter.getDatas().get(position - adapter.getHeadersCount()));
+                } else {
+                    BigDealsAdvertisingActivity.startAct(getActivity(), advertisingAdapter.getDatas().get(position - adapter.getHeadersCount()));
+                }
             }
 
             @Override
@@ -271,11 +282,17 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     }
 
     public void advertisingSellUcx() {
-        gotoActivity(PostedBigDealSellActivity.class).startAct();
+        if (SingSettingDBUtil.isLogin(getActivity())) {
+            chooseType = sell_ucx;
+            addRequest(binder.adwkc_beforeSaveAd("3", true, this));
+        }
     }
 
     public void advertisingBuyUcx() {
-        gotoActivity(PostedBigDealBuyActivity.class).startAct();
+        if (SingSettingDBUtil.isLogin(getActivity())) {
+            chooseType = buy_ucx;
+            addRequest(binder.adwkc_beforeSaveAd("3", false, this));
+        }
     }
 
     @Override
@@ -292,8 +309,12 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                 CheckFrozen checkFrozen = GsonUtil.getInstance().toObj(data, CheckFrozen.class);
                 if (chooseType == buy_btc) {
                     ChooseBuyBtcModeActivity.startAct(getActivity(), ChooseBuyBtcModeActivity.type_buy, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
-                } else {
+                } else if (chooseType == sell_btc) {
                     ChooseBuyBtcModeActivity.startAct(getActivity(), ChooseBuyBtcModeActivity.type_sell, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
+                } else if (chooseType == buy_ucx) {
+                    PostedBigDealBuyActivity.startAct(getActivity(),checkFrozen,0x123);
+                } else if (chooseType == sell_ucx) {
+                    PostedBigDealSellActivity.startAct(getActivity(),checkFrozen,0x123);
                 }
                 break;
             case 0x124:
@@ -301,7 +322,7 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                 List<HomeAdvertising> list = GsonUtil
                         .getInstance().toList(data, HomeAdvertising.class);
                 getDataBack(defDatas, list, adapter);
-
+                isRefushBanner = true;
                 break;
             case 0x125:
                 //轮播
@@ -366,7 +387,17 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     @Override
     protected void refreshData() {
         viewDelegate.viewHolder.swipeRefreshLayout.setRefreshing(true);
-        addRequest(binder.ad(!isBuy ? "buy" : "sale", this));
-        addRequest(binder.listCarouselFigure(this));
+        if (disposable != null) {
+            disposable.dispose();
+        }
+        if (tl_8.getCurrentTab() == 0) {
+            disposable = binder.ad(!isBuy ? "buy" : "sale", this);
+        } else {
+            disposable = binder.adUcx(!isBuy ? "buy" : "sale", this);
+        }
+        addRequest(disposable);
+        if (isRefushBanner) {
+            addRequest(binder.listCarouselFigure(this));
+        }
     }
 }

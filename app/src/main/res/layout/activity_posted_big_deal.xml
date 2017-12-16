@@ -28,17 +28,52 @@
                 android:paddingBottom="@dimen/trans_20px"
                 android:paddingTop="@dimen/trans_20px">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/trans_30px"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/trans_20px"
-                    android:paddingLeft="@dimen/trans_40px"
-                    android:paddingTop="@dimen/trans_20px"
-                    android:text="币种及报价"
-                    android:textColor="@color/color_font1"
-                    android:textSize="@dimen/text_trans_30px"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/trans_30px"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/trans_20px"
+                        android:paddingLeft="@dimen/trans_40px"
+                        android:paddingTop="@dimen/trans_20px"
+                        android:text="币种及报价"
+                        android:textColor="@color/color_font1"
+                        android:textSize="@dimen/text_trans_30px"/>
+
+                    <LinearLayout
+                        android:id="@+id/lin_toast"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/trans_40px">
+
+                        <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingRight="@dimen/trans_20px"
+                            android:text="@string/ic_xuzhi"
+                            android:textColor="@color/color_blue"
+                            android:textSize="@dimen/text_trans_28px"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="查看手续费及交易须知"
+                            android:textColor="@color/color_blue"
+                            android:textSize="@dimen/text_trans_28px"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

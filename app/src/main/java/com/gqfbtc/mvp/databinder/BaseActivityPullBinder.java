@@ -210,11 +210,13 @@ public class BaseActivityPullBinder<T extends BaseActivityPullDelegate> extends 
      * 大宗交易
      */
     public Disposable adwkc_getAdDetail(
+            String adId,
             RequestCallback requestCallback
     ) {
         getBaseMapWithUid();
+        baseMap.put("adId", adId);
         return new HttpRequest.Builder()
-                .setRequestCode(0x123)
+                .setRequestCode(0x124)
                 .setRequestUrl(HttpUrl.getIntance().adwkc_getAdDetail)
                 .setRequestName("大宗交易广告详情")
                 .setShowDialog(true)
@@ -245,8 +247,8 @@ public class BaseActivityPullBinder<T extends BaseActivityPullDelegate> extends 
                 .setRequestName("大宗交易保存订单")
                 .setShowDialog(true)
                 .setDialog(viewDelegate.getNetConnectDialog())
-                .setRequestMode(HttpRequest.RequestMode.GET)
-                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.Json)
                 .setRequestObj(baseMap)
                 .setRequestCallback(requestCallback)
                 .build()

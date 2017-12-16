@@ -12,7 +12,9 @@ import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.ActUtil;
 import com.gqfbtc.R;
 import com.gqfbtc.entity.bean.HomeAdvertising;
+import com.gqfbtc.mvp.activity.advertising.BigDealsAdvertisingActivity;
 import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
+import com.gqfbtc.mvp.activity.transact.BigDealsActivity;
 import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.delegate.SuccessDelegate;
 
@@ -67,13 +69,16 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
     public static void startActWithId(Activity activity,
                                       String id,
                                       int type,
+                                      String coinType,
                                       int requestCode) {
         Intent intent = new Intent(activity, SuccessActivity.class);
         intent.putExtra("id", id);
         intent.putExtra("type", type);
+        intent.putExtra("coinType", coinType);
         activity.startActivityForResult(intent, requestCode);
         activity.finish();
     }
+
 
     public static void startActWithAdvertising(Activity activity,
                                                HomeAdvertising homeAdvertising,
@@ -88,12 +93,14 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
 
     private int type;
     private String id;
+    private String coinType;
     HomeAdvertising homeAdvertising;
 
     private void getIntentData() {
         Intent intent = getIntent();
         type = intent.getIntExtra("type", 0);
         id = intent.getStringExtra("id");
+        coinType = intent.getStringExtra("coinType");
         homeAdvertising = intent.getParcelableExtra("homeAdvertising");
     }
 
@@ -126,10 +133,18 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
             EventBus.getDefault().post(resultDialogEntity);
         } else if (type == INTENT_SUCCESS_ADVERTISING) {
             //去广告详情
-            BuyAndSellBTCActivity.startAct(this, homeAdvertising);
+            if (HomeAdvertising.coin_type_btc.equals(homeAdvertising.getCurrency())) {
+                BuyAndSellBTCActivity.startAct(this, homeAdvertising);
+            } else {
+                BigDealsAdvertisingActivity.startAct(this, homeAdvertising);
+            }
         } else if (type == INTENT_SUCCESS_EVALUATE) {
             //去订单详情
-            WaitTransactActivity.startAct(this, id);
+            if (HomeAdvertising.coin_type_btc.equals(coinType)) {
+                WaitTransactActivity.startAct(this, id);
+            } else {
+                BigDealsActivity.startAct(this, id);
+            }
         } else if (type == INTENT_SUCCESS_UPDATA) {
             //去登陆页
             Intent intent = new Intent(this, loginCls);
@@ -137,7 +152,11 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
             startActivity(intent);
         } else if (type == INTENT_SUCCESS_ORDER) {
             //去订单详情
-            WaitTransactActivity.startAct(this, id);
+            if (HomeAdvertising.coin_type_btc.equals(coinType)) {
+                WaitTransactActivity.startAct(this, id);
+            } else {
+                BigDealsActivity.startAct(this, id);
+            }
         }
         finish();
     }

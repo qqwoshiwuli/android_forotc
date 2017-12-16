@@ -26,7 +26,7 @@ public class PostedBigDealBinder extends BaseDataBind<PostedBigDealDelegate> {
         getBaseMapWithUid();
         viewDelegate.commitEnableView(false);
         baseMap.put("currency", 3);
-        baseMap.put("isSafe", false);
+        baseMap.put("isSale", false);
         baseMap.put("price", price);
         baseMap.put("remark", remark);
         baseMap.put("quantity", quantity);
@@ -61,7 +61,7 @@ public class PostedBigDealBinder extends BaseDataBind<PostedBigDealDelegate> {
         getBaseMapWithUid();
         viewDelegate.commitEnableView(false);
         baseMap.put("currency", 3);
-        baseMap.put("isSafe", true);
+        baseMap.put("isSale", true);
         baseMap.put("price", price);
         baseMap.put("remark", remark);
         baseMap.put("quantity", quantity);

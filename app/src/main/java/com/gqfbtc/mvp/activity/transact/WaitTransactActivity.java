@@ -10,7 +10,6 @@ import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
@@ -66,16 +65,17 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
 
     private void initRefush() {
         //刷新
-        refreshInfo();
+        refreshInfo(true);
         viewDelegate.viewHolder.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshInfo();
+                refreshInfo(false);
             }
         });
     }
 
-    private void refreshInfo() {
+    private void refreshInfo(boolean isShowDialog) {
+        viewDelegate.viewHolder.swipeRefreshLayout.setRefreshing(isShowDialog);
         addRequest(binder.dealdt(id, false, WaitTransactActivity.this));
     }
 
@@ -95,7 +95,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
                     break;
                 case 2:
                     //中介刷新
-                    refreshInfo();
+                    refreshInfo(false);
                     break;
             }
         }
@@ -162,33 +162,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         } else {
             initToolbar(new ToolbarBuilder().setTitle(orderDetails.getTitle()).setSubTitle(CommonUtils.getString(R.string.str_subtitle_tradersinfo)));
         }
-        viewDelegate.viewHolder.tv_total_price.setText(orderDetails.getDealMoneyStr());
-        viewDelegate.viewHolder.tv_poundage.setText(orderDetails.getPoundageStr());
-        viewDelegate.viewHolder.tv_unit_price.setText(orderDetails.getDealPriceStr());
-        viewDelegate.viewHolder.tv_btc.setText(orderDetails.getDealQuantityStr());
-        viewDelegate.viewHolder.tv_freeze.setText(orderDetails.getFrozenCoin());
-        viewDelegate.viewHolder.tv_payment.setText(orderDetails.getDealRemark());
-        viewDelegate.viewHolder.tv_collection.setText(orderDetails.getDealPushBtn());
-        viewDelegate.viewHolder.tv_call_service.setText(orderDetails.getCustomJoin());
-        viewDelegate.viewHolder.tv_paytype.setText(orderDetails.getPayType());
-
-        ViewTreeObserver viewTreeObserver = viewDelegate.viewHolder.lin_top.getViewTreeObserver();
-        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                viewDelegate.viewHolder.lin_top.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int height = viewDelegate.viewHolder.lin_top.getHeight();
-                viewDelegate.viewHolder.swipeRefreshLayout.setHeight(height);
-            }
-        });
-
-        viewDelegate.viewHolder.swipeRefreshLayout.setRefreshing(false);
-
-        viewDelegate.viewHolder.fl_collection.setVisibility(TextUtils.isEmpty(orderDetails.getDealPushBtn()) ? View.GONE : View.VISIBLE);
-        viewDelegate.viewHolder.fl_call_service.setVisibility(TextUtils.isEmpty(orderDetails.getCustomJoin()) ? View.GONE : View.VISIBLE);
-        viewDelegate.viewHolder.lin_my_pay_type.setVisibility(TextUtils.isEmpty(orderDetails.getPayType()) ? View.GONE : View.VISIBLE);
-        viewDelegate.viewHolder.lin_my_pay_type.setVisibility(orderDetails.getBankInfoList().size() == 0 ? View.GONE : View.VISIBLE);
-
+        viewDelegate.initDataView(orderDetails);
         viewDelegate.setOnClickListener(this, R.id.fl_collection, R.id.fl_call_service, R.id.lin_my_pay_type, R.id.tv_payment);
         if (viewDelegate.fragment == null) {
             setWindowManagerLayoutParams(0);
@@ -228,7 +202,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
                         }
                     }).show();
                 } else {
-                    isNeedAppraise();
+                    viewDelegate.isNeedAppraise(this, orderDetails);
                 }
                 break;
             case R.id.fl_call_service:
@@ -288,16 +262,6 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         ToastUtil.show("已复制地址到粘贴板：\n" + txt);
     }
 
-    private void isNeedAppraise() {
-        //去评价
-        TransactAppraiseActivity.startAct(this,
-                orderDetails.getId(),
-                orderDetails.getAdOwnerId(),
-                orderDetails.getDealOwnerId(),
-                orderDetails.getIntermediaryId(),
-                0x123
-        );
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

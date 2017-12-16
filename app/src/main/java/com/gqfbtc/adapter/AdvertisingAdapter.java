@@ -32,6 +32,10 @@ public class AdvertisingAdapter extends CommonAdapter<HomeAdvertising> {
     private LinearLayout lin_buy;
     private ImageView iv_jisu;
     private ImageView iv_dahu;
+    private LinearLayout lin_lable;
+    private LinearLayout lin_ucx_lable;
+    private TextView tv_response;
+    private TextView tv_transact_num;
 
     public interface OnAdapterClick {
         void onClick(int position);
@@ -52,6 +56,10 @@ public class AdvertisingAdapter extends CommonAdapter<HomeAdvertising> {
         lin_buy = holder.getView(R.id.lin_buy);
         iv_jisu = holder.getView(R.id.iv_jisu);
         iv_dahu = holder.getView(R.id.iv_dahu);
+        lin_lable = holder.getView(R.id.lin_lable);
+        lin_ucx_lable = holder.getView(R.id.lin_ucx_lable);
+        tv_response = holder.getView(R.id.tv_response);
+        tv_transact_num = holder.getView(R.id.tv_transact_num);
 
         tv_buy.setText(s.isSale() ? "购买" : "出售");
 
@@ -64,13 +72,24 @@ public class AdvertisingAdapter extends CommonAdapter<HomeAdvertising> {
             str = s.getOwnerNickName();
         }
 
-        tv_name.setText(str + " | " + s.getOwnScore());
 
         tv_money.setText(s.getPrice());
-        tv_sell_type.setText("限额 " + s.getTradeFloorAmount() + " ~ " + s.getTradeAmount() + " CNY");
 
-        iv_jisu.setVisibility(s.isTagsExpress() ? View.VISIBLE : View.GONE);
-        iv_dahu.setVisibility(s.isTagsKA() ? View.VISIBLE : View.GONE);
+        if (HomeAdvertising.coin_type_btc.equals(s.getCurrency())) {
+            tv_sell_type.setText("限额 " + s.getTradeFloorAmount() + " ~ " + s.getTradeAmount() + " CNY");
+            tv_name.setText(str + " | " + s.getOwnScore());
+            iv_jisu.setVisibility(s.isTagsExpress() ? View.VISIBLE : View.GONE);
+            iv_dahu.setVisibility(s.isTagsKA() ? View.VISIBLE : View.GONE);
+            lin_ucx_lable.setVisibility(View.GONE);
+            lin_lable.setVisibility(View.VISIBLE);
+        } else {
+            tv_sell_type.setText("限额 " + s.getTradeFloorAmount() + " ~ " + s.getLeftQuantity() + " 个");
+            tv_name.setText(str + " | " + s.getRespondRatioStr());
+            lin_lable.setVisibility(View.GONE);
+            lin_ucx_lable.setVisibility(View.VISIBLE);
+            tv_response.setText(s.getRespondTimeStr());
+            tv_transact_num.setText(s.getSuccCountStr());
+        }
 
 
     }

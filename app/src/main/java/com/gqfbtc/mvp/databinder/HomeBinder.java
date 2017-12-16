@@ -38,6 +38,27 @@ public class HomeBinder extends BaseDataBind<HomeDelegate> {
                 .RxSendRequest();
     }
 
+    public Disposable adwkc_beforeSaveAd(
+            String coinType,
+            boolean isSale,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        baseMap.put("coinType", coinType);
+        baseMap.put("isSale", isSale);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x123)
+                .setShowDialog(true)
+                .setDialog(viewDelegate.getNetConnectDialog())
+                .setRequestUrl(HttpUrl.getIntance().adwkc_beforeSaveAd)
+                .setRequestName("ucx检查用户是否被冻结")
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+    }
+
     public Disposable ad(
             String type,
             RequestCallback requestCallback) {
@@ -49,7 +70,28 @@ public class HomeBinder extends BaseDataBind<HomeDelegate> {
         return new HttpRequest.Builder()
                 .setRequestCode(0x124)
                 .setRequestUrl(HttpUrl.getIntance().ad + stringBuffer.toString())
-                .setRequestName("首页广告")
+                .setRequestName("首页btc广告")
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.Rest)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+
+    }
+
+    public Disposable adUcx(
+            String type,
+            RequestCallback requestCallback) {
+        getBaseMap();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("/" + type);
+        stringBuffer.append("/" + "list");
+        stringBuffer.append("/" + viewDelegate.page);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x124)
+                .setRequestUrl(HttpUrl.getIntance().adUcx + stringBuffer.toString())
+                .setRequestName("首页ucx广告")
                 .setRequestMode(HttpRequest.RequestMode.GET)
                 .setParameterMode(HttpRequest.ParameterMode.Rest)
                 .setRequestObj(baseMap)

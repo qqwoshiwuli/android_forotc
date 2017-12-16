@@ -80,6 +80,9 @@
     <string name="ic_jiage">&#xe665;</string>
     <string name="ic_chenggong">&#xe60a;</string>
     <string name="ic_shimingrenzheng">&#xe63e;</string>
+    <string name="ic_xuzhi">&#xe641;</string>
+    <string name="ic_ucx">&#xe642;</string>
+    <string name="ic_shuliang">&#xe643;</string>
 
     <!--helper-->
     <!--浮动报价-->

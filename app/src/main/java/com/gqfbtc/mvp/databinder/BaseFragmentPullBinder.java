@@ -194,6 +194,22 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
                 .RxSendRequest();
 
     }
+    public Disposable adsucx(
+            String type,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        return new HttpRequest.Builder()
+                .setRequestCode(0x123)
+                .setRequestUrl(HttpUrl.getIntance().adsucx + "/" + type)
+                .setRequestName("ucx我的广告")
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+
+    }
 
     public Disposable down(
             String id,
@@ -211,7 +227,23 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
                 .RxSendRequest();
 
     }
+    public Disposable dealwkc_dealCancle(
+            String id,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        baseMap.put("id", id);
+        return new HttpRequest.Builder()
+                .setRequestCode(0x124)
+                .setRequestUrl(HttpUrl.getIntance().dealwkc_dealCancle )
+                .setRequestName("ucx广告下架")
+                .setRequestMode(HttpRequest.RequestMode.POST)
+                .setParameterMode(HttpRequest.ParameterMode.Json)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
 
+    }
     public Disposable up(
             String id,
             RequestCallback requestCallback) {
@@ -268,7 +300,7 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
         return new HttpRequest.Builder()
                 .setRequestCode(0x123)
                 .setRequestUrl(HttpUrl.getIntance().orderList + "/" + viewDelegate.page)
-                .setRequestName("个人中心")
+                .setRequestName("btc订单列表")
                 .setRequestMode(HttpRequest.RequestMode.GET)
                 .setParameterMode(HttpRequest.ParameterMode.KeyValue)
                 .setRequestObj(baseMap)
@@ -277,6 +309,21 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
                 .RxSendRequest();
     }
 
+    public Disposable dealwkcList(
+            RequestCallback requestCallback
+    ) {
+        getBaseMapWithUid();
+        return new HttpRequest.Builder()
+                .setRequestCode(0x123)
+                .setRequestUrl(HttpUrl.getIntance().dealwkcList + "/" + viewDelegate.page)
+                .setRequestName("ucx订单列表")
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+    }
     /**
      * 订单列表
      */

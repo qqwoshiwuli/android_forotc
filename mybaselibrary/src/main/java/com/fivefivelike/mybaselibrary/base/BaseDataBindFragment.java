@@ -101,9 +101,13 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
             if (status == 0000) {
                 onServiceSuccess(data, info, status, requestCode);
             } else {
+
                 onServiceError(data, info, status, requestCode);
             }
             String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
+            if (TextUtils.isEmpty(dialog) && status != 0000) {
+                ToastUtil.show(info);
+            }
             if (!TextUtils.isEmpty(dialog)) {
                 ResultDialog.getInstence().ShowResultDialog(getActivity(), dialog, this);
             }
@@ -138,7 +142,6 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
     }
 
     protected void onServiceError(String data, String info, int status, int requestCode) {
-        ToastUtil.show(info);
         missToken(status);
     }
 
@@ -157,8 +160,8 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
     public void onClick(View view, int position, Object item) {
         if (position == ResultDialog.CONFIRM_POSITION) {
             EventBus.getDefault().post(((ResultDialogEntity) item));
-        }else if(position == ResultDialog.CANNEL_POSITION){
-            if(((ResultDialogEntity) item).isCancelAndClose()){
+        } else if (position == ResultDialog.CANNEL_POSITION) {
+            if (((ResultDialogEntity) item).isCancelAndClose()) {
                 getActivity().onBackPressed();
             }
         }

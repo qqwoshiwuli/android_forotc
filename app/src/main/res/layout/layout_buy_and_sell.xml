@@ -182,6 +182,7 @@
                     android:textSize="@dimen/text_trans_22px"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lin_probability"
                 android:layout_width="wrap_content"
@@ -379,6 +380,7 @@
                             android:textSize="@dimen/text_trans_22px"/>
 
                         <TextView
+                            android:id="@+id/tv_bigdeals_unit_price_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -437,6 +439,7 @@
                             android:textSize="@dimen/text_trans_22px"/>
 
                         <TextView
+                            android:id="@+id/tv_bigdeals_type_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -491,11 +494,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/trans_10px"
                             android:gravity="center"
-                            android:text="@string/ic_liuyan"
+                            android:text="@string/ic_shuliang"
                             android:textColor="@color/color_font2"
                             android:textSize="@dimen/text_trans_22px"/>
 
                         <TextView
+                            android:id="@+id/tv_bigdeals_num_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -608,10 +612,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:gravity="center"
+                android:gravity="left|center_vertical"
                 android:hint="预计购买数量"
                 android:inputType="number"
+                android:maxLength="18"
                 android:paddingBottom="@dimen/trans_40px"
+                android:paddingLeft="@dimen/trans_40px"
                 android:paddingTop="@dimen/trans_40px"
                 android:textColor="@color/color_font1"
                 android:textSize="@dimen/text_trans_22px"/>
@@ -620,6 +626,7 @@
                 android:id="@+id/tv_bigdeals_cny_helper"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:clickable="true"
                 android:gravity="center"
                 android:paddingLeft="@dimen/trans_40px"
                 android:paddingRight="@dimen/trans_40px"
@@ -737,13 +744,28 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:padding="@dimen/trans_20px"
                     android:text="系统自动帮我选托管人"
                     android:textColor="@color/color_font1"
                     android:textSize="@dimen/text_trans_30px"/>
+
+                <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                    android:id="@+id/tv_intervening_helper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:text="@string/ic_changjianwenti"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_30px"/>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
                 <com.kyleduo.switchbutton.SwitchButton
                     android:id="@+id/checkbox"

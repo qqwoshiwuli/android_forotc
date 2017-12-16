@@ -18,6 +18,7 @@ import com.gqfbtc.entity.bean.AdvertisingMessage;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.SuccessActivity;
 import com.gqfbtc.mvp.databinder.BaseActivityPullBinder;
 import com.gqfbtc.mvp.delegate.BigDealsAdvertisingDelegate;
 import com.gqfbtc.widget.FoucsLinearLayoutManager;
@@ -42,13 +43,17 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
         super.bindEvenListener();
         userLogin = SingSettingDBUtil.getUserLogin();
         getIntentData();
-        initToolbar(new ToolbarBuilder().setTitle("大宗交易").setSubTitle("帮助"));
-
+        if (homeAdvertising.isSale()) {
+            initToolbar(new ToolbarBuilder().setTitle("买链克").setSubTitle("帮助"));
+        } else {
+            initToolbar(new ToolbarBuilder().setTitle("卖链克").setSubTitle("帮助"));
+        }
+        addRequest(binder.adwkc_getAdDetail(homeAdvertising.getAdId(),this));
     }
 
     public static void startAct(Activity activity,
                                 HomeAdvertising homeAdvertising) {
-        Intent intent = new Intent(activity, BuyAndSellBTCActivity.class);
+        Intent intent = new Intent(activity, BigDealsAdvertisingActivity.class);
         intent.putExtra("homeAdvertising", homeAdvertising);
         activity.startActivity(intent);
     }
@@ -72,7 +77,7 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
 
     @Override
     protected void onServiceSuccess(String data, String info, int status, int requestCode) {
-        switch (status) {
+        switch (requestCode) {
             case 0x123:
                 //留言刷新
                 List<AdvertisingMessage> list = GsonUtil.getInstance().toList(data, AdvertisingMessage.class);
@@ -99,6 +104,10 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
                     onRefresh();
                     ToastUtil.show(info);
                 }
+                break;
+            case 0x126:
+                String transactId = GsonUtil.getInstance().getValue(data, "dealId");
+                SuccessActivity.startActWithId(this, transactId, SuccessActivity.INTENT_SUCCESS_ORDER,HomeAdvertising.coin_type_ucx, 0x123);
                 break;
         }
     }
@@ -168,11 +177,11 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
 
     @Override
     public BaseActivityPullBinder<BigDealsAdvertisingDelegate> getDataBinder(BigDealsAdvertisingDelegate viewDelegate) {
-        return new BaseActivityPullBinder<>(viewDelegate);
+        return new BaseActivityPullBinder<BigDealsAdvertisingDelegate>(viewDelegate);
     }
 
     @Override
     protected void refreshData() {
-        addRequest(binder.adwkc_getAdDetail(this));
+        addRequest(binder.getMessage(homeAdvertising.getAdId(), this));
     }
 }

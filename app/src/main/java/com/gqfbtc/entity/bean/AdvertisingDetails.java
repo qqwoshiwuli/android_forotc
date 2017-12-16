@@ -58,38 +58,23 @@ public class AdvertisingDetails {
     private String id;
     private String code;
     private String currency;
-    private String owerId;
     private boolean isSale;
     private boolean isSafe;
     private String status;
     private boolean isFixed;
     private BigDecimal price;
     private String priceStr;
-    private String quantity;
-    private String lockedAmount;
-    private String succeedAmount;
-    private String deposit;
     private String remark;
-    private String threshold;
-    private String floatPercent;
     private long createTime;
     private long updateTime;
-    private String collectionCashAddr;
-    private String collectionCoinAddr;
-    private String ceil;
-    private String floor;
     private String userId;
     private String nickName;
     private String avatar;
     private boolean tagsKa;
     private boolean tagsExpress;
     private String grade;
-    private String dealCount;
     private String dealCountStr;
-    private String dealQuantity;
     private String dealQuantityStr;
-    private String leftMoney;
-    private String leftMoneyStr;
     private String dealRange;
     private List<Intermediary> intermediaryList;//中介列表
     private List<AdvertisingMessage> adMessageList;
@@ -100,6 +85,27 @@ public class AdvertisingDetails {
     private String respondTime; //响应时间
     private String respondChance; //响应概率
 
+
+    //预计买入数量
+    private String quantityDealPro;
+    //系统自动帮我选托管人
+    private String selectInterPro;
+
+    public String getQuantityDealPro() {
+        return quantityDealPro;
+    }
+
+    public void setQuantityDealPro(String quantityDealPro) {
+        this.quantityDealPro = quantityDealPro;
+    }
+
+    public String getSelectInterPro() {
+        return selectInterPro;
+    }
+
+    public void setSelectInterPro(String selectInterPro) {
+        this.selectInterPro = selectInterPro;
+    }
 
     public String getId() {
         return id;
@@ -123,14 +129,6 @@ public class AdvertisingDetails {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public String getOwerId() {
-        return owerId;
-    }
-
-    public void setOwerId(String owerId) {
-        this.owerId = owerId;
     }
 
     public boolean isSale() {
@@ -181,37 +179,7 @@ public class AdvertisingDetails {
         this.priceStr = priceStr;
     }
 
-    public String getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getLockedAmount() {
-        return lockedAmount;
-    }
-
-    public void setLockedAmount(String lockedAmount) {
-        this.lockedAmount = lockedAmount;
-    }
-
-    public String getSucceedAmount() {
-        return succeedAmount;
-    }
-
-    public void setSucceedAmount(String succeedAmount) {
-        this.succeedAmount = succeedAmount;
-    }
-
-    public String getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(String deposit) {
-        this.deposit = deposit;
-    }
 
     public String getRemark() {
         return remark;
@@ -221,21 +189,6 @@ public class AdvertisingDetails {
         this.remark = remark;
     }
 
-    public String getThreshold() {
-        return threshold;
-    }
-
-    public void setThreshold(String threshold) {
-        this.threshold = threshold;
-    }
-
-    public String getFloatPercent() {
-        return floatPercent;
-    }
-
-    public void setFloatPercent(String floatPercent) {
-        this.floatPercent = floatPercent;
-    }
 
     public long getCreateTime() {
         return createTime;
@@ -253,37 +206,6 @@ public class AdvertisingDetails {
         this.updateTime = updateTime;
     }
 
-    public String getCollectionCashAddr() {
-        return collectionCashAddr;
-    }
-
-    public void setCollectionCashAddr(String collectionCashAddr) {
-        this.collectionCashAddr = collectionCashAddr;
-    }
-
-    public String getCollectionCoinAddr() {
-        return collectionCoinAddr;
-    }
-
-    public void setCollectionCoinAddr(String collectionCoinAddr) {
-        this.collectionCoinAddr = collectionCoinAddr;
-    }
-
-    public String getCeil() {
-        return ceil;
-    }
-
-    public void setCeil(String ceil) {
-        this.ceil = ceil;
-    }
-
-    public String getFloor() {
-        return floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
 
     public String getUserId() {
         return userId;
@@ -333,13 +255,6 @@ public class AdvertisingDetails {
         this.grade = grade;
     }
 
-    public String getDealCount() {
-        return dealCount;
-    }
-
-    public void setDealCount(String dealCount) {
-        this.dealCount = dealCount;
-    }
 
     public String getDealCountStr() {
         return dealCountStr;
@@ -349,13 +264,6 @@ public class AdvertisingDetails {
         this.dealCountStr = dealCountStr;
     }
 
-    public String getDealQuantity() {
-        return dealQuantity;
-    }
-
-    public void setDealQuantity(String dealQuantity) {
-        this.dealQuantity = dealQuantity;
-    }
 
     public String getDealQuantityStr() {
         return dealQuantityStr;
@@ -363,22 +271,6 @@ public class AdvertisingDetails {
 
     public void setDealQuantityStr(String dealQuantityStr) {
         this.dealQuantityStr = dealQuantityStr;
-    }
-
-    public String getLeftMoney() {
-        return leftMoney;
-    }
-
-    public void setLeftMoney(String leftMoney) {
-        this.leftMoney = leftMoney;
-    }
-
-    public String getLeftMoneyStr() {
-        return leftMoneyStr;
-    }
-
-    public void setLeftMoneyStr(String leftMoneyStr) {
-        this.leftMoneyStr = leftMoneyStr;
     }
 
     public String getDealRange() {
@@ -405,13 +297,6 @@ public class AdvertisingDetails {
         this.adMessageList = adMessageList;
     }
 
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
 
     public String getTitle() {
         return title;

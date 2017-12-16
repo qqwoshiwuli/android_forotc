@@ -21,6 +21,10 @@ public class HomeAdvertising implements Parcelable {
      * ownerNickName : 我叫买买11
      */
 
+    public static final String coin_type_btc = "1";
+    public static final String coin_type_ucx = "3";
+
+
     private String tradeAmount;
     private String ownScore;
     private String tags_express;
@@ -33,6 +37,35 @@ public class HomeAdvertising implements Parcelable {
     private boolean tagsExpress;
     private boolean tagsKA;
     private String ownerNickName;
+
+
+    /**
+     * leftQuantity : 0.105429
+     * adId : 302
+     * tradeFloorAmount : 0
+     * floatPercent : -5.09
+     * floor : 100
+     * isFixed : false
+     */
+
+    private String leftQuantity;//剩余数量
+    private String currency;//1 btc 3 ucx
+    private String floatPercent;
+    private String floor;//最低交易量
+    private boolean isFixed;
+
+    private String respondTimeStr;//响应时间
+    private String respondRatioStr;//响应概率
+    private String succCountStr;//成功交易次数@轻疯 @韩十力
+
+
+    public static String getCoin_type_btc() {
+        return coin_type_btc;
+    }
+
+    public static String getCoin_type_ucx() {
+        return coin_type_ucx;
+    }
 
     public String getTradeAmount() {
         return tradeAmount;
@@ -130,6 +163,70 @@ public class HomeAdvertising implements Parcelable {
         this.ownerNickName = ownerNickName;
     }
 
+    public String getLeftQuantity() {
+        return leftQuantity;
+    }
+
+    public void setLeftQuantity(String leftQuantity) {
+        this.leftQuantity = leftQuantity;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getFloatPercent() {
+        return floatPercent;
+    }
+
+    public void setFloatPercent(String floatPercent) {
+        this.floatPercent = floatPercent;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public boolean isFixed() {
+        return isFixed;
+    }
+
+    public void setFixed(boolean fixed) {
+        isFixed = fixed;
+    }
+
+    public String getRespondTimeStr() {
+        return respondTimeStr;
+    }
+
+    public void setRespondTimeStr(String respondTimeStr) {
+        this.respondTimeStr = respondTimeStr;
+    }
+
+    public String getRespondRatioStr() {
+        return respondRatioStr;
+    }
+
+    public void setRespondRatioStr(String respondRatioStr) {
+        this.respondRatioStr = respondRatioStr;
+    }
+
+    public String getSuccCountStr() {
+        return succCountStr;
+    }
+
+    public void setSuccCountStr(String succCountStr) {
+        this.succCountStr = succCountStr;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -149,6 +246,14 @@ public class HomeAdvertising implements Parcelable {
         dest.writeByte(this.tagsExpress ? (byte) 1 : (byte) 0);
         dest.writeByte(this.tagsKA ? (byte) 1 : (byte) 0);
         dest.writeString(this.ownerNickName);
+        dest.writeString(this.leftQuantity);
+        dest.writeString(this.currency);
+        dest.writeString(this.floatPercent);
+        dest.writeString(this.floor);
+        dest.writeByte(this.isFixed ? (byte) 1 : (byte) 0);
+        dest.writeString(this.respondTimeStr);
+        dest.writeString(this.respondRatioStr);
+        dest.writeString(this.succCountStr);
     }
 
     public HomeAdvertising() {
@@ -167,6 +272,14 @@ public class HomeAdvertising implements Parcelable {
         this.tagsExpress = in.readByte() != 0;
         this.tagsKA = in.readByte() != 0;
         this.ownerNickName = in.readString();
+        this.leftQuantity = in.readString();
+        this.currency = in.readString();
+        this.floatPercent = in.readString();
+        this.floor = in.readString();
+        this.isFixed = in.readByte() != 0;
+        this.respondTimeStr = in.readString();
+        this.respondRatioStr = in.readString();
+        this.succCountStr = in.readString();
     }
 
     public static final Parcelable.Creator<HomeAdvertising> CREATOR = new Parcelable.Creator<HomeAdvertising>() {

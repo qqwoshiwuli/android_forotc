@@ -103,6 +103,6 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
 
     @Override
     protected void refreshData() {
-        addRequest(binder.ads(ACTION_SHOW, this));
+        addRequest(binder.adsucx(ACTION_SHOW, this));
     }
 }

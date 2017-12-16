@@ -65,6 +65,10 @@ public class AdvertisingDelegate extends BaseActivityPullDelegate {
     public LinearLayout lin_time;
     public TextView tv_transact_probability;
     public LinearLayout lin_probability;
+    public TextView tv_bigdeals_unit_price_title;
+    public TextView tv_bigdeals_type_title;
+    public TextView tv_bigdeals_num_title;
+    public TextView tv_intervening_helper;
 
     public View initHeader() {
         // View view = viewHolder.rootView.getContext().getLayoutInflater().inflate(R.layout.layout_buy_and_sell, null);
@@ -104,15 +108,17 @@ public class AdvertisingDelegate extends BaseActivityPullDelegate {
         this.tv_transact_time = (TextView) view.findViewById(R.id.tv_transact_time);
         this.lin_time = (LinearLayout) view.findViewById(R.id.lin_time);
         this.tv_transact_probability = (TextView) view.findViewById(R.id.tv_transact_probability);
+        this.tv_bigdeals_unit_price_title = (TextView) view.findViewById(R.id.tv_bigdeals_unit_price_title);
+        this.tv_bigdeals_type_title = (TextView) view.findViewById(R.id.tv_bigdeals_type_title);
+        this.tv_bigdeals_num_title = (TextView) view.findViewById(R.id.tv_bigdeals_num_title);
         this.lin_probability = (LinearLayout) view.findViewById(R.id.lin_probability);
-
-
+        this.tv_intervening_helper = (TextView) view.findViewById(R.id.tv_intervening_helper);
 
 
         return view;
     }
 
-    public void initIntervening(AdvertisingDetails a){
+    public void initIntervening(AdvertisingDetails a) {
         if (a.getIntermediaryList() != null) {
             selectGuarantorAdapter = new SelectGuarantorAdapter(viewHolder.rootView.getContext(), a.getIntermediaryList());
             rv_guarantor.setLayoutManager(new LinearLayoutManager(viewHolder.rootView.getContext()) {
@@ -145,7 +151,6 @@ public class AdvertisingDelegate extends BaseActivityPullDelegate {
             }
         });
     }
-
 
 
     public void initBottomView(View.OnClickListener tv_commit_linsener, View.OnClickListener lin_message_linsener) {

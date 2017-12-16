@@ -31,7 +31,9 @@ public class HelperTostDialog {
         String toast = context.getResources().getString(strId);
         showDialog((FragmentActivity) context, toast);
     }
-
+    public void showToastDialog(Context context, String toast) {
+        showDialog((FragmentActivity) context, toast);
+    }
 
     private void showDialog(FragmentActivity activity, String title) {
         final int textSize = activity.getResources().getDimensionPixelSize(R.dimen.text_trans_28px);

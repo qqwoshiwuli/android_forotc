@@ -17,6 +17,24 @@ public class CheckFrozen implements Parcelable {
     private String safeModel;
     private String normalModel;
     private boolean canTrade;
+    private String floatPrice;
+    private String floatPercent;
+    private String marketPrice;
+
+    //页面上问号的点击提示语
+    //大宗交易时的提示语
+    private String prompt;
+    //求购币种提示
+    private String cointypePro;
+    //买入或卖出量
+    private String quantityAdPro;
+    //最低买入或最低卖出
+    private String thresholdPro;
+    //开放时间
+    private String timePro;
+    //收款帐号
+    private String bankInfoPro;
+
 
     public String getSafeModel() {
         return safeModel;
@@ -42,6 +60,78 @@ public class CheckFrozen implements Parcelable {
         this.canTrade = canTrade;
     }
 
+    public String getFloatPrice() {
+        return floatPrice;
+    }
+
+    public void setFloatPrice(String floatPrice) {
+        this.floatPrice = floatPrice;
+    }
+
+    public String getFloatPercent() {
+        return floatPercent;
+    }
+
+    public void setFloatPercent(String floatPercent) {
+        this.floatPercent = floatPercent;
+    }
+
+    public String getMarketPrice() {
+        return marketPrice;
+    }
+
+    public void setMarketPrice(String marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
+    }
+
+    public String getCointypePro() {
+        return cointypePro;
+    }
+
+    public void setCointypePro(String cointypePro) {
+        this.cointypePro = cointypePro;
+    }
+
+    public String getQuantityAdPro() {
+        return quantityAdPro;
+    }
+
+    public void setQuantityAdPro(String quantityAdPro) {
+        this.quantityAdPro = quantityAdPro;
+    }
+
+    public String getThresholdPro() {
+        return thresholdPro;
+    }
+
+    public void setThresholdPro(String thresholdPro) {
+        this.thresholdPro = thresholdPro;
+    }
+
+    public String getTimePro() {
+        return timePro;
+    }
+
+    public void setTimePro(String timePro) {
+        this.timePro = timePro;
+    }
+
+    public String getBankInfoPro() {
+        return bankInfoPro;
+    }
+
+    public void setBankInfoPro(String bankInfoPro) {
+        this.bankInfoPro = bankInfoPro;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -52,6 +142,15 @@ public class CheckFrozen implements Parcelable {
         dest.writeString(this.safeModel);
         dest.writeString(this.normalModel);
         dest.writeByte(this.canTrade ? (byte) 1 : (byte) 0);
+        dest.writeString(this.floatPrice);
+        dest.writeString(this.floatPercent);
+        dest.writeString(this.marketPrice);
+        dest.writeString(this.prompt);
+        dest.writeString(this.cointypePro);
+        dest.writeString(this.quantityAdPro);
+        dest.writeString(this.thresholdPro);
+        dest.writeString(this.timePro);
+        dest.writeString(this.bankInfoPro);
     }
 
     public CheckFrozen() {
@@ -61,6 +160,15 @@ public class CheckFrozen implements Parcelable {
         this.safeModel = in.readString();
         this.normalModel = in.readString();
         this.canTrade = in.readByte() != 0;
+        this.floatPrice = in.readString();
+        this.floatPercent = in.readString();
+        this.marketPrice = in.readString();
+        this.prompt = in.readString();
+        this.cointypePro = in.readString();
+        this.quantityAdPro = in.readString();
+        this.thresholdPro = in.readString();
+        this.timePro = in.readString();
+        this.bankInfoPro = in.readString();
     }
 
     public static final Parcelable.Creator<CheckFrozen> CREATOR = new Parcelable.Creator<CheckFrozen>() {

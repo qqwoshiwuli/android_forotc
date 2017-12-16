@@ -32,12 +32,13 @@ public class TransactAppraiseActivity extends BaseDataBindActivity<TransactAppra
                                 String AdOwnerId,
                                 String DealOwnerId,
                                 String IntermediaryId,
+                                String currency,
                                 int requestCode) {
         Intent intent = new Intent(activity, TransactAppraiseActivity.class);
         intent.putExtra("dealId", dealId);
         intent.putExtra("AdOwnerId", AdOwnerId);
         intent.putExtra("DealOwnerId", DealOwnerId);
-        intent.putExtra("IntermediaryId", IntermediaryId);
+        intent.putExtra("currency", currency);
         activity.startActivityForResult(intent, requestCode);
     }
 
@@ -45,6 +46,7 @@ public class TransactAppraiseActivity extends BaseDataBindActivity<TransactAppra
     private String AdOwnerId;
     private String DealOwnerId;
     private String IntermediaryId;
+    private String currency;
 
     private void getIntentData() {
         Intent intent = getIntent();
@@ -52,6 +54,7 @@ public class TransactAppraiseActivity extends BaseDataBindActivity<TransactAppra
         AdOwnerId = intent.getStringExtra("AdOwnerId");
         DealOwnerId = intent.getStringExtra("DealOwnerId");
         IntermediaryId = intent.getStringExtra("IntermediaryId");
+        currency = intent.getStringExtra("currency");
     }
 
     @Override
@@ -124,7 +127,7 @@ public class TransactAppraiseActivity extends BaseDataBindActivity<TransactAppra
             case 0x124:
                 //评价成功
                 setResult(RESULT_OK);
-                SuccessActivity.startActWithId(TransactAppraiseActivity.this, dealId, SuccessActivity.INTENT_SUCCESS_EVALUATE, 0x123);
+                SuccessActivity.startActWithId(TransactAppraiseActivity.this, dealId, SuccessActivity.INTENT_SUCCESS_EVALUATE,currency, 0x123);
                 finish();
                 break;
         }

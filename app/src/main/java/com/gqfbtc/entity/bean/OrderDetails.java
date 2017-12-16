@@ -80,7 +80,6 @@ public class OrderDetails {
 
     private String code;//订单编号
 
-    private String adId;//所属广告ID
 
     private String intermediaryId;//中介ID
 
@@ -88,32 +87,8 @@ public class OrderDetails {
 
     private String adOwnerId;//发布广告人 的id
 
-    private Boolean dealIsSafe;//订单是否为安全模式，1表示安全，0表示普通
     private Boolean isEv;//是否评价
 
-    private String dealPrice;//订单单价
-
-    private String dealQuantity;//订单的出售或购买总数量
-
-    private String adPoundage;//广告方手续费
-
-    private String dealPoundage;//订单方手续费
-
-    private String intermediaryPoundage;//中介手续费
-
-    private String randomCoin;//安全买时生成的随机数字
-
-    //    private Boolean adIsDone;//广告方是否已完成,1表示已完成,0表示未完成
-
-    //    private Boolean dealIsDone;//订单方是否已完成,1表示已完成,0表示未完成
-
-    //    private Boolean intermediaryIsDone;//中介是否已完成,1表示已完成,0表示未完成
-    //用户收款地址(此处为最终打款地址,此处存放的可能是广告方的也可能是订单方的)
-    private String userCollCashAddr;
-    //中介收款地址(此处为最终打款地址)
-    private String interCollCashAddr;
-    //订单收币地址(此处只有广告是卖,订单是安全买时才会使用)
-    private String dealCollCoinAddr;
 
     private String dealStatus;//订单状态
 
@@ -121,11 +96,7 @@ public class OrderDetails {
 
     //    private Date updateTime;//更新时间
 
-    private Boolean isSale;//广告 是否为卖
-    private Boolean isSafe;//广告 是否为安全
     private String currency;//币别
-    private String collCashAddr;//广告的收款地址，如有多个账户，使用逗号隔开
-    private String collCoinAddr;//收币地址
 
     /**
      * 页面 需要展示的主要数据
@@ -147,6 +118,45 @@ public class OrderDetails {
     private List<PaymentBTCETHAddress> BankInfoList;//收款账户
     private InterNeedInfoVO interNeedInfoVO;
 
+    /**
+     * id : 256
+     * adId : 298
+     * intermediaryId : 21
+     * dealOwnerId : 102
+     * adOwnerId : 99
+     * dealPrice : 100039
+     * dealQuantity : 1
+     * adPoundage : 500.2
+     * dealPoundage : 500.2
+     * intermediaryPoundage : 0
+     * dealStatus : 0
+     * currency : 1
+     * dealTypeStr : 链克
+     * interNeedInfoVO : {"sellUser":"","buyUser":"","sellCashAddrList":[],"buyPlatformCoinAddr":{"id":"","ownerId":"","ownerIsUser":"","collectionType":"","collectionAddr":"","alias":"","bankName":"","branchName":"","ownerName":"","remark":"","createTime":"","updateTime":"","isDel":""},"buyCoinAddrList":[]}
+     * isComplete : false
+     * isCancel : false
+     * isRefuseAndDown : true
+     */
+
+    private boolean isRefuseAndDown;//有拒绝
+    private int leftSecond;//ucx订单剩余操作时间
+
+    public int getLeftSecond() {
+        return leftSecond;
+    }
+
+    public void setLeftSecond(int leftSecond) {
+        this.leftSecond = leftSecond;
+    }
+
+
+    public boolean isRefuseAndDown() {
+        return isRefuseAndDown;
+    }
+
+    public void setRefuseAndDown(boolean refuseAndDown) {
+        isRefuseAndDown = refuseAndDown;
+    }
 
     public InterNeedInfoVO getInterNeedInfoVO() {
         return interNeedInfoVO;
@@ -196,13 +206,6 @@ public class OrderDetails {
         this.code = code;
     }
 
-    public String getAdId() {
-        return adId;
-    }
-
-    public void setAdId(String adId) {
-        this.adId = adId;
-    }
 
     public String getIntermediaryId() {
         return intermediaryId;
@@ -228,85 +231,6 @@ public class OrderDetails {
         this.adOwnerId = adOwnerId;
     }
 
-    public Boolean getDealIsSafe() {
-        return dealIsSafe;
-    }
-
-    public void setDealIsSafe(Boolean dealIsSafe) {
-        this.dealIsSafe = dealIsSafe;
-    }
-
-    public String getDealPrice() {
-        return dealPrice;
-    }
-
-    public void setDealPrice(String dealPrice) {
-        this.dealPrice = dealPrice;
-    }
-
-    public String getDealQuantity() {
-        return dealQuantity;
-    }
-
-    public void setDealQuantity(String dealQuantity) {
-        this.dealQuantity = dealQuantity;
-    }
-
-    public String getAdPoundage() {
-        return adPoundage;
-    }
-
-    public void setAdPoundage(String adPoundage) {
-        this.adPoundage = adPoundage;
-    }
-
-    public String getDealPoundage() {
-        return dealPoundage;
-    }
-
-    public void setDealPoundage(String dealPoundage) {
-        this.dealPoundage = dealPoundage;
-    }
-
-    public String getIntermediaryPoundage() {
-        return intermediaryPoundage;
-    }
-
-    public void setIntermediaryPoundage(String intermediaryPoundage) {
-        this.intermediaryPoundage = intermediaryPoundage;
-    }
-
-    public String getRandomCoin() {
-        return randomCoin;
-    }
-
-    public void setRandomCoin(String randomCoin) {
-        this.randomCoin = randomCoin;
-    }
-
-    public String getUserCollCashAddr() {
-        return userCollCashAddr;
-    }
-
-    public void setUserCollCashAddr(String userCollCashAddr) {
-        this.userCollCashAddr = userCollCashAddr;
-    }
-
-    public String getInterCollCashAddr() {
-        return interCollCashAddr;
-    }
-
-    public void setInterCollCashAddr(String interCollCashAddr) {
-        this.interCollCashAddr = interCollCashAddr;
-    }
-
-    public String getDealCollCoinAddr() {
-        return dealCollCoinAddr;
-    }
-
-    public void setDealCollCoinAddr(String dealCollCoinAddr) {
-        this.dealCollCoinAddr = dealCollCoinAddr;
-    }
 
     public String getDealStatus() {
         return dealStatus;
@@ -316,21 +240,6 @@ public class OrderDetails {
         this.dealStatus = dealStatus;
     }
 
-    public Boolean getSale() {
-        return isSale;
-    }
-
-    public void setSale(Boolean sale) {
-        isSale = sale;
-    }
-
-    public Boolean getSafe() {
-        return isSafe;
-    }
-
-    public void setSafe(Boolean safe) {
-        isSafe = safe;
-    }
 
     public String getCurrency() {
         return currency;
@@ -340,21 +249,6 @@ public class OrderDetails {
         this.currency = currency;
     }
 
-    public String getCollCashAddr() {
-        return collCashAddr;
-    }
-
-    public void setCollCashAddr(String collCashAddr) {
-        this.collCashAddr = collCashAddr;
-    }
-
-    public String getCollCoinAddr() {
-        return collCoinAddr;
-    }
-
-    public void setCollCoinAddr(String collCoinAddr) {
-        this.collCoinAddr = collCoinAddr;
-    }
 
     public String getTitle() {
         return title;
