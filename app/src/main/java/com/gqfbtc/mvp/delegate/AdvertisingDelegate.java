@@ -69,6 +69,7 @@ public class AdvertisingDelegate extends BaseActivityPullDelegate {
     public TextView tv_bigdeals_type_title;
     public TextView tv_bigdeals_num_title;
     public TextView tv_intervening_helper;
+    public TextView tv_bigdeals_toast;
 
     public View initHeader() {
         // View view = viewHolder.rootView.getContext().getLayoutInflater().inflate(R.layout.layout_buy_and_sell, null);
@@ -113,6 +114,7 @@ public class AdvertisingDelegate extends BaseActivityPullDelegate {
         this.tv_bigdeals_num_title = (TextView) view.findViewById(R.id.tv_bigdeals_num_title);
         this.lin_probability = (LinearLayout) view.findViewById(R.id.lin_probability);
         this.tv_intervening_helper = (TextView) view.findViewById(R.id.tv_intervening_helper);
+        this.tv_bigdeals_toast = (TextView) view.findViewById(R.id.tv_bigdeals_toast);
 
 
         return view;

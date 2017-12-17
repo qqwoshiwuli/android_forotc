@@ -284,7 +284,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
             case 0x124:
                 //成功保存订单
                 String transactId = GsonUtil.getInstance().getValue(data, "dealId");
-                SuccessActivity.startActWithId(this, transactId, SuccessActivity.INTENT_SUCCESS_ORDER, HomeAdvertising.coin_type_ucx, 0x123);
+                SuccessActivity.startActWithId(this, transactId, SuccessActivity.INTENT_SUCCESS_ORDER, HomeAdvertising.coin_type_btc, 0x123);
                 break;
             case 0x125:
                 handlingCharge = GsonUtil.getInstance().toObj(data, HandlingCharge.class);

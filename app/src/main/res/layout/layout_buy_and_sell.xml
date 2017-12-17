@@ -590,50 +590,66 @@
             android:layout_height="@dimen/trans_20px"
             android:background="@color/color_f5f5f5"/>
 
-
         <LinearLayout
             android:id="@+id/lin_bigdeals_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/trans_40px"
+                    android:text="预计买入"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_trans_28px"/>
+
+                <EditText
+                    android:id="@+id/et_bigdeals_cny"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="left|center_vertical"
+                    android:hint="预计购买数量"
+                    android:inputType="number"
+                    android:maxLength="18"
+                    android:paddingBottom="@dimen/trans_40px"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_40px"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_22px"/>
+
+                <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                    android:id="@+id/tv_bigdeals_cny_helper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:text="@string/ic_changjianwenti"
+                    android:textColor="@color/color_font1"
+                    android:textSize="@dimen/text_trans_30px"/>
+
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_bigdeals_toast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="@dimen/trans_40px"
-                android:text="预计买入"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_trans_28px"/>
-
-            <EditText
-                android:id="@+id/et_bigdeals_cny"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:gravity="left|center_vertical"
-                android:hint="预计购买数量"
-                android:inputType="number"
-                android:maxLength="18"
                 android:paddingBottom="@dimen/trans_40px"
                 android:paddingLeft="@dimen/trans_40px"
-                android:paddingTop="@dimen/trans_40px"
-                android:textColor="@color/color_font1"
-                android:textSize="@dimen/text_trans_22px"/>
-
-            <com.fivefivelike.mybaselibrary.view.IconFontTextview
-                android:id="@+id/tv_bigdeals_cny_helper"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:gravity="center"
-                android:paddingLeft="@dimen/trans_40px"
-                android:paddingRight="@dimen/trans_40px"
-                android:text="@string/ic_changjianwenti"
-                android:textColor="@color/color_font1"
-                android:textSize="@dimen/text_trans_30px"/>
-
+                android:text="* 该广告当前可出售额度为"
+                android:textColor="@color/color_font3"
+                android:textSize="@dimen/text_trans_20px"/>
         </LinearLayout>
 
         <LinearLayout

@@ -171,7 +171,8 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
         if (messageContent instanceof TextMessage) {
             if (message.getConversationType() == Conversation.ConversationType.GROUP) {
                 RongIM.getInstance().setCurrentUserInfo(messageContent.getUserInfo());
-                org.greenrobot.eventbus.EventBus.getDefault().post(new TransactEvent(message.getTargetId(), ((TextMessage) messageContent).getContent()));
+                String userId = messageContent.getUserInfo().getUserId();
+                org.greenrobot.eventbus.EventBus.getDefault().post(new TransactEvent(userId,message.getTargetId(), ((TextMessage) messageContent).getContent()));
             } else if (message.getConversationType() == Conversation.ConversationType.CUSTOMER_SERVICE) {
                 org.greenrobot.eventbus.EventBus.getDefault().post(new CustomerServiceEvent("FOROTC客服发来一条消息", ((TextMessage) messageContent).getContent()));
             }

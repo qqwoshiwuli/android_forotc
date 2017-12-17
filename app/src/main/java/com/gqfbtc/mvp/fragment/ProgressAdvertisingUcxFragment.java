@@ -4,8 +4,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
+import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
+import com.fivefivelike.mybaselibrary.view.dialog.ResultDialog;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.MyAdvertisingAdapter;
@@ -26,6 +28,7 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
     List<MyAdvertising> defDatas;
     MyAdvertisingAdapter adapter;
     private static final String ACTION_SHOW = "showing";//展示广告
+    private String downAdId = "";
 
     @Override
     protected void bindEvenListener() {
@@ -45,12 +48,8 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
 
             @Override
             public void onShelvesClick(final int position) {
-                UiHeplUtils.initDefaultDialog(getActivity(), CommonUtils.getString(R.string.str_warning_isshelves_advertising), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        addRequest(binder.down(adapter.getDatas().get(position).getId(), ProgressAdvertisingUcxFragment.this));
-                    }
-                }).show();
+                downAdId = adapter.getDatas().get(position).getId();
+                addRequest(binder.adwkc_beforedown(downAdId, ProgressAdvertisingUcxFragment.this));
             }
 
             @Override
@@ -93,6 +92,9 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
                 UiHeplUtils.initDefaultToastDialog(getActivity(), info, null);
                 onRefresh();
                 break;
+            case 0126:
+                addRequest(binder.down(downAdId, ProgressAdvertisingUcxFragment.this));
+                break;
         }
     }
 
@@ -104,5 +106,16 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
     @Override
     protected void refreshData() {
         addRequest(binder.adsucx(ACTION_SHOW, this));
+    }
+
+    @Override
+    public void onClick(View view, int position, Object item) {
+        ResultDialogEntity resultDialogEntity = (ResultDialogEntity) item;
+        if (position == ResultDialog.CONFIRM_POSITION) {
+            if ("S200".equals(resultDialogEntity.getCode()) || "S201".equals(resultDialogEntity.getCode())) {
+                //广告确定下架
+                addRequest(binder.down(downAdId, ProgressAdvertisingUcxFragment.this));
+            }
+        }
     }
 }

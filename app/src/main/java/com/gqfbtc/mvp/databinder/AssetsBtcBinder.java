@@ -5,6 +5,7 @@ import com.fivefivelike.mybaselibrary.http.HttpRequest;
 import com.fivefivelike.mybaselibrary.http.RequestCallback;
 import com.gqfbtc.http.HttpUrl;
 import com.gqfbtc.mvp.delegate.AssetsBtcDelegate;
+import com.yanzhenjie.nohttp.rest.CacheMode;
 
 import io.reactivex.disposables.Disposable;
 
@@ -28,6 +29,7 @@ public class AssetsBtcBinder extends BaseDataBind<AssetsBtcDelegate> {
                 .setRequestMode(HttpRequest.RequestMode.GET)
                 .setParameterMode(HttpRequest.ParameterMode.KeyValue)
                 .setRequestObj(baseMap)
+                .setCacheMode(CacheMode.ONLY_REQUEST_NETWORK)
                 .setRequestCallback(requestCallback)
                 .build()
                 .RxSendRequest();

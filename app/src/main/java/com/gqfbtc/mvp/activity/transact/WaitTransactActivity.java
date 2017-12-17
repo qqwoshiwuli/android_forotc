@@ -37,6 +37,8 @@ import java.util.List;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
+import static com.gqfbtc.mvp.delegate.WaitTransactDelegate.refushTime;
+
 
 public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDelegate, WaitTransactBinder> implements KeyboardChangeListener.KeyBoardListener {
 
@@ -83,6 +85,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
     public void onKeyboardChange(boolean isShow, int keyboardHeight) {
         viewDelegate.isKeySorftShow = isShow;
         viewDelegate.viewHolder.fl_top.setVisibility(!isShow ? View.VISIBLE : View.GONE);
+        handler.removeMessages(1);
         handler.sendEmptyMessageDelayed(1, 100);
     }
 
@@ -115,6 +118,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
 
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
+        viewDelegate.onDestory();
         super.onDestroy();
     }
 
@@ -142,12 +146,6 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         switch (requestCode) {
             case 0x123:
                 //获取订单详情
-                orderDetails = GsonUtil.getInstance().toObj(data, OrderDetails.class);
-                initView();
-                if (!SingSettingDBUtil.isUser()) {
-                    handler.sendEmptyMessageDelayed(2, 3000);
-                }
-                break;
             case 0x124:
                 //订单修改成功
                 orderDetails = GsonUtil.getInstance().toObj(data, OrderDetails.class);
@@ -165,8 +163,12 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         viewDelegate.initDataView(orderDetails);
         viewDelegate.setOnClickListener(this, R.id.fl_collection, R.id.fl_call_service, R.id.lin_my_pay_type, R.id.tv_payment);
         if (viewDelegate.fragment == null) {
-            setWindowManagerLayoutParams(0);
+            setWindowManagerLayoutParams(WindowManagerLayoutParamsNone);
             viewDelegate.initChatView(getSupportFragmentManager().beginTransaction(), userLogin, orderDetails.getId(), orderDetails.getCode());
+        }
+        if (!SingSettingDBUtil.isUser()) {
+            handler.removeMessages(2);
+            handler.sendEmptyMessageDelayed(2, refushTime);
         }
     }
 
@@ -304,6 +306,5 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
         }
 
     }
-
 
 }

@@ -79,6 +79,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
 
     private void initDefault() {
         viewHolder.et_unit_price.addTextChangedListener(et_unit_price_linsener);
+
         viewHolder.tv_time.setOnClickListener(timeChoose);
         viewHolder.tv_time.setText(chooseday1 + choosetime1 + "-" + chooseday2 + choosetime2);
         viewHolder.lin_toast.setOnClickListener(onHelperClick);
@@ -88,6 +89,12 @@ public class PostedBigDealDelegate extends BaseDelegate {
         viewHolder.tv_account_helper.setOnClickListener(onHelperClick);
         viewHolder.tv_time_helper.setOnClickListener(onHelperClick);
 
+
+    }
+
+
+    public String getNumber(EditText editText) {
+        return new BigDecimal(editText.getText().toString()).toString();
     }
 
     View.OnClickListener onHelperClick = new View.OnClickListener() {

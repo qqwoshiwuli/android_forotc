@@ -59,12 +59,12 @@ public class PostedBigDealBuyActivity extends BaseDataBindActivity<PostedBigDeal
                                 !UiHeplUtils.judgeRequestContentIsNull(viewDelegate.viewHolder.et_starting_buy.getText().toString(), "请输入" + (viewDelegate.isBuy ? "最低买入" : "最低卖出"))
                         ) {
                     addRequest(binder.saveAd1(
-                            viewDelegate.viewHolder.et_unit_price.getText().toString(),
-                            viewDelegate.viewHolder.et_amount.getText().toString(),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_unit_price),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_amount),
                             viewDelegate.viewHolder.et_remark.getText().toString(),
                             viewDelegate.chooseday1 + "_" + viewDelegate.choosetime1,
                             viewDelegate.chooseday2 + "_" + viewDelegate.choosetime2,
-                            viewDelegate.viewHolder.et_starting_buy.getText().toString(),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_starting_buy),
                             PostedBigDealBuyActivity.this
                     ));
                 }
@@ -79,7 +79,7 @@ public class PostedBigDealBuyActivity extends BaseDataBindActivity<PostedBigDeal
             case 0x123:
                 //广告发布成功
                 advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
-                SuccessActivity.startActWithAdvertising(PostedBigDealBuyActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, 0x123);
+                SuccessActivity.startActWithAdvertising(PostedBigDealBuyActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING,HomeAdvertising.coin_type_ucx, 0x123);
                 break;
         }
     }

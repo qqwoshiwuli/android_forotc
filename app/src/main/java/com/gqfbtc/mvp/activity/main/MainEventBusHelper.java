@@ -10,10 +10,12 @@ import com.gqfbtc.R;
 import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.base.Application;
 import com.gqfbtc.entity.bean.AppVersion;
+import com.gqfbtc.entity.bean.OrderDetails;
 import com.gqfbtc.entity.event.CustomerServiceEvent;
 import com.gqfbtc.entity.event.FilePathsEvent;
 import com.gqfbtc.entity.event.TransactEvent;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.transact.BigDealsActivity;
 import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.activity.user.AddAddressActivity;
 import com.gqfbtc.mvp.activity.user.AddCollectionAddressActivity;
@@ -38,6 +40,8 @@ public class MainEventBusHelper {
     MainActivity activity;
     MainDelegate viewDelegate;
     MainBinder binder;
+    OrderDetails orderDetails;
+
 
     public MainEventBusHelper(MainActivity activity, MainDelegate viewDelegate, MainBinder binder) {
         EventBus.getDefault().register(this);
@@ -53,18 +57,47 @@ public class MainEventBusHelper {
     //订单消息
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onTransactEvent(TransactEvent event) {
-        if (!ActUtil.getInstance().getTopActivity().getClass().equals(WaitTransactActivity.class)) {
-            if (SingSettingDBUtil.isUser()) {
-                viewDelegate.viewHolder.tl_2.showDot(1);
-            } else {
-                viewDelegate.viewHolder.tl_2.showDot(0);
+        //获取当前订单聊天页面的 订单id 进行判断 如果不相等 则提示有新消息
+        if (!ActUtil.getInstance().getTopActivity().getClass().equals(WaitTransactActivity.class)||!ActUtil.getInstance().getTopActivity().getClass().equals(BigDealsActivity.class)) {
+            if(orderDetails!=null){
+                if(orderDetails.getCode().equals(event.getCode())){
+                    //在订单页面 三方发出消息时不提醒
+                }else{
+                    sendTransactMsg(event);
+                }
+            }else{
+                sendTransactMsg(event);
             }
-            if (activity.orderFragment != null) {
-                activity.orderFragment.addTransactEvent(event);
-            }
-            NotificationHelper.getInstence().sendGroupMsgNotification(activity, event, "订单" + event.getCode() + "有新消息", event.getMsg(), R.drawable.artboard);
+        }else{
+            sendTransactMsg(event);
         }
     }
+    private void sendTransactMsg(TransactEvent event){
+        if (SingSettingDBUtil.isUser()) {
+            viewDelegate.viewHolder.tl_2.showDot(1);
+        } else {
+            viewDelegate.viewHolder.tl_2.showDot(0);
+        }
+        if (activity.orderFragment != null) {
+            activity.orderFragment.addTransactEvent(event);
+        }
+        NotificationHelper.getInstence().sendGroupMsgNotification(activity, event, "订单" + event.getCode() + "有新消息", event.getMsg(), R.drawable.artboard);
+    }
+
+    //订单详情页面信息
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onOrderDetailsEvent(OrderDetails event) {
+        if(orderDetails!=null){
+            if(event.isDistory()==false){
+                orderDetails=event;
+            }else if(event.isDistory()==true){
+                if(orderDetails.getId().equals(event.getId())){
+                    orderDetails=null;
+                }
+            }
+        }
+    }
+
 
     //客服消息
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)

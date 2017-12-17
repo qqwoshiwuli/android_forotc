@@ -43,7 +43,7 @@ public class ConversationActivity extends BaseActivity<CustomerServiceActDelegat
         super.bindEvenListener();
         //SoftHideKeyBoardUtil.assistActivity(this);
         initToolbar(new ToolbarBuilder().setTitle("客服中心"));
-        setWindowManagerLayoutParams(0);
+        setWindowManagerLayoutParams(WindowManagerLayoutParamsNone);
         ConversationFragment fragment = new ConversationFragment();
         Uri uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
                 .appendPath("conversation").appendPath(Conversation.ConversationType.CUSTOMER_SERVICE.getName().toLowerCase())

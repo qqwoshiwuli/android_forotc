@@ -355,6 +355,10 @@ public class HttpUrl {
      * 发起广告前校验
      */
     public String adwkc_beforeSaveAd = baseUrl + adwkcUrl + "/beforeSaveAd";
+    /**
+     * 链克 我的广告 下架前 调用
+     */
+    public String adwkc_beforedown = baseUrl + adwkcUrl + "/beforedown";
 
 
     /**

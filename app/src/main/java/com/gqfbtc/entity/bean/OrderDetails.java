@@ -118,6 +118,9 @@ public class OrderDetails {
     private List<PaymentBTCETHAddress> BankInfoList;//收款账户
     private InterNeedInfoVO interNeedInfoVO;
 
+
+    private boolean isDistory;
+
     /**
      * id : 256
      * adId : 298
@@ -140,6 +143,14 @@ public class OrderDetails {
 
     private boolean isRefuseAndDown;//有拒绝
     private int leftSecond;//ucx订单剩余操作时间
+
+    public boolean isDistory() {
+        return isDistory;
+    }
+
+    public void setDistory(boolean distory) {
+        isDistory = distory;
+    }
 
     public int getLeftSecond() {
         return leftSecond;

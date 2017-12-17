@@ -7,10 +7,12 @@ package com.gqfbtc.entity.event;
 public class TransactEvent {
 
     String id;
+    String userId;
     String code;
     String msg;
 
-    public TransactEvent(String groupName, String msg) {
+    public TransactEvent(String userId,String groupName, String msg) {
+        this.userId=userId;
         String[] info = groupName.split("_");
         this.msg = msg;
         if (info != null) {
@@ -21,6 +23,14 @@ public class TransactEvent {
                 }
             }
         }
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getMsg() {

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
+import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
@@ -26,6 +27,8 @@ import com.gqfbtc.mvp.delegate.WaitTransactDelegate;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
 
+import static com.gqfbtc.mvp.delegate.WaitTransactDelegate.refushTime;
+
 /**
  * Created by 郭青枫 on 2017/12/15 0015.
  */
@@ -36,7 +39,6 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
     OrderDetails orderDetails;
     PaymentBTCETHAddress paymentBTCETHAddress;
     int cannelTime = 0;
-
 
     @Override
     protected void bindEvenListener() {
@@ -76,6 +78,7 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
     public void onKeyboardChange(boolean isShow, int keyboardHeight) {
         viewDelegate.isKeySorftShow = isShow;
         viewDelegate.viewHolder.fl_top.setVisibility(!isShow ? View.VISIBLE : View.GONE);
+        handler.removeMessages(1);
         handler.sendEmptyMessageDelayed(1, 100);
     }
 
@@ -87,7 +90,6 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
                     viewDelegate.linsenerLayout();
                     break;
                 case 2:
-                    //中介刷新
                     refreshInfo(false);
                     break;
                 case 3:
@@ -103,12 +105,6 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
         switch (requestCode) {
             case 0x123:
                 //获取订单详情
-                orderDetails = GsonUtil.getInstance().toObj(data, OrderDetails.class);
-                initView();
-                if (!SingSettingDBUtil.isUser()) {
-                    handler.sendEmptyMessageDelayed(2, 3000);
-                }
-                break;
             case 0x124:
                 //订单修改成功
                 orderDetails = GsonUtil.getInstance().toObj(data, OrderDetails.class);
@@ -136,13 +132,20 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
         viewDelegate.viewHolder.tv_bigdeals_toast.setText(orderDetails.getFrozenCoin());
         viewDelegate.viewHolder.tv_bigdeals_toast.setVisibility(TextUtils.isEmpty(orderDetails.getFrozenCoin()) ? View.GONE : View.VISIBLE);
         //订单倒计时
-        if (orderDetails.getLeftSecond() >= 0) {
+        handler.removeMessages(3);
+        if (orderDetails.getLeftSecond() > 0) {
             cannelTime = orderDetails.getLeftSecond();
             setTime();
+        } else {
+            //中介开始实时刷新
+            if (!SingSettingDBUtil.isUser()) {
+                handler.removeMessages(2);
+                handler.sendEmptyMessageDelayed(2, refushTime);
+            }
         }
         viewDelegate.setOnClickListener(this, R.id.fl_collection, R.id.fl_call_service, R.id.lin_my_pay_type, R.id.tv_payment);
         if (viewDelegate.fragment == null) {
-            setWindowManagerLayoutParams(0);
+            setWindowManagerLayoutParams(WindowManagerLayoutParamsNone);
             viewDelegate.initChatView(getSupportFragmentManager().beginTransaction(), userLogin, orderDetails.getId(), orderDetails.getCode());
         }
     }
@@ -151,12 +154,6 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
         if (cannelTime > -1) {
             if (cannelTime == 0) {
                 viewDelegate.viewHolder.fl_collection.setEnabled(false);
-                UiHeplUtils.initDefaultToastDialog(this, "广告发起方超过10分钟无响应,该订单被自动取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        onBackPressed();
-                    }
-                }).setCanceledOnTouchOutside(false).show();
             } else {
                 String time;
                 time = (((cannelTime / 60) < 10) ? "0" + cannelTime / 60 : cannelTime / 60) + " : " + (((cannelTime % 60) < 10) ? "0" + cannelTime % 60 : cannelTime % 60);
@@ -167,6 +164,21 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
                 cannelTime--;
                 handler.sendEmptyMessageDelayed(3, 1000);
             }
+            if (cannelTime % (refushTime / 1000) == 0) {
+                //获取订单详情
+                handler.sendEmptyMessageDelayed(2, 1000);
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View view, int position, Object item) {
+        ResultDialogEntity resultDialogEntity = (ResultDialogEntity) item;
+        if ("S204".equals(resultDialogEntity.getCode()) ||
+                "S203".equals(resultDialogEntity.getCode()) ||
+                "S202".equals(resultDialogEntity.getCode())) {
+            //订单超时
+            onBackPressed();
         }
     }
 
@@ -220,6 +232,9 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
     }
 
     private void refreshInfo(boolean isShowDialog) {
+        if (cannelTime == 0) {
+            cannelTime = -1;
+        }
         addRequest(binder.dealwkc_dealdt(id, isShowDialog, BigDealsActivity.this));
     }
 
@@ -235,8 +250,10 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
         return WaitTransactDelegate.class;
     }
 
+
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
+        viewDelegate.onDestory();
         super.onDestroy();
     }
 }

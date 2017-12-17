@@ -90,12 +90,12 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
                         return;
                     }
                     addRequest(binder.saveAd2(
-                            viewDelegate.viewHolder.et_unit_price.getText().toString(),
-                            viewDelegate.viewHolder.et_amount.getText().toString(),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_unit_price),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_amount),
                             viewDelegate.viewHolder.et_remark.getText().toString(),
                             viewDelegate.chooseday1 + "_" + viewDelegate.choosetime1,
                             viewDelegate.chooseday2 + "_" + viewDelegate.choosetime2,
-                            viewDelegate.viewHolder.et_starting_buy.getText().toString(),
+                            viewDelegate.getNumber(viewDelegate.viewHolder.et_starting_buy),
                             transactAdvertisingAdapter.getSelectId(),
                             PostedBigDealSellActivity.this
                     ));
@@ -111,7 +111,7 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
             case 0x123:
                 //广告发布成功
                 advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
-                SuccessActivity.startActWithAdvertising(PostedBigDealSellActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, 0x123);
+                SuccessActivity.startActWithAdvertising(PostedBigDealSellActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING,HomeAdvertising.coin_type_ucx, 0x123);
                 break;
             case 0x124:
                 //收款地址

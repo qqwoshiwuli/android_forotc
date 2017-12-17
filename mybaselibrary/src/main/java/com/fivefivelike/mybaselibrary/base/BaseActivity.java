@@ -32,7 +32,7 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
     public static BaseAppLinsener baseAppLinsener;
 
     private int WindowManagerLayoutParams = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
-
+    public static final int WindowManagerLayoutParamsNone=0;
     public void setWindowManagerLayoutParams(int windowManagerLayoutParams) {
         WindowManagerLayoutParams = windowManagerLayoutParams;
     }

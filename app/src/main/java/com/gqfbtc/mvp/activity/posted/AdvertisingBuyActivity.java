@@ -215,7 +215,7 @@ public class AdvertisingBuyActivity extends BaseDataBindActivity<AdvertisingBuyA
             case 0x123:
                 //广告发布成功
                 advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
-                SuccessActivity.startActWithAdvertising(AdvertisingBuyActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, 0x123);
+                SuccessActivity.startActWithAdvertising(AdvertisingBuyActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, HomeAdvertising.coin_type_btc, 0x123);
                 break;
             case 0x124:
                 //获取地址列表

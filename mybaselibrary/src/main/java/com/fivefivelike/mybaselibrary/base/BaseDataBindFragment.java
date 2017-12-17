@@ -101,7 +101,6 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
             if (status == 0000) {
                 onServiceSuccess(data, info, status, requestCode);
             } else {
-
                 onServiceError(data, info, status, requestCode);
             }
             String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
@@ -109,7 +108,10 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
                 ToastUtil.show(info);
             }
             if (!TextUtils.isEmpty(dialog)) {
-                ResultDialog.getInstence().ShowResultDialog(getActivity(), dialog, this);
+                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(getActivity(), dialog, this);
+                if (TextUtils.isEmpty(resultDialogEntity.getType())) {
+                    ToastUtil.show(info);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

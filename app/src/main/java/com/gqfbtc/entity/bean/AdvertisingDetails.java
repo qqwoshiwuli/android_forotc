@@ -90,6 +90,11 @@ public class AdvertisingDetails {
     private String quantityDealPro;
     //系统自动帮我选托管人
     private String selectInterPro;
+    /**
+     * helpVO : {"prompt":"","cointypePro":"","quantityAdPro":"","thresholdPro":"","timePro":"","bankInfoPro":"","quantityDealPro":"您希望卖出的数量。出售链克需要支付交易额1%作为手续费。交易担保人会在交易过程中收取。","selectInterPro":"您可以选择一个您信任的交易担保人协助您完成订单。","dealPoundagePro":"* 发布广告免手续费，主动成交手续费为交易额的1%"}
+     */
+
+    private HelpVOBean helpVO;
 
     public String getQuantityDealPro() {
         return quantityDealPro;
@@ -328,5 +333,49 @@ public class AdvertisingDetails {
 
     public void setRespondChance(String respondChance) {
         this.respondChance = respondChance;
+    }
+
+    public HelpVOBean getHelpVO() {
+        return helpVO;
+    }
+
+    public void setHelpVO(HelpVOBean helpVO) {
+        this.helpVO = helpVO;
+    }
+
+    public static class HelpVOBean {
+        /**
+         * quantityDealPro : 您希望卖出的数量。出售链克需要支付交易额1%作为手续费。交易担保人会在交易过程中收取。
+         * selectInterPro : 您可以选择一个您信任的交易担保人协助您完成订单。
+         * dealPoundagePro : * 发布广告免手续费，主动成交手续费为交易额的1%
+         */
+
+        private String quantityDealPro;
+        private String selectInterPro;
+        private String dealPoundagePro;
+
+        public String getQuantityDealPro() {
+            return quantityDealPro;
+        }
+
+        public void setQuantityDealPro(String quantityDealPro) {
+            this.quantityDealPro = quantityDealPro;
+        }
+
+        public String getSelectInterPro() {
+            return selectInterPro;
+        }
+
+        public void setSelectInterPro(String selectInterPro) {
+            this.selectInterPro = selectInterPro;
+        }
+
+        public String getDealPoundagePro() {
+            return dealPoundagePro;
+        }
+
+        public void setDealPoundagePro(String dealPoundagePro) {
+            this.dealPoundagePro = dealPoundagePro;
+        }
     }
 }

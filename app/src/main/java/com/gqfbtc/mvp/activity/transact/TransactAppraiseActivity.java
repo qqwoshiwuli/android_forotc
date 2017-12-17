@@ -39,6 +39,7 @@ public class TransactAppraiseActivity extends BaseDataBindActivity<TransactAppra
         intent.putExtra("AdOwnerId", AdOwnerId);
         intent.putExtra("DealOwnerId", DealOwnerId);
         intent.putExtra("currency", currency);
+        intent.putExtra("IntermediaryId", IntermediaryId);
         activity.startActivityForResult(intent, requestCode);
     }
 

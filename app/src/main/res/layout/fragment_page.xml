@@ -10,9 +10,9 @@
         android:id="@+id/tl_2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/trans_70px"
-        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/trans_40px"
+        android:background="@color/white"
         android:paddingRight="@dimen/trans_40px"
         tl:tl_indicator_color="@color/color_blue"
         tl:tl_indicator_height="@dimen/trans_5px"
@@ -28,8 +28,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/trans_10px"
-        android:background="@color/color_f5f5f5"/>
+        android:layout_height="@dimen/trans_5px"
+        android:background="@drawable/background_with_shadow"
+        />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_page"

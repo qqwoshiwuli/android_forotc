@@ -242,8 +242,25 @@ public class BaseFragmentPullBinder extends BaseDataBind<BaseFragentPullDelegate
                 .setRequestCallback(requestCallback)
                 .build()
                 .RxSendRequest();
-
     }
+
+    public Disposable adwkc_beforedown(
+            String id,
+            RequestCallback requestCallback) {
+        getBaseMapWithUid();
+        return new HttpRequest.Builder()
+                .setRequestCode(0x126)
+                .setRequestUrl(HttpUrl.getIntance().adwkc_beforedown+"/"+id )
+                .setRequestName("ucx广告下架前校验")
+                .setRequestMode(HttpRequest.RequestMode.GET)
+                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
+                .setRequestObj(baseMap)
+                .setRequestCallback(requestCallback)
+                .build()
+                .RxSendRequest();
+    }
+
+
     public Disposable up(
             String id,
             RequestCallback requestCallback) {

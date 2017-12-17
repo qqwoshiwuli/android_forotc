@@ -27,6 +27,8 @@ import com.gqfbtc.mvp.fragment.ConversationFragmentEx;
 import com.gqfbtc.widget.SingleLineZoomTextView;
 import com.gqfbtc.widget.WaitTransactSwipeRefreshLayout;
 
+import org.greenrobot.eventbus.EventBus;
+
 import io.rong.imkit.RongExtension;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.model.Conversation;
@@ -38,6 +40,8 @@ public class WaitTransactDelegate extends BaseDelegate {
     public RongExtension rongExtension;
     public int screenHeight;
     public boolean isKeySorftShow = false;
+    OrderDetails orderDetails;
+    public static final int refushTime=60000;
 
     @Override
     public void initView() {
@@ -129,7 +133,16 @@ public class WaitTransactDelegate extends BaseDelegate {
         viewHolder.fl_top.setVisibility(View.GONE);
     }
 
+    public void onDestory(){
+        orderDetails.setDistory(true);
+        EventBus.getDefault().post(orderDetails);
+    }
+
     public void initDataView(OrderDetails orderDetails) {
+        orderDetails.setDistory(false);
+        this.orderDetails=orderDetails;
+        EventBus.getDefault().post(orderDetails);
+
         viewHolder.fl_top.setVisibility(View.VISIBLE);
         viewHolder.tv_total_price.setText(orderDetails.getDealMoneyStr());
         viewHolder.tv_poundage.setText(orderDetails.getPoundageStr());

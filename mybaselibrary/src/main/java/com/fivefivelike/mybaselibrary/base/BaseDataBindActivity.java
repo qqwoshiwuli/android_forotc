@@ -104,7 +104,10 @@ public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDa
                 ToastUtil.show(info);
             }
             if (!TextUtils.isEmpty(dialog)) {
-                ResultDialog.getInstence().ShowResultDialog(this, dialog, this);
+                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(this, dialog, this);
+                if(TextUtils.isEmpty(resultDialogEntity.getType())){
+                    ToastUtil.show(info);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

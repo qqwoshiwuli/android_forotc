@@ -83,10 +83,12 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
     public static void startActWithAdvertising(Activity activity,
                                                HomeAdvertising homeAdvertising,
                                                int type,
+                                               String coinType,
                                                int requestCode) {
         Intent intent = new Intent(activity, SuccessActivity.class);
         intent.putExtra("homeAdvertising", homeAdvertising);
         intent.putExtra("type", type);
+        intent.putExtra("coinType", coinType);
         activity.startActivityForResult(intent, requestCode);
         activity.finish();
     }
@@ -133,7 +135,7 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
             EventBus.getDefault().post(resultDialogEntity);
         } else if (type == INTENT_SUCCESS_ADVERTISING) {
             //去广告详情
-            if (HomeAdvertising.coin_type_btc.equals(homeAdvertising.getCurrency())) {
+            if (HomeAdvertising.coin_type_btc.equals(coinType)) {
                 BuyAndSellBTCActivity.startAct(this, homeAdvertising);
             } else {
                 BigDealsAdvertisingActivity.startAct(this, homeAdvertising);

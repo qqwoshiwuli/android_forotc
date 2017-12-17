@@ -35,7 +35,7 @@ public class BigDealsAdvertisingDelegate extends AdvertisingDelegate {
         tv_bigdeals_num.setText(TextUtils.isEmpty(a.getDealRange()) ? "无" : a.getDealRange());
         tv_bigdeals_type.setText(a.getDealTypeStr());
         tv_msg.setText(a.getRemark());
-
+        tv_bigdeals_toast.setText(a.getHelpVO().getDealPoundagePro());
 
         if (a.isSale()) {
             et_bigdeals_cny.setHint("预计购买数量");
@@ -61,10 +61,10 @@ public class BigDealsAdvertisingDelegate extends AdvertisingDelegate {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.tv_bigdeals_cny_helper:
-                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), advertisingDetails.getQuantityDealPro());
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), advertisingDetails.getHelpVO().getQuantityDealPro());
                     break;
                 case R.id.tv_intervening_helper:
-                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), advertisingDetails.getSelectInterPro());
+                    HelperTostDialog.getInstence().showToastDialog(viewHolder.rootView.getContext(), advertisingDetails.getHelpVO().getSelectInterPro());
                     break;
             }
         }
