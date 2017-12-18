@@ -152,7 +152,7 @@
     <string name="str_registration_agreement">与服务器失联</string>
     <string name="str_wait_toast">近期有大量黑钱涌入虚拟货币市场，为保障投资人权益。请保证您的资金来源合法，且务必保证您汇款的银行卡是本人银行卡。在您汇款后，我们有可能会对您追加视频验证，如果您汇款的银行卡不是本人银行卡，或者您有任何资料造假，平台将会对您的资金进行一段时间冻结，请务必注意该风险。点击“同意”代表您接收我们的条款，黑钱请绕行。</string>
     <!--挂单买-->
-    <string name="str_advertising_buy_safa_title">购买的币存入您在FOROTC的账户</string>
+    <string name="str_advertising_buy_safa_title">购买的币存入您指定钱包地址</string>
     <string name="str_advertising_buy_title">购买的币存入您在FOROTC的账户</string>
     <string name="str_advertising_buy_safa"> 您当前最多可挂单卖出钱包资产的20倍</string>
     <string name="str_advertising_buy">您当前最多可挂单卖出钱包资产的20倍 </string>

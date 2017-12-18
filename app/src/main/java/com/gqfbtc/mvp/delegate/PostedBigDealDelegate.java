@@ -72,7 +72,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
         viewHolder.tv_starting_buy.setText("最低买入");
         viewHolder.lin_sell.setVisibility(View.GONE);
         viewHolder.tv_commit.setText("发布广告");
-        viewHolder.et_amount.setHint("预计购买数量");
+        viewHolder.et_amount.setHint("500个起");
         isBuy = true;
         initDefault();
     }
@@ -151,7 +151,7 @@ public class PostedBigDealDelegate extends BaseDelegate {
         viewHolder.tv_starting_buy.setText("最低卖出");
         viewHolder.lin_sell.setVisibility(View.VISIBLE);
         viewHolder.tv_commit.setText("发布广告");
-        viewHolder.et_amount.setHint("预计出售数量");
+        viewHolder.et_amount.setHint("500个起");
         isBuy = false;
         initDefault();
     }

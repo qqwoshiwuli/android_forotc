@@ -48,7 +48,7 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
         } else {
             initToolbar(new ToolbarBuilder().setTitle("卖链克").setSubTitle("帮助"));
         }
-        addRequest(binder.adwkc_getAdDetail(homeAdvertising.getAdId(),this));
+        addRequest(binder.adwkc_getAdDetail(homeAdvertising.getAdId(), this));
     }
 
     public static void startAct(Activity activity,
@@ -106,8 +106,9 @@ public class BigDealsAdvertisingActivity extends BasePullActivity<BigDealsAdvert
                 }
                 break;
             case 0x126:
+                //大宗交易保存订单
                 String transactId = GsonUtil.getInstance().getValue(data, "dealId");
-                SuccessActivity.startActWithId(this, transactId, SuccessActivity.INTENT_SUCCESS_ORDER,HomeAdvertising.coin_type_ucx, 0x123);
+                SuccessActivity.startActWithId(this, transactId, SuccessActivity.INTENT_SUCCESS_ORDER, HomeAdvertising.coin_type_ucx, 0x123);
                 break;
         }
     }

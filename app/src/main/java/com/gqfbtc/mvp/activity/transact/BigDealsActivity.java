@@ -38,7 +38,7 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
     UserLogin userLogin;
     OrderDetails orderDetails;
     PaymentBTCETHAddress paymentBTCETHAddress;
-    int cannelTime = 0;
+    int cannelTime = -1;//订单响应时间
 
     @Override
     protected void bindEvenListener() {
@@ -232,6 +232,7 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
     }
 
     private void refreshInfo(boolean isShowDialog) {
+        //重置时间
         if (cannelTime == 0) {
             cannelTime = -1;
         }

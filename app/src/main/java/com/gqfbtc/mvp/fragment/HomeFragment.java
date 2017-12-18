@@ -71,9 +71,9 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     };
     HomeRightPopu homeRightPopu;
     HomeLeftPopu homeLeftPopu;
-    boolean isBuy = true;
+    boolean isBuy = true;//广告 买 还是 卖
     List<HomeBanner> homeBanners;
-    int chooseType;
+    int chooseType;//选择发广告类型
     boolean isRefushBanner = true;
     Disposable disposable;
     private static final int buy_btc = 0;
@@ -113,6 +113,8 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
         } else if (position == 3) {
             type = "卖链克";
         }
+        //                    "买BTC", "卖BTC"
+        //                            , "买链克", "卖链克"
         viewDelegate.viewHolder.tv_select.setText(type);
         //禁止banner刷新
         isRefushBanner = false;
@@ -129,7 +131,6 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
             homeLeftPopu.setPopuListOnItemClick(new PopuListOnItemClick() {
                 @Override
                 public void onItemClick(int position) {
-                    changeSelect(position);
                     if (position == 0) {
                         tl_8.setCurrentTab(0);
                         tl_9.setCurrentTab(0);
@@ -143,6 +144,8 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                         tl_8.setCurrentTab(1);
                         tl_9.setCurrentTab(1);
                     }
+                    changeSelect(position);
+
                 }
             });
             homeLeftPopu.showDropDown(view);
@@ -312,9 +315,9 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                 } else if (chooseType == sell_btc) {
                     ChooseBuyBtcModeActivity.startAct(getActivity(), ChooseBuyBtcModeActivity.type_sell, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
                 } else if (chooseType == buy_ucx) {
-                    PostedBigDealBuyActivity.startAct(getActivity(),checkFrozen,0x123);
+                    PostedBigDealBuyActivity.startAct(getActivity(), checkFrozen, 0x123);
                 } else if (chooseType == sell_ucx) {
-                    PostedBigDealSellActivity.startAct(getActivity(),checkFrozen,0x123);
+                    PostedBigDealSellActivity.startAct(getActivity(), checkFrozen, 0x123);
                 }
                 break;
             case 0x124:
