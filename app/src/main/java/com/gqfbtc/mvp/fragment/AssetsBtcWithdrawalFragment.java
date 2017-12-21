@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.circledialog.CircleDialog;
+import com.circledialog.CircleDialogHelper;
 import com.circledialog.callback.ConfigButton;
 import com.circledialog.callback.ConfigItems;
 import com.circledialog.callback.ConfigTitle;
@@ -204,7 +205,7 @@ public class AssetsBtcWithdrawalFragment extends BasePullFragment<BaseFragentPul
                 getDataBack(defDatas, list, adapter);
                 break;
             case 0x125:
-                UiHeplUtils.initDefaultToastDialog(getActivity(), info, new View.OnClickListener() {
+                CircleDialogHelper.initDefaultToastDialog(getActivity(), info, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 

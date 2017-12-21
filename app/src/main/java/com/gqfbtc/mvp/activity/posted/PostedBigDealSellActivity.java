@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
@@ -131,7 +132,7 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
     }
 
     private void initToast() {
-        UiHeplUtils.initDefaultToastDialog(this, "请在个人中心中添加收款地址", new View.OnClickListener() {
+        CircleDialogHelper.initDefaultToastDialog(this, "请在个人中心中添加收款地址", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();

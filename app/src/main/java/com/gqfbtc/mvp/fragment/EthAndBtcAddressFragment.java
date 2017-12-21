@@ -10,14 +10,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
-import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
-import com.gqfbtc.adapter.MyAddressAdapter;
 import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
+import com.gqfbtc.R;
+import com.gqfbtc.adapter.MyAddressAdapter;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
 import com.gqfbtc.greenDaoUtils.DBUtils;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
@@ -148,7 +148,7 @@ public class EthAndBtcAddressFragment extends BasePullFragment<BaseFragentPullDe
             title = s.getBankName() + s.getBranchName();
         }
         delectAddress = s;
-        UiHeplUtils.initDefaultDialog(getActivity(), "是否删除地址：" + title, new View.OnClickListener() {
+        CircleDialogHelper.initDefaultDialog(getActivity(), "是否删除地址：" + title, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 GetCodeActivity.startActBuyFrag(EthAndBtcAddressFragment.this, 0x123);

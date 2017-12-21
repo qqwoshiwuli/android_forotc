@@ -2,6 +2,7 @@ package com.gqfbtc.mvp.activity.main;
 
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.circledialog.callback.ConfigText;
 import com.circledialog.params.TextParams;
 import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
@@ -116,7 +117,7 @@ public class MainEventBusHelper {
     //app更新是否失败
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onAppVersionEvent(final AppVersion event) {
-        UiHeplUtils.initDefaultDialog(activity, "下载失败，是否去官网下载", new View.OnClickListener() {
+        CircleDialogHelper.initDefaultDialog(activity, "下载失败，是否去官网下载", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 UiHeplUtils.startWeb(activity, event.getDownloadAddrForotc());

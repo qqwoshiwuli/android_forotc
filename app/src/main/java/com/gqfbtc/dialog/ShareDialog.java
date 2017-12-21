@@ -20,6 +20,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.http.SingleRequest;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.FileUtil;
@@ -30,7 +31,6 @@ import com.fivefivelike.mybaselibrary.utils.logger.KLog;
 import com.fivefivelike.mybaselibrary.view.dialog.BaseDialog;
 import com.fivefivelike.mybaselibrary.view.dialog.NetConnectDialog;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.ShareAdapter;
 import com.gqfbtc.entity.ShareItemEntity;
 import com.gqfbtc.entity.bean.ShareEntity;
@@ -304,7 +304,7 @@ public class ShareDialog extends BaseDialog {
                             File file=saveMyBitmap(names.get(i), pathList.get(i));
                         }
                         if (isShowDialog) {
-                            UiHeplUtils.initDefaultToastDialog((FragmentActivity) context, CommonUtils.getString(R.string.str_file_save), null).show();
+                            CircleDialogHelper.initDefaultToastDialog((FragmentActivity) context, CommonUtils.getString(R.string.str_file_save), null).show();
                         }
                     }
 

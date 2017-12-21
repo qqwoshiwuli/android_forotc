@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
@@ -20,7 +21,6 @@ import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.KeyboardChangeListener;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.dialog.AddressDialog;
 import com.gqfbtc.dialog.DefaultLongContentDialog;
 import com.gqfbtc.entity.bean.OrderDetails;
@@ -197,7 +197,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
             case R.id.fl_collection:
                 //推进订单
                 if (!orderDetails.getEv()) {
-                    UiHeplUtils.initDefaultDialog(this, orderDetails.getShowMsg(), new View.OnClickListener() {
+                    CircleDialogHelper.initDefaultDialog(this, orderDetails.getShowMsg(), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             pushOrder();
@@ -292,7 +292,7 @@ public class WaitTransactActivity extends BaseDataBindActivity<WaitTransactDeleg
             }
             if (!isCoinAndBank) {
                 //选择付款地址
-                UiHeplUtils.initDefaultItemDialogWithTitle(this, "请选择一个付款地址", address, new AdapterView.OnItemClickListener() {
+                CircleDialogHelper.initDefaultItemDialogWithTitle(this, "请选择一个付款地址", address, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         paymentBTCETHAddress = orderDetails.getBankInfoList().get(i - 1);

@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
@@ -15,7 +16,6 @@ import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.KeyboardChangeListener;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.entity.bean.OrderDetails;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
 import com.gqfbtc.entity.bean.UserLogin;
@@ -189,7 +189,7 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
             case R.id.fl_collection:
                 //推进订单
                 if (!orderDetails.getEv()) {
-                    UiHeplUtils.initDefaultDialog(this, orderDetails.getShowMsg(), new View.OnClickListener() {
+                    CircleDialogHelper.initDefaultDialog(this, orderDetails.getShowMsg(), new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             pushOrder();
@@ -204,7 +204,7 @@ public class BigDealsActivity extends BaseDataBindActivity<WaitTransactDelegate,
                     RongIM.getInstance().startConversation(this, Conversation.ConversationType.PRIVATE, "10u", "");
                 } else {
                     //拒绝订单
-                    UiHeplUtils.initDefaultDialog(this, "是否" + viewDelegate.viewHolder.tv_call_service.getText() + "?", new View.OnClickListener() {
+                    CircleDialogHelper.initDefaultDialog(this, "是否" + viewDelegate.viewHolder.tv_call_service.getText() + "?", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             addRequest(binder.dealwkc_dealCancle(orderDetails.getId(), BigDealsActivity.this));

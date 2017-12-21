@@ -16,7 +16,7 @@ public abstract class BaseMyPullDelegate extends BasePullDelegate {
 
     public void initRecycleviewPull(RecyclerView.Adapter adapter, RecyclerView.LayoutManager manager, LoadMoreListView.Callback callback, int headerCount, SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
         super.initRecycleviewPull(adapter, manager, callback, headerCount, onRefreshListener);
-        setColorSchemeResources(R.color.black, R.color.black);
+        setColorSchemeResources(R.color.black);
     }
 
 

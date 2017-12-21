@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
@@ -16,7 +17,6 @@ import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.view.IconFontTextview;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.glide.GlideUtils;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.SetListAdapter;
 import com.gqfbtc.base.Application;
 import com.gqfbtc.entity.SetMenuEntity;
@@ -24,11 +24,11 @@ import com.gqfbtc.entity.bean.UserData;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.gqfbtc.http.HttpUrl;
-import com.gqfbtc.mvp.activity.user.MyAdvertisingActivity;
 import com.gqfbtc.mvp.activity.main.LoginActivity;
 import com.gqfbtc.mvp.activity.user.AboutUsActivity;
 import com.gqfbtc.mvp.activity.user.CollectionAddressActivity;
 import com.gqfbtc.mvp.activity.user.MyAddressActivity;
+import com.gqfbtc.mvp.activity.user.MyAdvertisingActivity;
 import com.gqfbtc.mvp.activity.user.RealNameAuthenticationActivity;
 import com.gqfbtc.mvp.activity.user.RecommendActivity;
 import com.gqfbtc.mvp.activity.user.SetActivity;
@@ -215,7 +215,7 @@ public class UserFragment extends BasePullFragment<BaseActivityPullDelegate, Bas
     }
 
     private void logout() {
-        UiHeplUtils.initDefaultDialog(getActivity(), CommonUtils.getString(R.string.str_warning_islogout), new View.OnClickListener() {
+        CircleDialogHelper.initDefaultDialog(getActivity(), CommonUtils.getString(R.string.str_warning_islogout), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 linsener.logout();

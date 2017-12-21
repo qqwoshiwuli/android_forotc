@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.circledialog.CircleDialogHelper;
 import com.circledialog.view.listener.OnInputClickListener;
 import com.fivefivelike.mybaselibrary.base.BasePullActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
@@ -75,7 +76,7 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
             @Override
             public void onClick(View view) {
                 if (SingSettingDBUtil.isLogin(BuyAndSellBTCActivity.this)) {
-                    UiHeplUtils.initDefaultDialog(BuyAndSellBTCActivity.this, "确定要" + ((TextView) view).getText().toString() + "吗?", new View.OnClickListener() {
+                    CircleDialogHelper.initDefaultDialog(BuyAndSellBTCActivity.this, "确定要" + ((TextView) view).getText().toString() + "吗?", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             //计算手续费
@@ -107,7 +108,7 @@ public class BuyAndSellBTCActivity extends BasePullActivity<BuyAndSellBTCDelegat
             @Override
             public void onClick(View view) {
                 if (userLogin != null) {
-                    UiHeplUtils.initDefaultInputDialog(BuyAndSellBTCActivity.this, "添加留言", "对广告有任何问题可在这里补充", "留言", new OnInputClickListener() {
+                    CircleDialogHelper.initDefaultInputDialog(BuyAndSellBTCActivity.this, "添加留言", "对广告有任何问题可在这里补充", "留言", new OnInputClickListener() {
                         @Override
                         public void onClick(String text, View v) {
                             if (!UiHeplUtils.judgeRequestContentIsNull(text, "留言不能为空")) {

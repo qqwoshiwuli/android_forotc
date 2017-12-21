@@ -8,12 +8,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.entity.bean.BeforeSaveAd;
 import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.HandlingCharge;
@@ -133,7 +133,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
                         if (handlingCharge.getDealCollectionCoinAddrList() != null && handlingCharge.getDealCollectionCoinAddrList().size() != 0) {
                             showChooseAddress("请选择一个收币地址");
                         } else {
-                            UiHeplUtils.initDefaultToastDialog(this, "请您在个人中心中添加一个收币地址", new View.OnClickListener() {
+                            CircleDialogHelper.initDefaultToastDialog(this, "请您在个人中心中添加一个收币地址", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     onBackPressed();
@@ -144,7 +144,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
                         if (handlingCharge.getUserCollectionCashAddrList() != null && handlingCharge.getUserCollectionCashAddrList().size() != 0) {
                             showChooseAddress("请选择一个收款地址");
                         } else {
-                            UiHeplUtils.initDefaultToastDialog(this, "请您在个人中心中添加一个收款地址", new View.OnClickListener() {
+                            CircleDialogHelper.initDefaultToastDialog(this, "请您在个人中心中添加一个收款地址", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     onBackPressed();
@@ -183,7 +183,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
                 address.add(handlingCharge.getUserCollectionCashAddrList().get(i).getBankName() + handlingCharge.getUserCollectionCashAddrList().get(i).getCollectionAddr());
             }
         }
-        UiHeplUtils.initDefaultItemDialogWithTitle(this, title, address, new AdapterView.OnItemClickListener() {
+        CircleDialogHelper.initDefaultItemDialogWithTitle(this, title, address, new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (type.equals(type_buy)) {

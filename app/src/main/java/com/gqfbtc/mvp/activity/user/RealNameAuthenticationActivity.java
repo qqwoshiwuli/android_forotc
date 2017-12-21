@@ -7,13 +7,13 @@ import android.widget.ImageView;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.bumptech.glide.Glide;
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.utils.logger.KLog;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.dialog.ImgToastDialog;
 import com.gqfbtc.entity.event.FilePathsEvent;
 import com.gqfbtc.mvp.databinder.RealNameAuthenticationBinder;
@@ -56,7 +56,7 @@ public class RealNameAuthenticationActivity extends BaseDataBindActivity<RealNam
     private void chooseTypeDialog() {
         if (nowChooseImgId != 0) {
             String[] items = {"拍照", "相册"};
-            UiHeplUtils.initDefaultItemDialog(this, items, new AdapterView.OnItemClickListener() {
+            CircleDialogHelper.initDefaultItemDialog(this, items, new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (position == 0) {
@@ -217,7 +217,7 @@ public class RealNameAuthenticationActivity extends BaseDataBindActivity<RealNam
         paths.add(userWithCard.getAbsolutePath());
         filePathsEvent.setPaths(paths);
         viewDelegate.viewHolder.tv_commit.setEnabled(false);
-        UiHeplUtils.initDefaultDialog(this, "是否转入后台上传", new View.OnClickListener() {
+        CircleDialogHelper.initDefaultDialog(this, "是否转入后台上传", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EventBus.getDefault().post(filePathsEvent);

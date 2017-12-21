@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,22 +26,9 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.circledialog.CircleDialog;
-import com.circledialog.callback.ConfigButton;
-import com.circledialog.callback.ConfigInput;
-import com.circledialog.callback.ConfigItems;
-import com.circledialog.callback.ConfigText;
-import com.circledialog.callback.ConfigTitle;
-import com.circledialog.params.ButtonParams;
-import com.circledialog.params.InputParams;
-import com.circledialog.params.ItemsParams;
-import com.circledialog.params.TextParams;
-import com.circledialog.params.TitleParams;
-import com.circledialog.view.listener.OnInputClickListener;
 import com.fivefivelike.mybaselibrary.base.BigImageviewActivity;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.gqfbtc.R;
@@ -75,8 +61,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-
-import static com.fivefivelike.mybaselibrary.utils.CommonUtils.getResources;
 
 
 /**
@@ -181,131 +165,6 @@ public class UiHeplUtils {
         stringBuffer.append(" **** ");
         stringBuffer.append(phone.substring(phone.length() - 4, phone.length()));
         return stringBuffer.toString();
-    }
-
-    public static CircleDialog.Builder initDefaultToastDialog(FragmentActivity activity, String title, View.OnClickListener onClickListener) {
-        return new CircleDialog.Builder(activity)
-                .setText(title)
-                .setWidth(0.7f)
-                .configText(new ConfigText() {
-                    @Override
-                    public void onConfig(TextParams params) {
-                        params.gravity = Gravity.CENTER;
-                        params.padding = new int[]{50, 50, 50, 50};
-                    }
-                })
-                .setPositive("确定", onClickListener)
-                .configPositive(new ConfigButton() {
-                    @Override
-                    public void onConfig(ButtonParams params) {
-                        params.textColor = getResources().getColor(R.color.color_blue);
-
-                    }
-                });
-    }
-
-    public static CircleDialog.Builder initDefaultDialog(FragmentActivity activity, String title, View.OnClickListener onClickListener) {
-        return new CircleDialog.Builder(activity)
-                .setCanceledOnTouchOutside(false)
-                .setWidth(0.7f)
-                .setCancelable(false)
-                .setText(title)
-                .configText(new ConfigText() {
-                    @Override
-                    public void onConfig(TextParams params) {
-                        params.padding = new int[]{50, 50, 50, 50};
-                        params.textColor = getResources().getColor(R.color.color_333333);
-                    }
-                })
-                .setNegative("取消", null)
-                .setPositive("确定", onClickListener)
-                .configNegative(new ConfigButton() {
-                    @Override
-                    public void onConfig(ButtonParams params) {
-                        params.textColor = getResources().getColor(R.color.color_999999);
-
-                    }
-                })
-                .configPositive(new ConfigButton() {
-                    @Override
-                    public void onConfig(ButtonParams params) {
-                        params.textColor = getResources().getColor(R.color.color_blue);
-
-                    }
-                });
-    }
-
-    public static CircleDialog.Builder initDefaultItemDialog(FragmentActivity activity, String[] title, AdapterView.OnItemClickListener onItemClickListener) {
-        return new CircleDialog.Builder(activity)
-                .setWidth(0.9f)
-                .setItems(title, onItemClickListener)
-                .configItems(new ConfigItems() {
-                    @Override
-                    public void onConfig(ItemsParams params) {
-                        params.textColor = getResources().getColor(R.color.color_blue);
-                        params.textSize = getResources().getDimensionPixelSize(R.dimen.text_trans_32px);
-                        params.backgroundColor = getResources().getColor(R.color.white);
-                    }
-                })
-                .setNegative("取消", null)
-                .configNegative(new ConfigButton() {
-                    @Override
-                    public void onConfig(ButtonParams params) {
-                        //取消按钮字体颜色
-                        params.textColor = getResources().getColor(R.color.color_font3);
-                        params.textSize = getResources().getDimensionPixelSize(R.dimen.text_trans_32px);
-                        params.backgroundColor = getResources().getColor(R.color.white);
-                    }
-                });
-    }
-
-    public static CircleDialog.Builder initDefaultItemDialogWithTitle(FragmentActivity activity, String title, List<String> list, AdapterView.OnItemClickListener onItemClickListener) {
-        return new CircleDialog.Builder(activity)
-                .setWidth(0.9f)
-                .setTitle(title)
-                .configTitle(new ConfigTitle() {
-                    @Override
-                    public void onConfig(TitleParams params) {
-                        params.backgroundColor = getResources().getColor(R.color.white);
-                    }
-                })
-                .setItems(list.toArray(new String[list.size()]), onItemClickListener)
-                .configItems(new ConfigItems() {
-                    @Override
-                    public void onConfig(ItemsParams params) {
-                        params.textColor = getResources().getColor(R.color.color_font1);
-                        params.textSize = getResources().getDimensionPixelSize(R.dimen.text_trans_26px);
-                        params.backgroundColor = getResources().getColor(R.color.white);
-                    }
-                })
-                .setNegative("取消", null)
-                .configNegative(new ConfigButton() {
-                    @Override
-                    public void onConfig(ButtonParams params) {
-                        //取消按钮字体颜色
-                        params.textColor = getResources().getColor(R.color.color_font3);
-                        params.textSize = getResources().getDimensionPixelSize(R.dimen.text_trans_30px);
-                        params.backgroundColor = getResources().getColor(R.color.white);
-                    }
-                });
-    }
-
-    public static CircleDialog.Builder initDefaultInputDialog(FragmentActivity activity, String title, String hint, String okBtnStr, OnInputClickListener onInputClickListener) {
-        return new CircleDialog.Builder(activity)
-                .setCanceledOnTouchOutside(false)
-                .setCancelable(true)
-                .setTitle(title)
-                .setInputHint(hint)
-                .configInput(new ConfigInput() {
-                    @Override
-                    public void onConfig(InputParams params) {
-                        //                                params.inputBackgroundResourceId = R.drawable.bg_input;
-                        params.hintTextColor = getResources().getColor(R.color.color_999999);
-                        params.textColor = getResources().getColor(R.color.color_333333);
-                    }
-                })
-                .setNegative("取消", null)
-                .setPositiveInput(okBtnStr, onInputClickListener);
     }
 
     /**
@@ -497,28 +356,6 @@ public class UiHeplUtils {
                     }
                 });
     }
-    //                .subscribeWith(new Observer<Long>() {
-    //                    @Override
-    //                    public void onSubscribe(Disposable d) {
-    //
-    //                    }
-    //
-    //                    @Override
-    //                    public void onNext(Long aLong) {
-    //                        textView.setText(aLong + "秒后重发");
-    //                    }
-    //
-    //                    @Override
-    //                    public void onError(Throwable e) {
-    //                    }
-    //
-    //                    @Override
-    //                    public void onComplete() {
-    //                        textView.setEnabled(true);
-    //                        textView.setText("获取验证码");
-    //                    }
-    //                });
-    //    }
 
     /**
      * 获取验证码

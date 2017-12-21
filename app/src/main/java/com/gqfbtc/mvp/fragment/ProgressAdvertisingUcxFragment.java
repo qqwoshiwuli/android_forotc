@@ -3,13 +3,13 @@ package com.gqfbtc.mvp.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
 import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.view.dialog.ResultDialog;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.MyAdvertisingAdapter;
 import com.gqfbtc.dialog.TimeChooseDialog;
 import com.gqfbtc.entity.bean.MyAdvertising;
@@ -89,7 +89,7 @@ public class ProgressAdvertisingUcxFragment extends BasePullFragment<BaseFragent
                 onRefresh();
                 break;
             case 0x125:
-                UiHeplUtils.initDefaultToastDialog(getActivity(), info, null);
+                CircleDialogHelper.initDefaultToastDialog(getActivity(), info, null);
                 onRefresh();
                 break;
             case 0126:

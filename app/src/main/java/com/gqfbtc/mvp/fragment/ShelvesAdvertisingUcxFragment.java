@@ -3,11 +3,11 @@ package com.gqfbtc.mvp.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
 import com.fivefivelike.mybaselibrary.base.BasePullFragment;
 import com.fivefivelike.mybaselibrary.utils.CommonUtils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.adapter.MyAdvertisingAdapter;
 import com.gqfbtc.dialog.TimeChooseDialog;
 import com.gqfbtc.entity.bean.MyAdvertising;
@@ -46,7 +46,7 @@ public class ShelvesAdvertisingUcxFragment extends BasePullFragment<BaseFragentP
 
             @Override
             public void onShelvesClick(final int position) {
-                UiHeplUtils.initDefaultDialog(getActivity(), CommonUtils.getString(R.string.str_warning_isadvertising), new View.OnClickListener() {
+                CircleDialogHelper.initDefaultDialog(getActivity(), CommonUtils.getString(R.string.str_warning_isadvertising), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         addRequest(binder.up(adapter.getDatas().get(position).getId(), ShelvesAdvertisingUcxFragment.this));
@@ -92,7 +92,7 @@ public class ShelvesAdvertisingUcxFragment extends BasePullFragment<BaseFragentP
                 onRefresh();
                 break;
             case 0x125:
-                UiHeplUtils.initDefaultToastDialog(getActivity(), info, null);
+                CircleDialogHelper.initDefaultToastDialog(getActivity(), info, null);
                 onRefresh();
                 break;
         }

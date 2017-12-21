@@ -360,7 +360,7 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
                                                 if (AppUtil.isWifi(mContext)) {
                                                     updata();
                                                 } else {
-                                                    UiHeplUtils.initDefaultDialog(MainActivity.this, "当前处于非wifi模式，是否继续下载?", new View.OnClickListener() {
+                                                    CircleDialogHelper.initDefaultDialog(MainActivity.this, "当前处于非wifi模式，是否继续下载?", new View.OnClickListener() {
                                                         @Override
                                                         public void onClick(View view) {
                                                             updata();

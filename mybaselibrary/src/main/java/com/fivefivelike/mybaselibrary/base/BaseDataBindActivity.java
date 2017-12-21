@@ -100,6 +100,7 @@ public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDa
                 onServiceError(data, info, status, requestCode);
             }
             String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
+
             if (TextUtils.isEmpty(dialog) && status != 0000) {
                 ToastUtil.show(info);
             }
