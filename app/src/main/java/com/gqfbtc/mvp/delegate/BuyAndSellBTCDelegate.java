@@ -27,6 +27,8 @@ public class BuyAndSellBTCDelegate extends AdvertisingDelegate {
         lin_bigdeals_input.setVisibility(View.GONE);
         lin_time.setVisibility(View.GONE);
         lin_probability.setVisibility(View.GONE);
+        tv_intervening_helper.setVisibility(View.GONE);
+        tv_bigdeals_cny_helper.setVisibility(View.GONE);
 
         //信息绑定
         GlideUtils.loadImage(a.getAvatar(), ic_pic);

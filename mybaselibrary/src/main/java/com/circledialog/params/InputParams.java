@@ -27,6 +27,10 @@ public class InputParams implements Parcelable {
      */
     public String hintText;
     /**
+     * 输入框默认文字
+     */
+    public String defaultText;
+    /**
      * 输入框提示语颜色
      */
     public int hintTextColor = CircleColor.content;
@@ -69,6 +73,7 @@ public class InputParams implements Parcelable {
         dest.writeIntArray(this.margins);
         dest.writeInt(this.inputHeight);
         dest.writeString(this.hintText);
+        dest.writeString(this.defaultText);
         dest.writeInt(this.hintTextColor);
         dest.writeInt(this.inputBackgroundResourceId);
         dest.writeInt(this.strokeWidth);
@@ -86,6 +91,7 @@ public class InputParams implements Parcelable {
         this.margins = in.createIntArray();
         this.inputHeight = in.readInt();
         this.hintText = in.readString();
+        this.defaultText = in.readString();
         this.hintTextColor = in.readInt();
         this.inputBackgroundResourceId = in.readInt();
         this.strokeWidth = in.readInt();
@@ -96,7 +102,7 @@ public class InputParams implements Parcelable {
         this.textColor = in.readInt();
     }
 
-    public static final Creator<InputParams> CREATOR = new Creator<InputParams>() {
+    public static final Parcelable.Creator<InputParams> CREATOR = new Parcelable.Creator<InputParams>() {
         @Override
         public InputParams createFromParcel(Parcel source) {
             return new InputParams(source);

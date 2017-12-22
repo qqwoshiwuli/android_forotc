@@ -17,16 +17,17 @@ public class AppConst {
     public static final String rongId = "cpj2xarlc1osn";
     public static final boolean isLog = true;
     public static final boolean isSSL = false;
+    public static final boolean isEditUrl = true;
 
 
     /**
      * 正式
      */
-//        public static final String httpBaseUrl = "https://otc.forotc.com";
-//        public static final String serviceId = "KEFU151082869574315";
-//        public static final String rongId = "pgyu6atqp9inu";
-//        public static final boolean isLog = false;
-//        public static final boolean isSSL = true;
-
+    //        public static final String httpBaseUrl = "https://otc.forotc.com";
+    //        public static final String serviceId = "KEFU151082869574315";
+    //        public static final String rongId = "pgyu6atqp9inu";
+    //        public static final boolean isLog = false;
+    //        public static final boolean isSSL = true;
+    //        public static final boolean isEditUrl=false;
 
 }

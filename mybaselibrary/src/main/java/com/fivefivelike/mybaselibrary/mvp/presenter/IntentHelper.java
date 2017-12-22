@@ -65,7 +65,7 @@ public class IntentHelper {
         intent = null;
     }
 
-    public void FragStartActResult(Fragment fragment, int code) {
+    public void fragStartActResult(Fragment fragment, int code) {
         if (intent == null) {
             intent = new Intent(context, activity);
         }

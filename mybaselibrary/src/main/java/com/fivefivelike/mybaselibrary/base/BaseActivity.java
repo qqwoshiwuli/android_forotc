@@ -32,7 +32,8 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
     public static BaseAppLinsener baseAppLinsener;
 
     private int WindowManagerLayoutParams = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
-    public static final int WindowManagerLayoutParamsNone=0;
+    public static final int WindowManagerLayoutParamsNone = 0;
+
     public void setWindowManagerLayoutParams(int windowManagerLayoutParams) {
         WindowManagerLayoutParams = windowManagerLayoutParams;
     }
@@ -77,6 +78,7 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
     }
 
     public void onCancel(DialogInterface dialog) {
+        //fragmentdialog网络加载弹窗返回后关闭 当前页面
         onBackPressed();
     }
 

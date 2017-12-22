@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.circledialog.CircleDialogHelper;
+import com.circledialog.view.listener.OnInputClickListener;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.gqfbtc.R;
+import com.gqfbtc.base.AppConst;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.http.HttpUrl;
 import com.gqfbtc.mvp.databinder.LoginAndRegisterBinder;
 import com.gqfbtc.mvp.delegate.LoginAndRegisterDelegate;
+
+import static com.gqfbtc.http.HttpUrl.getBAseUrl;
+
 
 public class LoginActivity extends BaseDataBindActivity<LoginAndRegisterDelegate, LoginAndRegisterBinder> {
 
@@ -28,6 +35,20 @@ public class LoginActivity extends BaseDataBindActivity<LoginAndRegisterDelegate
         initToolbar(new ToolbarBuilder().setTitle("登录").setShowBack(false));
         viewDelegate.initLogin();
         viewDelegate.setOnClickListener(this, R.id.tv_commit, R.id.tv_bottom_toast, R.id.tv_forget_password);
+        viewDelegate.getmToolbarTitle().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (AppConst.isEditUrl) {
+                    String hiit = getBAseUrl();
+                    CircleDialogHelper.initDefaultInputDialog(LoginActivity.this, "baseUrl", hiit, "确定", new OnInputClickListener() {
+                        @Override
+                        public void onClick(String text, View v) {
+                            HttpUrl.saveBaseUrl(text);
+                        }
+                    }).setDefaultInputTxt(hiit).show();
+                }
+            }
+        });
     }
 
 

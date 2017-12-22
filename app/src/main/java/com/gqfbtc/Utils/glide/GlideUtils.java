@@ -19,15 +19,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.gqfbtc.base.AppConst.httpBaseUrl;
-
 
 /**
  * Created by 郭青枫 on 2016/11/29.
  */
 
 public class GlideUtils {
-    public static final String BASE_URL = httpBaseUrl;
+    public static final String BASE_URL = "https://otc.forotc.com";
 
     public static String getBaseUrl() {
         return BASE_URL + "/avatar/";

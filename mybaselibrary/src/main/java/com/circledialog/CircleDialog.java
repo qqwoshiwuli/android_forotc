@@ -290,6 +290,12 @@ public final class CircleDialog {
             return this;
         }
 
+        public Builder setDefaultInputTxt(@NonNull String text) {
+            newInputParams();
+            mCircleParams.inputParams.defaultText = text;
+            return this;
+        }
+
         public Builder setInputHeight(int height) {
             newInputParams();
             mCircleParams.inputParams.inputHeight = height;

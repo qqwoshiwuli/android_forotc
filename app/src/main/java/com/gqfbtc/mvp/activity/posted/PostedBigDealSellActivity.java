@@ -19,6 +19,7 @@ import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.PaymentBTCETHAddress;
 import com.gqfbtc.mvp.activity.SuccessActivity;
+import com.gqfbtc.mvp.activity.user.CollectionAddressActivity;
 import com.gqfbtc.mvp.databinder.PostedBigDealBinder;
 import com.gqfbtc.mvp.delegate.PostedBigDealDelegate;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -75,6 +76,12 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
                 return false;
             }
         });
+        viewDelegate.viewHolder.tv_administer_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CollectionAddressActivity.startAct(PostedBigDealSellActivity.this, 0x123);
+            }
+        });
     }
 
     private void initCommit() {
@@ -112,7 +119,7 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
             case 0x123:
                 //广告发布成功
                 advertising = GsonUtil.getInstance().toObj(data, HomeAdvertising.class);
-                SuccessActivity.startActWithAdvertising(PostedBigDealSellActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING,HomeAdvertising.coin_type_ucx, 0x123);
+                SuccessActivity.startActWithAdvertising(PostedBigDealSellActivity.this, advertising, SuccessActivity.INTENT_SUCCESS_ADVERTISING, HomeAdvertising.coin_type_ucx, 0x123);
                 break;
             case 0x124:
                 //收款地址
@@ -128,6 +135,14 @@ public class PostedBigDealSellActivity extends BaseDataBindActivity<PostedBigDea
                     }
                 }
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_OK) {
+            addRequest(binder.getPaymentAddressList(this));
         }
     }
 

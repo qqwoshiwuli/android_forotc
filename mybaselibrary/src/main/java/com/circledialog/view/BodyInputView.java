@@ -2,17 +2,18 @@ package com.circledialog.view;
 
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.circledialog.params.TitleParams;
-import com.circledialog.res.drawable.InputDrawable;
+import com.circledialog.params.ButtonParams;
 import com.circledialog.params.CircleParams;
 import com.circledialog.params.DialogParams;
 import com.circledialog.params.InputParams;
+import com.circledialog.params.TitleParams;
 import com.circledialog.res.drawable.CircleDrawable;
+import com.circledialog.res.drawable.InputDrawable;
 import com.circledialog.res.values.CircleColor;
-import com.circledialog.params.ButtonParams;
 import com.fivefivelike.mybaselibrary.R;
 
 /**
@@ -70,6 +71,7 @@ class BodyInputView extends ScaleLinearLayout {
         else
             setBackgroundColor(backgroundColor);
 
+
         mEditText = new ScaleEditText(context);
         mEditText.setHint(inputParams.hintText);
         mEditText.setHintTextColor(inputParams.hintTextColor);
@@ -82,6 +84,11 @@ class BodyInputView extends ScaleLinearLayout {
                 getResources().getDimensionPixelOffset(R.dimen.trans_15px),
                 getResources().getDimensionPixelOffset(R.dimen.trans_15px)
         );
+
+        if (!TextUtils.isEmpty(inputParams.defaultText)) {
+            mEditText.setText(inputParams.defaultText);
+        }
+
         int backgroundResourceId = inputParams.inputBackgroundResourceId;
         if (backgroundResourceId == 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

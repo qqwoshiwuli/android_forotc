@@ -1,8 +1,11 @@
 package com.gqfbtc.http;
 
+import android.text.TextUtils;
+
 import com.fivefivelike.mybaselibrary.utils.SaveUtil;
 
 import static com.gqfbtc.base.AppConst.httpBaseUrl;
+import static com.gqfbtc.base.AppConst.isEditUrl;
 
 /**
  * Created by 郭青枫 on 2017/11/5.
@@ -56,18 +59,34 @@ public class HttpUrl {
     public String base82Url = "http://116.62.120.179:82";
     public String base80Url = "http://192.168.168.109:8080";
     //韩
-    //public static final String baseUrl = "http://192.168.168.114:8080";
-    //public static final String baseUrl = "http://forotc.com";
+    //public static final String getBAseUrl() = "http://192.168.168.114:8080";
+    //public static final String getBAseUrl() = "http://forotc.com";
     public static final String baseUrl = httpBaseUrl;
+
+    public static String getBAseUrl() {
+        if (isEditUrl) {
+            if (!TextUtils.isEmpty(SaveUtil.getInstance().getString("baseUrl"))) {
+                return SaveUtil.getInstance().getString("baseUrl");
+            }
+        }
+        return baseUrl;
+    }
+
+    public static void saveBaseUrl(String url) {
+        SaveUtil.getInstance().saveString("baseUrl", url);
+        httpUrl = null;
+    }
+
+
     /**
      * btc订单列表
      */
-    public String orderList = baseUrl + "/deal/list";
+    public String orderList = getBAseUrl() + "/deal/list";
 
     /**
      * ucx订单列表
      */
-    public String dealwkcList = baseUrl + "/dealwkc/list";
+    public String dealwkcList = getBAseUrl() + "/dealwkc/list";
 
 
     /**
@@ -78,87 +97,87 @@ public class HttpUrl {
     /**
      * 登陆
      */
-    public String doLogin = baseUrl + userUrl + "/doLogin";
+    public String doLogin = getBAseUrl() + userUrl + "/doLogin";
     /**
      * 注册
      */
-    public String signup = baseUrl + userUrl + "/signup";
+    public String signup = getBAseUrl() + userUrl + "/signup";
     /**
      * 短信
      */
-    public String getMsgCode = baseUrl + userUrl + "/getMsgCode";
+    public String getMsgCode = getBAseUrl() + userUrl + "/getMsgCode";
     /**
      * 找回密码
      */
-    public String doFindUser = baseUrl + userUrl + "/doFindUser";
+    public String doFindUser = getBAseUrl() + userUrl + "/doFindUser";
     /**
      * 修改密码
      */
-    public String editUserPassword = baseUrl + userUrl + "/editUserPassword";
+    public String editUserPassword = getBAseUrl() + userUrl + "/editUserPassword";
     /**
      * 更新邮箱
      */
-    public String editUserEmail = baseUrl + userUrl + "/editUserEmail";
+    public String editUserEmail = getBAseUrl() + userUrl + "/editUserEmail";
     /**
      * 检查用户是否有昵称
      */
-    public String checkUserNickName = baseUrl + userUrl + "/checkUserNickName";
+    public String checkUserNickName = getBAseUrl() + userUrl + "/checkUserNickName";
     /**
      * 保存用户昵称
      */
-    public String editUserNickName = baseUrl + userUrl + "/editUserNickName";
+    public String editUserNickName = getBAseUrl() + userUrl + "/editUserNickName";
     /**
      * 设置新密码
      */
-    public String editNewPassword = baseUrl + userUrl + "/editNewPassword";
+    public String editNewPassword = getBAseUrl() + userUrl + "/editNewPassword";
     /**
      * 获得收款地址列表
      */
-    public String getPaymentAddressList = baseUrl + userUrl + "/getPaymentAddressList";
+    public String getPaymentAddressList = getBAseUrl() + userUrl + "/getPaymentAddressList";
     /**
      * 增加收款地址
      */
-    public String addPaymentAddress = baseUrl + userUrl + "/addPaymentAddress";
+    public String addPaymentAddress = getBAseUrl() + userUrl + "/addPaymentAddress";
     /**
      * 获取收币地址
      */
-    public String getCoinAddressList = baseUrl + userUrl + "/getCoinAddressList";
+    public String getCoinAddressList = getBAseUrl() + userUrl + "/getCoinAddressList";
     /**
      * 新增收币地址
      */
-    public String addCoinAddress = baseUrl + userUrl + "/addCoinAddress";
+    public String addCoinAddress = getBAseUrl() + userUrl + "/addCoinAddress";
     /**
      * 获取imtoken
      */
-    public String imtoken = baseUrl + userUrl + "/imtoken";
+    public String imtoken = getBAseUrl() + userUrl + "/imtoken";
     /**
      * 用户登出
      */
-    public String doLoginOut = baseUrl + userUrl + "/doLoginOut";
+    public String doLoginOut = getBAseUrl() + userUrl + "/doLoginOut";
     /**
      * 个人中心
      */
-    public String userCenter = baseUrl + userUrl + "/userCenter";
+    public String userCenter = getBAseUrl() + userUrl + "/userCenter";
     /**
      * 我的广告
      */
-    public String ads = baseUrl + userUrl + "/ads";
+    public String ads = getBAseUrl() + userUrl + "/ads";
     /**
      * 删除用户地址
      */
-    public String delUserAddress = baseUrl + userUrl + "/delUserAddress";
+    public String delUserAddress = getBAseUrl() + userUrl + "/delUserAddress";
     /**
      * 校验收款地址信息
      */
-    public String checkPaymentAddress = baseUrl + userUrl + "/checkPaymentAddress";
+    public String checkPaymentAddress = getBAseUrl() + userUrl + "/checkPaymentAddress";
     /**
      * 校验比特币地址信息
      */
-    public String checkCoinAddress = baseUrl + userUrl + "/checkCoinAddress";
+    public String checkCoinAddress = getBAseUrl() + userUrl + "/checkCoinAddress";
     /**
      * 链克 我的广告
      */
-    public String adsucx = baseUrl + userUrl + "/adsucx";
+    public String adsucx = getBAseUrl() + userUrl + "/adsucx";
 
 
     /**
@@ -169,39 +188,39 @@ public class HttpUrl {
     /**
      * 检查用户是否被冻结
      */
-    public String checkUserIsFrozen = baseUrl + idxUrl + "/checkUserIsFrozen";
+    public String checkUserIsFrozen = getBAseUrl() + idxUrl + "/checkUserIsFrozen";
     /**
      * 首页广告信息
      */
-    public String ad = baseUrl + idxUrl + "/ad";
+    public String ad = getBAseUrl() + idxUrl + "/ad";
     /**
      * 资产
      */
-    public String acc = baseUrl + idxUrl + "/acc";
+    public String acc = getBAseUrl() + idxUrl + "/acc";
     /**
      * 提现记录
      */
-    public String withdraw = baseUrl + idxUrl + "/acc/withdraw/list";
+    public String withdraw = getBAseUrl() + idxUrl + "/acc/withdraw/list";
     /**
      * 充值记录
      */
-    public String recharge = baseUrl + idxUrl + "/acc/recharge/list";
+    public String recharge = getBAseUrl() + idxUrl + "/acc/recharge/list";
     /**
      * 提现
      */
-    public String deposit_add = baseUrl + idxUrl + "/deposit/add";
+    public String deposit_add = getBAseUrl() + idxUrl + "/deposit/add";
     /**
      * 首页轮播
      */
-    public String listCarouselFigure = baseUrl + idxUrl + "/listCarouselFigure";
+    public String listCarouselFigure = getBAseUrl() + idxUrl + "/listCarouselFigure";
     /**
      * 版本更新
      */
-    public String getAPPVersion = baseUrl + idxUrl + "/getAPPVersion/1";
+    public String getAPPVersion = getBAseUrl() + idxUrl + "/getAPPVersion/1";
     /**
      * ucx广告
      */
-    public String adUcx = baseUrl + idxUrl + "/adUcx";
+    public String adUcx = getBAseUrl() + idxUrl + "/adUcx";
 
 
     /**
@@ -211,35 +230,35 @@ public class HttpUrl {
     /**
      * 保存广告
      */
-    public String saveAd = baseUrl + adUrl + "/saveAd";
+    public String saveAd = getBAseUrl() + adUrl + "/saveAd";
     /**
      * 点击挂单之前的验证操作
      */
-    public String beforeSaveAd = baseUrl + adUrl + "/beforeSaveAd";
+    public String beforeSaveAd = getBAseUrl() + adUrl + "/beforeSaveAd";
     /**
      * 广告留言
      */
-    public String getMessage = baseUrl + adUrl + "/getMessage";
+    public String getMessage = getBAseUrl() + adUrl + "/getMessage";
     /**
      * 广告详情
      */
-    public String getAdDetail = baseUrl + adUrl + "/getAdDetail";
+    public String getAdDetail = getBAseUrl() + adUrl + "/getAdDetail";
     /**
      * 保存留言
      */
-    public String saveMessage = baseUrl + adUrl + "/saveMessage";
+    public String saveMessage = getBAseUrl() + adUrl + "/saveMessage";
     /**
      * 广告上架
      */
-    public String down = baseUrl + adUrl + "/down";
+    public String down = getBAseUrl() + adUrl + "/down";
     /**
      * 广告下架
      */
-    public String up = baseUrl + adUrl + "/up";
+    public String up = getBAseUrl() + adUrl + "/up";
     /**
      * 广告下架
      */
-    public String changetime = baseUrl + adUrl + "/time/change";
+    public String changetime = getBAseUrl() + adUrl + "/time/change";
 
     /**
      * 订单处理
@@ -248,27 +267,27 @@ public class HttpUrl {
     /**
      * 保存订单前的校验并返回手续费
      */
-    public String beforeSaveDeal = baseUrl + dealUrl + "/beforeSaveDeal";
+    public String beforeSaveDeal = getBAseUrl() + dealUrl + "/beforeSaveDeal";
     /**
      * 保存订单
      */
-    public String saveDeal = baseUrl + dealUrl + "/saveDeal";
+    public String saveDeal = getBAseUrl() + dealUrl + "/saveDeal";
     /**
      * 订单详情
      */
-    public String dealdt = baseUrl + dealUrl + "/dealdt";
+    public String dealdt = getBAseUrl() + dealUrl + "/dealdt";
     /**
      * 修改订单状态
      */
-    public String change = baseUrl + dealUrl + "/change";
+    public String change = getBAseUrl() + dealUrl + "/change";
     /**
      * 评价页面数据
      */
-    public String goDealMark = baseUrl + dealUrl + "/goDealMark";
+    public String goDealMark = getBAseUrl() + dealUrl + "/goDealMark";
     /**
      * 保存评价
      */
-    public String saveDealMark = baseUrl + dealUrl + "/saveDealMark";
+    public String saveDealMark = getBAseUrl() + dealUrl + "/saveDealMark";
 
 
     /**
@@ -278,39 +297,39 @@ public class HttpUrl {
     /**
      * 中介登陆
      */
-    public String ic_doLogin = baseUrl + icUrl + "/doLogin";
+    public String ic_doLogin = getBAseUrl() + icUrl + "/doLogin";
     /**
      * 登出
      */
-    public String ic_doLoginOut = baseUrl + icUrl + "/doLoginOut";
+    public String ic_doLoginOut = getBAseUrl() + icUrl + "/doLoginOut";
     /**
      * 修改中介在线状态
      */
-    public String ic_editIsOnline = baseUrl + icUrl + "/editIsOnline";
+    public String ic_editIsOnline = getBAseUrl() + icUrl + "/editIsOnline";
     /**
      * 中介增加地址
      */
-    public String ic_addIntermediaryBeneBankInfo = baseUrl + icUrl + "/addIntermediaryBeneBankInfo";
+    public String ic_addIntermediaryBeneBankInfo = getBAseUrl() + icUrl + "/addIntermediaryBeneBankInfo";
     /**
      * 获取中介个人地址
      */
-    public String ic_getIntermediaryBeneBankInfo = baseUrl + icUrl + "/getIntermediaryBeneBankInfo";
+    public String ic_getIntermediaryBeneBankInfo = getBAseUrl() + icUrl + "/getIntermediaryBeneBankInfo";
     /**
      * 中介个人地址删除
      */
-    public String ic_dealIntermediaryBeneBankInfo = baseUrl + icUrl + "/dealIntermediaryBeneBankInfo";
+    public String ic_dealIntermediaryBeneBankInfo = getBAseUrl() + icUrl + "/dealIntermediaryBeneBankInfo";
     /**
      * 个人中心
      */
-    public String ic_userCenter = baseUrl + icUrl + "/interCenter";
+    public String ic_userCenter = getBAseUrl() + icUrl + "/interCenter";
     /**
      * 获取imtoken
      */
-    public String ic_imtoken = baseUrl + icUrl + "/imtoken";
+    public String ic_imtoken = getBAseUrl() + icUrl + "/imtoken";
     /**
      * 中介添加地址校验
      */
-    public String ic_checkInteBankInfo = baseUrl + icUrl + "/checkInteBankInfo";
+    public String ic_checkInteBankInfo = getBAseUrl() + icUrl + "/checkInteBankInfo";
 
 
     /**
@@ -320,11 +339,11 @@ public class HttpUrl {
     /**
      * 实名认证
      */
-    public String batch = baseUrl + uploadUrl + "/upload/batch";
+    public String batch = getBAseUrl() + uploadUrl + "/upload/batch";
     /**
      * 检测实名认证
      */
-    public String checkIsUpload = baseUrl + uploadUrl + "/checkIsUpload";
+    public String checkIsUpload = getBAseUrl() + uploadUrl + "/checkIsUpload";
 
     /**
      * 分享
@@ -333,11 +352,11 @@ public class HttpUrl {
     /**
      * 获取分享页面的数据
      */
-    public String getSharePanelInfo = baseUrl + shareUrl + "/getSharePanelInfo";
+    public String getSharePanelInfo = getBAseUrl() + shareUrl + "/getSharePanelInfo";
     /**
      * 获取用户邀请二维码地址
      */
-    public String getQRCode = baseUrl + shareUrl + "/getQRCode";
+    public String getQRCode = getBAseUrl() + shareUrl + "/getQRCode";
 
     /**
      * 大宗交易
@@ -346,19 +365,19 @@ public class HttpUrl {
     /**
      * 保存大宗交易广告
      */
-    public String adwkc_saveAd = baseUrl + adwkcUrl + "/saveAd";
+    public String adwkc_saveAd = getBAseUrl() + adwkcUrl + "/saveAd";
     /**
      * 大宗交易广告详情
      */
-    public String adwkc_getAdDetail = baseUrl + adwkcUrl + "/getAdDetail";
+    public String adwkc_getAdDetail = getBAseUrl() + adwkcUrl + "/getAdDetail";
     /**
      * 发起广告前校验
      */
-    public String adwkc_beforeSaveAd = baseUrl + adwkcUrl + "/beforeSaveAd";
+    public String adwkc_beforeSaveAd = getBAseUrl() + adwkcUrl + "/beforeSaveAd";
     /**
      * 链克 我的广告 下架前 调用
      */
-    public String adwkc_beforedown = baseUrl + adwkcUrl + "/beforedown";
+    public String adwkc_beforedown = getBAseUrl() + adwkcUrl + "/beforedown";
 
 
     /**
@@ -368,19 +387,19 @@ public class HttpUrl {
     /**
      * 大宗交易订单推进
      */
-    public String dealwkc_change = baseUrl + dealwkcUrl + "/change";
+    public String dealwkc_change = getBAseUrl() + dealwkcUrl + "/change";
     /**
      * 大宗交易订单 保存
      */
-    public String dealwkc_saveDeal = baseUrl + dealwkcUrl + "/saveDeal";
+    public String dealwkc_saveDeal = getBAseUrl() + dealwkcUrl + "/saveDeal";
     /**
      * 大宗交易订单 详情
      */
-    public String dealwkc_dealdt = baseUrl + dealwkcUrl + "/dealdt";
+    public String dealwkc_dealdt = getBAseUrl() + dealwkcUrl + "/dealdt";
     /**
      * 大宗交易订单 下架
      */
-    public String dealwkc_dealCancle = baseUrl + dealwkcUrl + "/dealCancle";
+    public String dealwkc_dealCancle = getBAseUrl() + dealwkcUrl + "/dealCancle";
 
 
 }

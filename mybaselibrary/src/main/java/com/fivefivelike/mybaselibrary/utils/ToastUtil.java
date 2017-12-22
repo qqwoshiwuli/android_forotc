@@ -1,6 +1,5 @@
 package com.fivefivelike.mybaselibrary.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -21,13 +20,11 @@ public class ToastUtil {
     }
 
     public static void show(String message) {
-        if (context == null) {
-            context = GlobleContext.getInstance().getApplicationContext();
-        }
+        context = GlobleContext.getInstance().getApplicationContext();
         toastShow(message);
     }
 
-    @SuppressLint("ShowToast")
+
     private static void toastShow(String toastString) {
         if (context == null) {
             return;
@@ -36,13 +33,21 @@ public class ToastUtil {
             toastString = "";
         }
         if (toast == null) {
-            toast = Toast.makeText(context, toastString, Toast.LENGTH_SHORT);
-            // toast.setGravity(Gravity.BOTTOM, 0, 0);
+            if (toastString.length() < 15) {
+                toast = Toast.makeText(context, toastString, Toast.LENGTH_SHORT);
+            } else {
+                toast = Toast.makeText(context, toastString, Toast.LENGTH_LONG);
+            }
         } else {
+            if (toastString.length() < 15) {
+                toast.setDuration(Toast.LENGTH_SHORT);
+            } else {
+                toast.setDuration(Toast.LENGTH_LONG);
+            }
             toast.setText(toastString);
         }
         toast.show();
 
-    }
 
+    }
 }

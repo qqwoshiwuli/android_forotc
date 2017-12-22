@@ -1,6 +1,6 @@
 package com.fivefivelike.mybaselibrary.utils;
 
-import android.content.Context;
+import android.app.Application;
 
 /**
  * 全局可用的context对象  单例模式
@@ -9,7 +9,8 @@ import android.content.Context;
 public class GlobleContext {
     private static GlobleContext instance;
 
-    private Context applicationContext;
+    private static Application applicationContext;
+
 
     public static GlobleContext getInstance() {
         if (instance == null) {
@@ -19,18 +20,18 @@ public class GlobleContext {
         return instance;
     }
 
-    public Context getApplicationContext() {
+    public Application getApplicationContext() {
         return applicationContext;
     }
 
-    public GlobleContext(Context applicationContext) {
+    public GlobleContext(Application applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     /**
      * 全局信息 只能调用一次
      */
-    public static void init(Context applicationContext) {
+    public static void init(Application applicationContext) {
         if (instance != null) {
             throw new RuntimeException(GlobleContext.class.getSimpleName() + " can not be initialized multiple times!");
         }

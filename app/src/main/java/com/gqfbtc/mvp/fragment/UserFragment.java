@@ -1,7 +1,6 @@
 package com.gqfbtc.mvp.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,8 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static com.gqfbtc.mvp.activity.main.GetCodeActivity.codeKey;
 
 
 public class UserFragment extends BasePullFragment<BaseActivityPullDelegate, BaseActivityPullBinder> {
@@ -267,14 +264,6 @@ public class UserFragment extends BasePullFragment<BaseActivityPullDelegate, Bas
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        checkbox.setChecked(isOnline);
-        if (resultCode == Activity.RESULT_OK) {
-            addRequest(binder.ic_editIsOnline(!isOnline, data.getStringExtra(codeKey), UserFragment.this));
-        }
-    }
 
     @Override
     public BaseActivityPullBinder getDataBinder(BaseActivityPullDelegate viewDelegate) {
