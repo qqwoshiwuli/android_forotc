@@ -44,6 +44,7 @@ ext {
             "circular"               : "com.github.castorflex.smoothprogressbar:library-circular:1.2.0",
             "status-bar"             : "com.githang:status-bar-compat:latest.integration",
             "EventBus"               : "org.greenrobot:eventbus:3.1.1",
+            "utilcode"               : "com.blankj:utilcode:1.8.3",
     ]
 
 }

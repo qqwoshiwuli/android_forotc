@@ -308,8 +308,6 @@
         <meta-data
             android:name="Mob-AppSecret"
             android:value="2bed345f9fb0c60263c6217ae0f7a1ac"/>
-
-
     </application>
 
 </manifest>

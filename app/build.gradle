@@ -83,8 +83,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //框架
     compile project(':mybaselibrary')
-    //工具类集合 https://github.com/haoma2012/AndroidUtils
-    compile 'com.blankj:utilcode:1.8.3'
     //导航栏
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     //轮播图
@@ -99,6 +97,9 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     //
     compile 'com.android.support:multidex:1.0.2'
+    //
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
     implementation files('libs/joda-time-2.5-sources.jar')
     implementation files('libs/joda-time-2.5.jar')

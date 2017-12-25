@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/include_toolbar_with_statusbar"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_guide_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/trans_80px"
+                    app:banner_pageChangeDuration="1000"
+                    app:banner_pointAutoPlayAble="true"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@android:color/transparent"
+                    app:banner_pointTopBottomMargin="15dp"
+                    app:banner_transitionEffect="alpha"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_20px">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="@dimen/trans_8px"
+                                android:layout_height="@dimen/trans_24px"
+                                android:background="@color/color_24CE91"/>
+
+                            <TextView
+                                android:id="@+id/tv_buy_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/trans_10px"
+                                android:text="买入BTC"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="数量"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <EditText
+                                android:id="@+id/et_buy_num"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:gravity="center_horizontal|bottom"
+                                android:hint="填写购买数量"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:paddingTop="@dimen/trans_20px"
+                                android:textColorHint="@color/color_font3"
+                                android:textSize="@dimen/text_trans_24px"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_buy_num_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="@dimen/trans_20px"
+                                android:text="BTC"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="总额"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <EditText
+                                android:id="@+id/et_buy_money"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:gravity="center_horizontal|bottom"
+                                android:hint="填写购买数量"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:paddingTop="@dimen/trans_20px"
+                                android:textColorHint="@color/color_font3"
+                                android:textSize="@dimen/text_trans_24px"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_buy_money_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="@dimen/trans_20px"
+                                android:text="CNY"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lin_buy_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/trans_20px"
+                            android:layout_marginTop="@dimen/trans_20px"
+                            android:background="@drawable/shap_f5f5f5_t5_radiu"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/trans_10px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="单价"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_22px"/>
+
+
+                            <TextView
+                                android:id="@+id/tv_buy_price"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="点击询价获取价格"
+                                android:textColor="@color/color_font2"
+                                android:textSize="@dimen/text_trans_20px"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/trans_20px"
+                            android:layout_marginTop="@dimen/trans_20px"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/tv_buy_enquiries"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:gravity="center"
+                                android:paddingBottom="@dimen/trans_10px"
+                                android:paddingTop="@dimen/trans_10px"
+                                android:text="查询"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <Space
+                                android:layout_width="@dimen/trans_20px"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/tv_buy_commit"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:gravity="center"
+                                android:paddingBottom="@dimen/trans_10px"
+                                android:paddingTop="@dimen/trans_10px"
+                                android:text="快速买入"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/trans_1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/color_e5e5e5"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/trans_20px"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="@dimen/trans_8px"
+                                android:layout_height="@dimen/trans_24px"
+                                android:background="@color/color_fe4a4b"/>
+
+                            <TextView
+                                android:id="@+id/tv_sell_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingLeft="@dimen/trans_10px"
+                                android:text="卖出BTC"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <TextView
+                                android:id="@+id/tv_sell_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="bottom"
+                                android:paddingLeft="@dimen/trans_10px"
+                                android:text="(1.1234可卖)"
+                                android:textColor="@color/color_font2"
+                                android:textSize="@dimen/text_trans_16px"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/trans_20px"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="数量"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <EditText
+                                android:id="@+id/et_sell_num"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:gravity="center_horizontal|bottom"
+                                android:hint="填写卖出数量"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:paddingTop="@dimen/trans_20px"
+                                android:textColorHint="@color/color_font3"
+                                android:textSize="@dimen/text_trans_24px"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_sell_num_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="BTC"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/trans_20px"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="总额"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <EditText
+                                android:id="@+id/et_sell_money"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:gravity="center_horizontal|bottom"
+                                android:hint="填写购买数量"
+                                android:inputType="number"
+                                android:maxLength="12"
+                                android:paddingTop="@dimen/trans_20px"
+                                android:textColorHint="@color/color_font3"
+                                android:textSize="@dimen/text_trans_24px"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_sell_money_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="CNY"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lin_sell_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/trans_20px"
+                            android:layout_marginTop="@dimen/trans_20px"
+                            android:background="@drawable/shap_f5f5f5_t5_radiu"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/trans_10px">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="单价"
+                                android:textColor="@color/color_font1"
+                                android:textSize="@dimen/text_trans_22px"/>
+
+
+                            <TextView
+                                android:id="@+id/tv_sell_price"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="点击询价获取价格"
+                                android:textColor="@color/color_font2"
+                                android:textSize="@dimen/text_trans_20px"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/trans_20px"
+                            android:layout_marginTop="@dimen/trans_20px"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/tv_sell_enquiries"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:gravity="center"
+                                android:paddingBottom="@dimen/trans_10px"
+                                android:paddingTop="@dimen/trans_10px"
+                                android:text="查询"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                            <Space
+                                android:layout_width="@dimen/trans_20px"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:id="@+id/tv_sell_commit"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:gravity="center"
+                                android:paddingBottom="@dimen/trans_10px"
+                                android:paddingTop="@dimen/trans_10px"
+                                android:text="快速卖出"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/text_trans_24px"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/trans_24px"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_24px">
+
+                    <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/ic_xuzhi"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_20px"/>
+
+                    <TextView
+                        android:id="@+id/tv_remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/trans_10px"
+                        android:text="填写数量或购买额后,顶级询价即可获得报价; 价格每分钟刷新,以提交时候显示为准."
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_20px"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_f5f5f5"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/trans_16px"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_16px">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="82"
+                        android:text="单价 CNY"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="76"
+                        android:text="数量 BTC"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="94"
+                        android:text="金额 CNY"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="103"
+                        android:text="操作"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_24px"/>
+
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_sell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/trans_1px"
+                    android:background="@color/color_e5e5e5"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"/>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rc_buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/trans_24px"
+                    android:paddingLeft="@dimen/trans_40px"
+                    android:paddingRight="@dimen/trans_40px"
+                    android:paddingTop="@dimen/trans_24px">
+
+                    <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/ic_xuzhi"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_20px"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/trans_10px"
+                        android:text="以上价格每分钟自动刷新, 也可以尝试下滑手动刷新"
+                        android:textColor="@color/color_font2"
+                        android:textSize="@dimen/text_trans_20px"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

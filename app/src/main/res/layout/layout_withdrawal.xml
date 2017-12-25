@@ -76,6 +76,7 @@
                 android:hint="请输入提币数量"
                 android:textColorHint="@color/color_font3"
                 android:background="@null"
+                android:maxLength="16"
                 android:gravity="center"
                 android:inputType="numberDecimal"
                 android:lines="1"

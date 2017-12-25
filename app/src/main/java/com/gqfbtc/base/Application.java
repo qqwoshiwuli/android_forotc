@@ -17,6 +17,7 @@ import com.gqfbtc.entity.event.TransactEvent;
 import com.gqfbtc.greenDaoUtils.DaoManager;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.mob.MobSDK;
+import com.squareup.leakcanary.LeakCanary;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.Logger;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -48,8 +49,6 @@ import static com.gqfbtc.base.AppConst.rongId;
 public class Application extends BaseApp implements RongIMClient.OnReceiveMessageListener, BaseAppLinsener {
     private static Application instance;
 
-    boolean isInit = false;
-
     public static synchronized Application getInstance() {
         return instance;
     }
@@ -57,20 +56,34 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-        //初始化工具类集合
-        Utils.init(this);
-        GlobleContext.init(this);
-        initNohttp();
-        //初始化数据库
-        DaoManager.getInstance().init(this);
-        BigImageViewer.initialize(GlideImageLoader.with(this));
         //融云初始化
         initRongCloud();
-        //开启log日志
-        KLog.init(isLog);
-        //分享
-        MobSDK.init(this);
+        //
+        initClient();
+    }
+
+    private void initClient() {
+        //客户端进程中初始化操作
+        if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))) {
+            instance = this;
+            //初始化工具类集合
+            Utils.init(this);
+            GlobleContext.init(this);
+            initNohttp();
+            //初始化数据库
+            DaoManager.getInstance().init(this);
+            BigImageViewer.initialize(GlideImageLoader.with(this));
+            //分享
+            MobSDK.init(this);
+            //开启log日志
+            KLog.init(isLog);
+        }
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     @Override
@@ -172,7 +185,7 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
             if (message.getConversationType() == Conversation.ConversationType.GROUP) {
                 RongIM.getInstance().setCurrentUserInfo(messageContent.getUserInfo());
                 String userId = messageContent.getUserInfo().getUserId();
-                org.greenrobot.eventbus.EventBus.getDefault().post(new TransactEvent(userId,message.getTargetId(), ((TextMessage) messageContent).getContent()));
+                org.greenrobot.eventbus.EventBus.getDefault().post(new TransactEvent(userId, message.getTargetId(), ((TextMessage) messageContent).getContent()));
             } else if (message.getConversationType() == Conversation.ConversationType.CUSTOMER_SERVICE) {
                 org.greenrobot.eventbus.EventBus.getDefault().post(new CustomerServiceEvent("FOROTC客服发来一条消息", ((TextMessage) messageContent).getContent()));
             }

@@ -46,7 +46,8 @@ public class ConversationActivity extends BaseActivity<CustomerServiceActDelegat
         setWindowManagerLayoutParams(WindowManagerLayoutParamsNone);
         ConversationFragment fragment = new ConversationFragment();
         Uri uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
-                .appendPath("conversation").appendPath(Conversation.ConversationType.CUSTOMER_SERVICE.getName().toLowerCase())
+                .appendPath("conversation")
+                .appendPath(Conversation.ConversationType.CUSTOMER_SERVICE.getName().toLowerCase())
                 .appendQueryParameter("targetId", serviceId).build();
 
         fragment.setUri(uri);

@@ -872,7 +872,7 @@
             android:paddingTop="@dimen/trans_20px"
             android:text="暂时还没有人留言哦"
             android:textColor="@color/color_font3"
-            android:textSize="@dimen/text_trans_30px"/>
+            android:textSize="@dimen/text_trans_28px"/>
 
     </LinearLayout>
 

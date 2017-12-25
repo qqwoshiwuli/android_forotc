@@ -58,7 +58,7 @@ public abstract class BaseDialog extends Dialog implements View.OnClickListener 
      * 弹出的toast
      */
     public void toast(String content) {
-        ToastUtil.show(getContext(), content);
+        ToastUtil.show( content);
     }
 
     /**

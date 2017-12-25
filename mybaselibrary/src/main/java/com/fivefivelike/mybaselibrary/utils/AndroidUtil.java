@@ -99,7 +99,7 @@ public class AndroidUtil {
         ClipboardManager cmb = (ClipboardManager) context
                 .getSystemService(context.CLIPBOARD_SERVICE);
         cmb.setText(content);
-        ToastUtil.show(context, "复制成功");
+        ToastUtil.show( "复制成功");
     }
 
     /**
@@ -267,7 +267,7 @@ public class AndroidUtil {
      */
     public static void goTel(Activity context, String tel, boolean isDirectly) {
         if (StringUtil.isBlank(tel)) {
-            ToastUtil.show(context, "号码格式不对");
+            ToastUtil.show("号码格式不对");
             return;
         }
         Intent intent = new Intent(!isDirectly ? Intent.ACTION_DIAL
@@ -286,7 +286,7 @@ public class AndroidUtil {
      */
     public static void sendMsg(Activity context, String tel, String message) {
         if (StringUtil.isBlank(tel)) {
-            ToastUtil.show(context, "号码格式不对");
+            ToastUtil.show( "号码格式不对");
             return;
         }
         Uri uri = Uri.parse("smsto:" + tel);
@@ -305,7 +305,7 @@ public class AndroidUtil {
     public static void sendMsgGroup(final Activity context, String tel,
                                     String message) {
         if (StringUtil.isBlank(tel)) {
-            ToastUtil.show(context, "号码格式不对");
+            ToastUtil.show( "号码格式不对");
             return;
         }
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);

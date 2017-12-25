@@ -93,6 +93,8 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
     OrderFragment orderFragment;
     AssetsFragment assetsFragment;
     UserFragment userFragment;
+
+
     UserLogin userLogin;
     AppVersion appVersion;
     MainEventBusHelper mainEventBusHelper;

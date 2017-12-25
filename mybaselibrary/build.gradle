@@ -59,6 +59,7 @@ dependencies {
     compile rootProject.ext.dependencies["fastjson"]
     compile rootProject.ext.dependencies["okhttp3-integration"]
     compile rootProject.ext.dependencies["status-bar"]
+    compile rootProject.ext.dependencies["utilcode"]
     annotationProcessor rootProject.ext.dependencies["bumptech"]
 
 }
