@@ -51,7 +51,8 @@
             android:name="io.rong.imlib.HeartbeatReceiver"
             android:process=":ipc"/>
 
-        <activity android:name=".mvp.activity.WelcomActivity">
+        <activity android:name=".mvp.activity.WelcomActivity"
+                  android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -316,6 +316,26 @@ public abstract class BaseDelegate extends IDelegateImpl {
         cuurentFragmentPosition = index;
     }
 
+
+    public void replaceFragment(int index, Fragment fragment) {
+        if (fragmentContainId == -1) {//没有设置容器
+            return;
+        }
+        if (fragmentManager == null) {//没有初始化管理器
+            return;
+        }
+        if (fragmentList == null || fragmentList.size() == 0) {//如果没有添加
+            return;
+        }
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.remove(fragmentList.get(index));
+        transaction.add(fragmentContainId, fragment);
+        transaction.commitAllowingStateLoss();
+        fragmentList.remove(index);
+        fragmentList.add(index, fragment);
+        showFragment(index);
+    }
+
     /**
      * 得到当前的fragment
      *

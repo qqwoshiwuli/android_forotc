@@ -4,24 +4,16 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
-import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
-import com.fivefivelike.mybaselibrary.utils.SaveUtil;
-import com.gqfbtc.R;
+import com.fivefivelike.mybaselibrary.base.BaseActivity;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.gqfbtc.mvp.activity.main.MainActivity;
-import com.gqfbtc.mvp.databinder.WelcomBinder;
 import com.gqfbtc.mvp.delegate.WelcomDelegate;
 
-public class WelcomActivity extends BaseDataBindActivity<WelcomDelegate, WelcomBinder> {
+public class WelcomActivity extends BaseActivity<WelcomDelegate> {
 
     @Override
     protected Class<WelcomDelegate> getDelegateClass() {
         return WelcomDelegate.class;
-    }
-
-    @Override
-    public WelcomBinder getDataBinder(WelcomDelegate viewDelegate) {
-        return new WelcomBinder(viewDelegate);
     }
 
 
@@ -31,10 +23,11 @@ public class WelcomActivity extends BaseDataBindActivity<WelcomDelegate, WelcomB
         addNoStatusBarFlag();
         SingSettingDBUtil.setIsUser("");
         handler.sendEmptyMessageDelayed(1, 500);
-        viewDelegate.viewHolder.iv_pic.setImageResource(R.drawable.welcom);
+        //viewDelegate.viewHolder.iv_pic.setImageResource(R.drawable.welcom);
     }
 
     private void doAct() {
+        handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
         startActivity(new Intent(WelcomActivity.this, MainActivity.class));
         finish();
     }
@@ -49,13 +42,6 @@ public class WelcomActivity extends BaseDataBindActivity<WelcomDelegate, WelcomB
         }
     };
 
-
-    @Override
-    protected void onServiceSuccess(String data, String info, int status, int requestCode) {
-        super.onServiceError(data, info, status, requestCode);
-        switch (requestCode) {
-        }
-    }
 
     @Override
     protected void onDestroy() {

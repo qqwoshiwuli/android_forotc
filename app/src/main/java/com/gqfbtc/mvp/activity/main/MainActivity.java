@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ScreenUtils;
@@ -15,7 +14,6 @@ import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.utils.ActUtil;
 import com.fivefivelike.mybaselibrary.utils.AppUtil;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
-import com.fivefivelike.mybaselibrary.utils.SaveUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -27,25 +25,25 @@ import com.gqfbtc.base.Application;
 import com.gqfbtc.dialog.UpdateDialog;
 import com.gqfbtc.entity.TabEntity;
 import com.gqfbtc.entity.bean.AppVersion;
+import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.ImUser;
 import com.gqfbtc.entity.bean.UserLogin;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
+import com.gqfbtc.mvp.activity.posted.PostedBigDealBuyActivity;
+import com.gqfbtc.mvp.activity.posted.PostedBigDealSellActivity;
 import com.gqfbtc.mvp.activity.user.FAQActivity;
 import com.gqfbtc.mvp.databinder.MainBinder;
 import com.gqfbtc.mvp.delegate.IMDelegate;
 import com.gqfbtc.mvp.delegate.MainDelegate;
 import com.gqfbtc.mvp.fragment.AssetsFragment;
 import com.gqfbtc.mvp.fragment.HomeFragment;
+import com.gqfbtc.mvp.fragment.MajorsFrgment;
 import com.gqfbtc.mvp.fragment.OrderFragment;
 import com.gqfbtc.mvp.fragment.UserFragment;
 import com.gqfbtc.server.NotificationHelper;
 import com.gqfbtc.server.UpdateService;
 import com.gqfbtc.widget.BoomButtomIconText;
-import com.gqfbtc.widget.spotlight.OnSpotlightEndedListener;
-import com.gqfbtc.widget.spotlight.OnSpotlightStartedListener;
-import com.gqfbtc.widget.spotlight.OnTargetStateChangedListener;
-import com.gqfbtc.widget.spotlight.SimpleTarget;
-import com.gqfbtc.widget.spotlight.Spotlight;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
 
@@ -57,7 +55,7 @@ import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.UserInfo;
 
 
-public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder> implements UserFragment.Linsener {
+public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder> implements UserFragment.Linsener, HomeFragment.Linsener, MajorsFrgment.Linsener {
 
     private String[] mTitles = {"交易", "订单", "", "资产", "我的"};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
@@ -93,11 +91,18 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
     OrderFragment orderFragment;
     AssetsFragment assetsFragment;
     UserFragment userFragment;
+    MajorsFrgment majorsFrgment;
 
 
     UserLogin userLogin;
     AppVersion appVersion;
     MainEventBusHelper mainEventBusHelper;
+
+    int chooseType;//选择发广告类型
+    public static final int buy_btc = 0;
+    public static final int sell_btc = 1;
+    public static final int buy_ucx = 2;
+    public static final int sell_ucx = 3;
 
     @Override
     protected Class<MainDelegate> getDelegateClass() {
@@ -134,6 +139,7 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
         userFragment = new UserFragment();
         if (SingSettingDBUtil.isUser() || SingSettingDBUtil.getUserLogin() == null) {
             homeFragment = new HomeFragment();
+            majorsFrgment = new MajorsFrgment();
             viewDelegate.addFragment(homeFragment);
         }
         viewDelegate.addFragment(orderFragment);
@@ -246,19 +252,32 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
                 viewDelegate.viewHolder.boom.dimess();
                 if (SingSettingDBUtil.isLogin(MainActivity.this)) {
                     if (position == 0) {
-                        homeFragment.advertisingBuyBtc();
+                        postAdvertising(buy_btc);
                     } else if (position == 1) {
-                        homeFragment.advertisingSellBtc();
+                        postAdvertising(sell_btc);
                     } else if (position == 2) {
-                        homeFragment.advertisingBuyUcx();
+                        postAdvertising(buy_ucx);
                     } else if (position == 3) {
-                        homeFragment.advertisingSellUcx();
+                        postAdvertising(sell_ucx);
                     }
                 }
             }
         });
+    }
 
-
+    public void postAdvertising(int type) {
+        if (SingSettingDBUtil.isLogin(this)) {
+            chooseType = type;
+            if (chooseType == sell_btc) {
+                addRequest(binder.checkUserIsFrozen("1", true, this));
+            } else if (chooseType == buy_btc) {
+                addRequest(binder.checkUserIsFrozen("1", false, this));
+            } else if (chooseType == sell_ucx) {
+                addRequest(binder.adwkc_beforeSaveAd("3", true, this));
+            } else if (chooseType == buy_ucx) {
+                addRequest(binder.adwkc_beforeSaveAd("3", false, this));
+            }
+        }
     }
 
     IMDelegate.IMLinsener imLinsener = new IMDelegate.IMLinsener() {
@@ -306,6 +325,19 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
     @Override
     protected void onServiceSuccess(String data, String info, int status, int requestCode) {
         switch (requestCode) {
+            case 0x123:
+                //是否冻结
+                CheckFrozen checkFrozen = GsonUtil.getInstance().toObj(data, CheckFrozen.class);
+                if (chooseType == buy_btc) {
+                    ChooseBuyBtcModeActivity.startAct(this, ChooseBuyBtcModeActivity.type_buy, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
+                } else if (chooseType == sell_btc) {
+                    ChooseBuyBtcModeActivity.startAct(this, ChooseBuyBtcModeActivity.type_sell, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
+                } else if (chooseType == buy_ucx) {
+                    PostedBigDealBuyActivity.startAct(this, checkFrozen, 0x123);
+                } else if (chooseType == sell_ucx) {
+                    PostedBigDealSellActivity.startAct(this, checkFrozen, 0x123);
+                }
+                break;
             case 0x124:
                 ImUser imUser = GsonUtil.getInstance().toObj(data, ImUser.class);
                 userLogin.setImToken(imUser.getToken());
@@ -382,7 +414,6 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
                                     }).showDialog();
                         } else {
                             //新手引导
-                            //startSpot();
                         }
                     }
 
@@ -444,61 +475,17 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
         }
     }
 
-    //引导
-    private void startSpot() {
-        if (!SaveUtil.getInstance().getBoolean("isFirst")) {
-            SaveUtil.getInstance().saveBoolean("isFirst", true);
-
+    public void changeMode(Class c) {
+        if (c.equals(HomeFragment.class)) {
+            //极速
+            if (majorsFrgment != null) {
+                viewDelegate.replaceFragment(0, majorsFrgment);
+            }
+        } else {
+            //普通
+            if (homeFragment != null) {
+                viewDelegate.replaceFragment(0, homeFragment);
+            }
         }
-        View one = homeFragment.getStartSpotView();
-        int[] oneLocation = new int[2];
-        one.getLocationInWindow(oneLocation);
-        float oneX = oneLocation[0] + one.getWidth() / 2f;
-        float oneY = oneLocation[1] + one.getHeight() / 2f;
-        // make an target
-        SimpleTarget firstTarget = new SimpleTarget.Builder(this).setPoint(oneX, oneY)
-                .setRadius(100f)
-                .setTitle("点击后可查看买币广告")
-                .setDescription("您可以找到一个合适买家出售您的BTC")
-                .build();
-
-
-        View two = viewDelegate.viewHolder.tv_center_btn;
-        int[] twoLocation = new int[2];
-        two.getLocationInWindow(twoLocation);
-        float twoX = twoLocation[0] + two.getWidth() / 2f;
-        float twoY = twoLocation[1] + two.getHeight() / 2f;
-        SimpleTarget secondTarget = new SimpleTarget.Builder(MainActivity.this).setPoint(twoX, twoY)
-                .setRadius(100f)
-                .setTitle("")
-                .setDescription("点击此处可以选择发布买卖BTC广告")
-                .setOnSpotlightStartedListener(new OnTargetStateChangedListener<SimpleTarget>() {
-                    @Override
-                    public void onStarted(SimpleTarget target) {
-                    }
-
-                    @Override
-                    public void onEnded(SimpleTarget target) {
-                    }
-                })
-                .build();
-
-        Spotlight.with(this)
-                .setDuration(1000L)
-                .setAnimation(new DecelerateInterpolator(2f))
-                .setTargets(firstTarget, secondTarget)
-                .setOnSpotlightStartedListener(new OnSpotlightStartedListener() {
-                    @Override
-                    public void onStarted() {
-
-                    }
-                })
-                .setOnSpotlightEndedListener(new OnSpotlightEndedListener() {
-                    @Override
-                    public void onEnded() {
-                    }
-                })
-                .start();
     }
-
 }

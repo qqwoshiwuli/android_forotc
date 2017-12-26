@@ -17,48 +17,6 @@ public class HomeBinder extends BaseDataBind<HomeDelegate> {
         super(viewDelegate);
     }
 
-    public Disposable checkUserIsFrozen(
-            String coinType,
-            boolean isSale,
-            RequestCallback requestCallback) {
-        getBaseMapWithUid();
-        baseMap.put("coinType", coinType);
-        baseMap.put("isSale", isSale);
-        return new HttpRequest.Builder()
-                .setRequestCode(0x123)
-                .setShowDialog(true)
-                .setDialog(viewDelegate.getNetConnectDialog())
-                .setRequestUrl(HttpUrl.getIntance().checkUserIsFrozen)
-                .setRequestName("检查用户是否被冻结")
-                .setRequestMode(HttpRequest.RequestMode.POST)
-                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
-                .setRequestObj(baseMap)
-                .setRequestCallback(requestCallback)
-                .build()
-                .RxSendRequest();
-    }
-
-    public Disposable adwkc_beforeSaveAd(
-            String coinType,
-            boolean isSale,
-            RequestCallback requestCallback) {
-        getBaseMapWithUid();
-        baseMap.put("coinType", coinType);
-        baseMap.put("isSale", isSale);
-        return new HttpRequest.Builder()
-                .setRequestCode(0x123)
-                .setShowDialog(true)
-                .setDialog(viewDelegate.getNetConnectDialog())
-                .setRequestUrl(HttpUrl.getIntance().adwkc_beforeSaveAd)
-                .setRequestName("ucx检查用户是否被冻结")
-                .setRequestMode(HttpRequest.RequestMode.POST)
-                .setParameterMode(HttpRequest.ParameterMode.KeyValue)
-                .setRequestObj(baseMap)
-                .setRequestCallback(requestCallback)
-                .build()
-                .RxSendRequest();
-    }
-
     public Disposable ad(
             String type,
             RequestCallback requestCallback) {

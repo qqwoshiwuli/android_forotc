@@ -199,7 +199,7 @@ public class ShareImgActivity extends BaseDataBindActivity<ShareImgDelegate, Sha
             ViewCompat.setElevation(view, 0.5f);
             ViewCompat.setElevation(view, 0.5f);
             ((ImageView) view).setScaleType(ImageView.ScaleType.FIT_CENTER);
-            GlideImageLoader.with(GlobleContext.getInstance().getApplicationContext())
+            GlideImageLoader.with(this)
                     .loadImage(imgs.get(position), new ImageLoader.Callback() {
                         @Override
                         public void onCacheHit(File image) {
@@ -279,8 +279,8 @@ public class ShareImgActivity extends BaseDataBindActivity<ShareImgDelegate, Sha
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
+        super.onDestroy();
     }
 
     private void imgLoadStatu(File file, String type, int position, int progress) {

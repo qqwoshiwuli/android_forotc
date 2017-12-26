@@ -6,7 +6,47 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/include_toolbar_with_statusbar"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/include_toolbar_with_statusbar"/>
+
+        <LinearLayout
+            android:id="@+id/lin_top_left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/trans_90px"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/trans_20px"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/trans_20px"
+            android:paddingRight="@dimen/trans_20px">
+
+            <TextView
+                android:id="@+id/tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="BTC"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+            <com.fivefivelike.mybaselibrary.view.IconFontTextview
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="@dimen/trans_10px"
+                android:text="@string/ic_zhankai"
+                android:textColor="@color/color_font1"
+                android:textSize="@dimen/text_trans_24px"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
@@ -96,7 +136,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="@null"
-                                android:digits="0123456789"
+                                android:digits="0123456789."
                                 android:gravity="center_horizontal|bottom"
                                 android:hint="填写购买数量"
                                 android:inputType="number"
@@ -141,7 +181,7 @@
                                 android:background="@null"
                                 android:digits="0123456789"
                                 android:gravity="center_horizontal|bottom"
-                                android:hint="填写购买数量"
+                                android:hint="填写购买总额"
                                 android:inputType="number"
                                 android:maxLength="12"
                                 android:paddingTop="@dimen/trans_20px"
@@ -207,12 +247,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:background="@drawable/select_orange_dark_radiu5"
+                                android:clickable="true"
                                 android:gravity="center"
                                 android:paddingBottom="@dimen/trans_10px"
                                 android:paddingTop="@dimen/trans_10px"
                                 android:text="查询"
-                                android:textColor="@color/color_333333"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/text_trans_24px"/>
 
                             <Space
@@ -224,12 +265,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:background="@drawable/select_green_radiu"
+                                android:clickable="true"
                                 android:gravity="center"
                                 android:paddingBottom="@dimen/trans_10px"
                                 android:paddingTop="@dimen/trans_10px"
                                 android:text="快速买入"
-                                android:textColor="@color/color_333333"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/text_trans_24px"/>
 
                         </LinearLayout>
@@ -304,7 +346,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:background="@null"
-                                android:digits="0123456789"
+                                android:digits="0123456789."
                                 android:gravity="center_horizontal|bottom"
                                 android:hint="填写卖出数量"
                                 android:inputType="number"
@@ -349,7 +391,7 @@
                                 android:background="@null"
                                 android:digits="0123456789"
                                 android:gravity="center_horizontal|bottom"
-                                android:hint="填写购买数量"
+                                android:hint="填写购买总额"
                                 android:inputType="number"
                                 android:maxLength="12"
                                 android:paddingTop="@dimen/trans_20px"
@@ -414,12 +456,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:background="@drawable/select_orange_dark_radiu5"
+                                android:clickable="true"
                                 android:gravity="center"
                                 android:paddingBottom="@dimen/trans_10px"
                                 android:paddingTop="@dimen/trans_10px"
                                 android:text="查询"
-                                android:textColor="@color/color_333333"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/text_trans_24px"/>
 
                             <Space
@@ -431,12 +474,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:background="@drawable/shap_f5f5f5_t5_radiu"
+                                android:background="@drawable/select_red_radiu"
+                                android:clickable="true"
                                 android:gravity="center"
                                 android:paddingBottom="@dimen/trans_10px"
                                 android:paddingTop="@dimen/trans_10px"
                                 android:text="快速卖出"
-                                android:textColor="@color/color_333333"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/text_trans_24px"/>
 
                         </LinearLayout>
@@ -467,7 +511,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/trans_10px"
-                        android:text="填写数量或购买额后,顶级询价即可获得报价; 价格每分钟刷新,以提交时候显示为准."
+                        android:text="填写数量或购买额后,点击询价即可获得报价; 价格每分钟刷新,以提交时候显示为准."
                         android:textColor="@color/color_font2"
                         android:textSize="@dimen/text_trans_20px"/>
 
@@ -492,6 +536,7 @@
                         android:textSize="@dimen/text_trans_24px"/>
 
                     <TextView
+                        android:id="@+id/tv_num_title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="76"
@@ -511,6 +556,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="103"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/trans_50px"
                         android:text="操作"
                         android:textColor="@color/color_font2"
                         android:textSize="@dimen/text_trans_24px"/>
@@ -521,7 +568,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rc_sell"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/trans_5px"
+                    android:paddingTop="@dimen/trans_5px"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -534,7 +583,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rc_buy"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/trans_5px"
+                    android:paddingTop="@dimen/trans_5px"/>
 
 
                 <LinearLayout

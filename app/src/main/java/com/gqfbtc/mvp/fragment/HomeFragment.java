@@ -1,5 +1,6 @@
 package com.gqfbtc.mvp.fragment;
 
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,16 +25,11 @@ import com.gqfbtc.Utils.glide.GlideUtils;
 import com.gqfbtc.adapter.AdvertisingAdapter;
 import com.gqfbtc.callback.PopuListOnItemClick;
 import com.gqfbtc.entity.TabEntity;
-import com.gqfbtc.entity.bean.CheckFrozen;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.entity.bean.HomeBanner;
-import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
-import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
 import com.gqfbtc.mvp.activity.advertising.BigDealsAdvertisingActivity;
 import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
 import com.gqfbtc.mvp.activity.main.WebVeiwActivity;
-import com.gqfbtc.mvp.activity.posted.PostedBigDealBuyActivity;
-import com.gqfbtc.mvp.activity.posted.PostedBigDealSellActivity;
 import com.gqfbtc.mvp.activity.user.RecommendActivity;
 import com.gqfbtc.mvp.databinder.HomeBinder;
 import com.gqfbtc.mvp.delegate.HomeDelegate;
@@ -49,6 +45,11 @@ import java.util.List;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.BGABannerUtil;
 import io.reactivex.disposables.Disposable;
+
+import static com.gqfbtc.mvp.activity.main.MainActivity.buy_btc;
+import static com.gqfbtc.mvp.activity.main.MainActivity.buy_ucx;
+import static com.gqfbtc.mvp.activity.main.MainActivity.sell_btc;
+import static com.gqfbtc.mvp.activity.main.MainActivity.sell_ucx;
 
 /**
  * Created by 郭青枫 on 2017/10/16.
@@ -73,18 +74,29 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     HomeLeftPopu homeLeftPopu;
     boolean isBuy = true;//广告 买 还是 卖
     List<HomeBanner> homeBanners;
-    int chooseType;//选择发广告类型
     boolean isRefushBanner = true;
     Disposable disposable;
-    private static final int buy_btc = 0;
-    private static final int sell_btc = 1;
-    private static final int buy_ucx = 2;
-    private static final int sell_ucx = 3;
+
+    public interface Linsener {
+        void changeMode(Class c);
+
+        void postAdvertising(int type);
+    }
+
+    Linsener linsener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        linsener = (Linsener) activity;
+    }
+
 
     @Override
     protected void bindEvenListener() {
         super.bindEvenListener();
-        initToolbar(new ToolbarBuilder().setTitle("交易").setShowBack(false));//.setSubTitle("发布交易\t" + getResources().getString(R.string.ic_jia)));
+        initToolbar(new ToolbarBuilder().setTitle("交易").setSubTitle("切至极速模式").setShowBack(false));//.setSubTitle("发布交易\t" + getResources().getString(R.string.ic_jia)));
+        viewDelegate.getmToolbarSubTitle().setTextColor(getResources().getColor(R.color.color_blue));
         //((IconFontTextview)viewDelegate.getmToolbarSubTitle()).setText(Html.fromHtml("发布交易" + "<small>" + getResources().getString(R.string.ic_jia) + "</small>"));
         initList();
         viewDelegate.viewHolder.lin_top_left_btn.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +111,14 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                 rightPopu(v);
             }
         });
+        viewDelegate.viewHolder.lin_release.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void clickRightTv() {
+        super.clickRightTv();
+        //切换极速模式
+        linsener.changeMode(HomeFragment.class);
     }
 
     private void changeSelect(int position) {
@@ -161,10 +181,12 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     CommonTabLayout tl_9;
     CommonTabLayout tl_8;
     BGABanner bgaBanner;
+    View topView;
+
 
     public View initTopView() {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.layout_home_top_view, null);
-        bgaBanner = (BGABanner) view.findViewById(R.id.banner_guide_content);
+        topView = getActivity().getLayoutInflater().inflate(R.layout.layout_home_top_view, null);
+        bgaBanner = (BGABanner) topView.findViewById(R.id.banner_guide_content);
         //轮播初始化
         List<View> views = new ArrayList<>();
         views.add(BGABannerUtil.getItemImageView(getActivity(), R.drawable.banner1));
@@ -179,11 +201,13 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
                 , "链克"
         };
         String[] mTitle2s = {"买币", "卖币"};
-        tl_8 = (CommonTabLayout) view.findViewById(R.id.tl_8);
-        tl_9 = (CommonTabLayout) view.findViewById(R.id.tl_9);
-        for (int i = 0; i < mTitle2s.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
-            mTabEntitie2s.add(new TabEntity(mTitle2s[i], 0, 0));
+        tl_8 = (CommonTabLayout) topView.findViewById(R.id.tl_8);
+        tl_9 = (CommonTabLayout) topView.findViewById(R.id.tl_9);
+        if (mTabEntities.size() == 0) {
+            for (int i = 0; i < mTitle2s.length; i++) {
+                mTabEntities.add(new TabEntity(mTitles[i], 0, 0));
+                mTabEntitie2s.add(new TabEntity(mTitle2s[i], 0, 0));
+            }
         }
         tl_8.setmIndicatorId(R.drawable.shap_gray_border_max_radiu);
         tl_9.setmIndicatorId(R.drawable.shap_gray_border_max_radiu);
@@ -216,8 +240,7 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
         };
         tl_9.setOnTabSelectListener(linsener);
         tl_8.setOnTabSelectListener(linsener);
-        return view;
-
+        return topView;
     }
 
     private void initList() {
@@ -256,47 +279,18 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
             public void onItemClick(int position) {
                 homeRightPopu.dismiss();
                 if (position == 0) {
-                    advertisingSellBtc();
+                    linsener.postAdvertising(sell_btc);
                 } else if (position == 1) {
-                    advertisingBuyBtc();
+                    linsener.postAdvertising(buy_btc);
                 } else if (position == 2) {
-                    advertisingSellUcx();
+                    linsener.postAdvertising(sell_ucx);
                 } else if (position == 3) {
-                    advertisingBuyUcx();
+                    linsener.postAdvertising(buy_ucx);
                 }
             }
         });
     }
 
-    //发布卖广告
-    public void advertisingSellBtc() {
-        if (SingSettingDBUtil.isLogin(getActivity())) {
-            chooseType = sell_btc;
-            addRequest(binder.checkUserIsFrozen("1", true, this));
-        }
-    }
-
-    //发布买广告
-    public void advertisingBuyBtc() {
-        if (SingSettingDBUtil.isLogin(getActivity())) {
-            chooseType = buy_btc;
-            addRequest(binder.checkUserIsFrozen("1", false, this));
-        }
-    }
-
-    public void advertisingSellUcx() {
-        if (SingSettingDBUtil.isLogin(getActivity())) {
-            chooseType = sell_ucx;
-            addRequest(binder.adwkc_beforeSaveAd("3", true, this));
-        }
-    }
-
-    public void advertisingBuyUcx() {
-        if (SingSettingDBUtil.isLogin(getActivity())) {
-            chooseType = buy_ucx;
-            addRequest(binder.adwkc_beforeSaveAd("3", false, this));
-        }
-    }
 
     @Override
     public HomeBinder getDataBinder(HomeDelegate viewDelegate) {
@@ -307,19 +301,6 @@ public class HomeFragment extends BasePullFragment<HomeDelegate, HomeBinder> {
     @Override
     protected void onServiceSuccess(String data, String info, int status, int requestCode) {
         switch (requestCode) {
-            case 0x123:
-                //是否冻结
-                CheckFrozen checkFrozen = GsonUtil.getInstance().toObj(data, CheckFrozen.class);
-                if (chooseType == buy_btc) {
-                    ChooseBuyBtcModeActivity.startAct(getActivity(), ChooseBuyBtcModeActivity.type_buy, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
-                } else if (chooseType == sell_btc) {
-                    ChooseBuyBtcModeActivity.startAct(getActivity(), ChooseBuyBtcModeActivity.type_sell, ChooseBuyBtcModeActivity.action_advertising, checkFrozen, 0x123);
-                } else if (chooseType == buy_ucx) {
-                    PostedBigDealBuyActivity.startAct(getActivity(), checkFrozen, 0x123);
-                } else if (chooseType == sell_ucx) {
-                    PostedBigDealSellActivity.startAct(getActivity(), checkFrozen, 0x123);
-                }
-                break;
             case 0x124:
                 //广告列表
                 List<HomeAdvertising> list = GsonUtil

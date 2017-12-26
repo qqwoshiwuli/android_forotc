@@ -87,6 +87,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
             }
         }
     }
+
     //定时更新接口数据
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -209,6 +210,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
         intent.putExtra("checkFrozen", checkFrozen);
         activity.startActivityForResult(intent, requestCode);
     }
+
     //购买出售进入方式
     public static void startAct(Activity activity,
                                 String type,
@@ -302,6 +304,7 @@ public class ChooseBuyBtcModeActivity extends BaseDataBindActivity<ChooseBuyBtcM
     @Override
     protected void onDestroy() {
         handler.removeCallbacksAndMessages(null);//清空消息方便gc回收
+        handler = null;
         super.onDestroy();
 
     }
