@@ -15,6 +15,7 @@
     <color name="transparent_80">#cc000000</color>
     <color name="white_transparent_20">#ccffffff</color>
     <color name="black_transparent_20">#cc000000</color>
+    <color name="black_transparent_99">#99000000</color>
     <color name="color_light_white">#eaebf0</color>
     <color name="trans_333333">#333333</color>
     <color name="font_grey">#999999</color>

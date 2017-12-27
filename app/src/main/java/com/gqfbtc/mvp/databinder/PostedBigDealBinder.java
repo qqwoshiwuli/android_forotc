@@ -24,7 +24,6 @@ public class PostedBigDealBinder extends BaseDataBind<PostedBigDealDelegate> {
             String threshold,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", 3);
         baseMap.put("isSale", false);
         baseMap.put("price", price);
@@ -59,7 +58,6 @@ public class PostedBigDealBinder extends BaseDataBind<PostedBigDealDelegate> {
             String collectionCashAddr,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", 3);
         baseMap.put("isSale", true);
         baseMap.put("price", price);

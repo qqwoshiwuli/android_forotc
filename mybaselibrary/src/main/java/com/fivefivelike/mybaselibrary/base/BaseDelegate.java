@@ -53,27 +53,6 @@ public abstract class BaseDelegate extends IDelegateImpl {
     private LinearLayout mToolbarBackLin;
     private TextView mToolbarBackTxt;
     private IconFontTextview mToolbarBack;
-    private List<View> enableViews;
-
-    //设置提交后不可使用的view
-    public void setCommitEnableView(View... enableView) {
-        enableViews = new ArrayList();
-        for (int i = 0; i < enableView.length; i++) {
-            enableViews.add(enableView[i]);
-        }
-    }
-
-    //设置不可使用的view的enable
-    public void commitEnableView(boolean isEnable) {
-        if (enableViews != null) {
-            if (enableViews.size() > 0) {
-                for (int i = 0; i < enableViews.size(); i++) {
-                    enableViews.get(i).setEnabled(isEnable);
-                }
-            }
-        }
-    }
-
 
     public NetWorkDialog getNetConnectDialog() {
         return initDialog("加载中...");

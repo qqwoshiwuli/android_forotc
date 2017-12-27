@@ -22,7 +22,6 @@ public class ChooseBuyBtcModeDelegate extends BaseDelegate {
     @Override
     public void initView() {
         viewHolder = new ViewHolder(getRootView());
-        setCommitEnableView(viewHolder.tv_anquan_commit, viewHolder.tv_putong_commit);
     }
 
     @Override

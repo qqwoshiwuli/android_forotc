@@ -3,14 +3,19 @@ package com.fivefivelike.mybaselibrary.base;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
+import com.fivefivelike.mybaselibrary.http.ServiceDataCallback;
 import com.fivefivelike.mybaselibrary.mvp.databind.IDataBind;
 import com.fivefivelike.mybaselibrary.mvp.view.IDelegate;
 import com.fivefivelike.mybaselibrary.utils.ActUtil;
+import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.SaveUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
+import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
+import com.fivefivelike.mybaselibrary.utils.logger.KLog;
 import com.fivefivelike.mybaselibrary.view.dialog.ResultDialog;
 import com.yanzhenjie.nohttp.error.NetworkError;
 import com.yanzhenjie.nohttp.error.NotFoundCacheError;
@@ -20,6 +25,7 @@ import com.yanzhenjie.nohttp.error.UnKnownHostError;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.ProtocolException;
 import java.util.HashMap;
@@ -106,6 +112,38 @@ public abstract class BaseDataBind<T extends IDelegate> implements IDataBind<T> 
             }
         }
     }
+
+    public void success(FragmentActivity activity, ServiceDataCallback serviceDataCallback, DefaultClickLinsener defaultClickLinsener, int requestCode, String jsonData) {
+        String info;
+        int status;
+        String data;
+        KLog.i(this.getClass().getName(), "请求数据: " + jsonData);
+        try {
+            JSONObject object = new JSONObject(jsonData);
+            info = object.getString("msg");
+            status = object.getInt("code");
+            data = object.getString("data");
+            if (status == 0000) {
+                serviceDataCallback.onDataSuccess(data, info, status, requestCode);
+            } else {
+                serviceDataCallback.onDataError(data, info, status, requestCode);
+            }
+            String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
+            if (TextUtils.isEmpty(dialog) && status != 0000) {
+                ToastUtil.show(info);
+            }
+            if (!TextUtils.isEmpty(dialog)) {
+                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(activity, dialog, defaultClickLinsener);
+                if (TextUtils.isEmpty(resultDialogEntity.getType())) {
+                    ToastUtil.show(info);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            showError(e);
+        }
+    }
+
 
     protected Map<String, Object> getBaseMap() {
         baseMap = new HashMap<>();

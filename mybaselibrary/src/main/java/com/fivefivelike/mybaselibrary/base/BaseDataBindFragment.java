@@ -2,22 +2,14 @@ package com.fivefivelike.mybaselibrary.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fivefivelike.mybaselibrary.entity.ResultDialogEntity;
 import com.fivefivelike.mybaselibrary.http.RequestCallback;
+import com.fivefivelike.mybaselibrary.http.ServiceDataCallback;
 import com.fivefivelike.mybaselibrary.mvp.databind.IDataBind;
-import com.fivefivelike.mybaselibrary.utils.GsonUtil;
-import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.utils.callback.DefaultClickLinsener;
-import com.fivefivelike.mybaselibrary.utils.logger.KLog;
-import com.fivefivelike.mybaselibrary.view.dialog.ResultDialog;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import io.reactivex.disposables.Disposable;
 
@@ -28,7 +20,7 @@ import static com.fivefivelike.mybaselibrary.base.BaseActivity.loginCls;
  * Created by 郭青枫 on 2017/7/3.
  */
 
-public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDataBind> extends BaseFragment<T> implements RequestCallback, DefaultClickLinsener {
+public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDataBind> extends BaseFragment<T> implements RequestCallback,ServiceDataCallback, DefaultClickLinsener {
     protected D binder;
 
     @Nullable
@@ -68,39 +60,37 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
 
     @Override
     public void success(int requestCode, String jsonData) {
-        String info;
-        int status;
-        String data;
-        KLog.i(this.getClass().getName(), "请求数据: " + jsonData);
-        try {
-            JSONObject object = new JSONObject(jsonData);
-            info = object.getString("msg");
-            status = object.getInt("code");
-            data = object.getString("data");
-            if (status == 0000) {
-                onServiceSuccess(data, info, status, requestCode);
-            } else {
-                onServiceError(data, info, status, requestCode);
-            }
-            String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
-            if (TextUtils.isEmpty(dialog) && status != 0000) {
-                ToastUtil.show(info);
-            }
-            if (!TextUtils.isEmpty(dialog)) {
-                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(getActivity(), dialog, this);
-                if (TextUtils.isEmpty(resultDialogEntity.getType())) {
-                    ToastUtil.show(info);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            error(requestCode, e);
-        } finally {
-            //解除 enable view
-            if (viewDelegate != null) {
-                viewDelegate.commitEnableView(true);
-            }
+        if (binder != null) {
+            binder.success(getActivity(), this, this, requestCode, jsonData);
         }
+        //        String info;
+        //        int status;
+        //        String data;
+        //        KLog.i(this.getClass().getName(), "请求数据: " + jsonData);
+        //        try {
+        //            JSONObject object = new JSONObject(jsonData);
+        //            info = object.getString("msg");
+        //            status = object.getInt("code");
+        //            data = object.getString("data");
+        //            if (status == 0000) {
+        //                onServiceSuccess(data, info, status, requestCode);
+        //            } else {
+        //                onServiceError(data, info, status, requestCode);
+        //            }
+        //            String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
+        //            if (TextUtils.isEmpty(dialog) && status != 0000) {
+        //                ToastUtil.show(info);
+        //            }
+        //            if (!TextUtils.isEmpty(dialog)) {
+        //                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(getActivity(), dialog, this);
+        //                if (TextUtils.isEmpty(resultDialogEntity.getType())) {
+        //                    ToastUtil.show(info);
+        //                }
+        //            }
+        //        } catch (JSONException e) {
+        //            e.printStackTrace();
+        //            error(requestCode, e);
+        //        }
     }
 
 
@@ -110,6 +100,17 @@ public abstract class BaseDataBindFragment<T extends BaseDelegate, D extends IDa
             binder.showError(exThrowable);
         }
     }
+
+    @Override
+    public void onDataSuccess(String data, String info, int status, int requestCode) {
+        onServiceSuccess(data, info, status, requestCode);
+    }
+
+    @Override
+    public void onDataError(String data, String info, int status, int requestCode) {
+        onServiceError(data, info, status, requestCode);
+    }
+
 
     protected void onServiceError(String data, String info, int status, int requestCode) {
         if (binder.isMissToken(status)) {

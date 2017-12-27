@@ -52,7 +52,6 @@ public class TransactAppraiseBinder extends BaseDataBind<TransactAppraiseDelegat
             String secondContent,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("dealId", dealId);
         baseMap.put("firstId", firstId);
         baseMap.put("firstScore", firstScore);

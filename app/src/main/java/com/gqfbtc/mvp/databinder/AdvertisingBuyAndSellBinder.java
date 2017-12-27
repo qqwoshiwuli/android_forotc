@@ -28,7 +28,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String threshold,//最小购买金额(默认100)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", false);
         baseMap.put("isSale", false);
@@ -67,7 +66,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String ceil,//价格上线
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", false);
         baseMap.put("isSale", false);
@@ -107,7 +105,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCoinAddr,//买方收币地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", true);
         baseMap.put("isSale", false);
@@ -147,7 +144,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCoinAddr,//买方收币地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", true);
         baseMap.put("isSale", false);
@@ -186,7 +182,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCashAddr,//卖方收款地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", false);
         baseMap.put("isSale", true);
@@ -224,7 +219,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCashAddr,//卖方收款地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", false);
         baseMap.put("isSale", true);
@@ -264,7 +258,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCashAddr,//卖方收款地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", true);
         baseMap.put("isSale", true);
@@ -305,7 +298,6 @@ public class AdvertisingBuyAndSellBinder extends BaseDataBind<AdvertisingBuyAndS
             String collectionCashAddr,//卖方收款地址(可多选)
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("currency", currency);
         baseMap.put("isSafe", true);
         baseMap.put("isSale", true);

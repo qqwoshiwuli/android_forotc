@@ -87,7 +87,6 @@ public class WaitTransactBinder extends BaseDataBind<WaitTransactDelegate> {
             String intermediaryCollectionCashAddr,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("id", id + "");
         baseMap.put("dealStatus", dealStatus + "");
         //用户地址
@@ -114,7 +113,6 @@ public class WaitTransactBinder extends BaseDataBind<WaitTransactDelegate> {
             String dealStatus,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("id", id + "");
         baseMap.put("dealStatus", dealStatus + "");
         return new HttpRequest.Builder()

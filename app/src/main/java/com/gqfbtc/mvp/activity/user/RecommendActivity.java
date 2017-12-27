@@ -6,14 +6,15 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.blankj.utilcode.util.CacheUtils;
 import com.fivefivelike.mybaselibrary.base.BaseDataBindActivity;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.gqfbtc.R;
-import com.gqfbtc.Utils.ACache;
 import com.gqfbtc.dialog.ShareDialog;
 import com.gqfbtc.entity.ShareItemEntity;
 import com.gqfbtc.entity.bean.ShareBean;
@@ -36,7 +37,7 @@ public class RecommendActivity extends BaseDataBindActivity<RecommendDelegate, R
 
     public static final String action = "forotc://share";
 
-    ACache aCache;
+
     ShareBean shareBean;
     ShareDialog shareDialog;
     ShareEntity shareEntity;
@@ -50,13 +51,12 @@ public class RecommendActivity extends BaseDataBindActivity<RecommendDelegate, R
     protected void bindEvenListener() {
         super.bindEvenListener();
         initToolbar(new ToolbarBuilder().setTitle("分享给朋友").setSubTitle("帮助"));
-        aCache = ACache.get(this);
-        //先读取缓存数据
-        shareBean = (ShareBean) aCache.getAsObject(ShareBean.class.getClass().getName());
-        addRequest(binder.getSharePanelInfo(shareBean == null, this));
-        if (shareBean != null) {
+        String shareBeanJson = CacheUtils.getInstance().getString("ShareBean");
+        if (!TextUtils.isEmpty(shareBeanJson)) {
+            shareBean = GsonUtil.getInstance().toObj(shareBeanJson, ShareBean.class);
             initView();
         }
+        addRequest(binder.getSharePanelInfo(this.shareBean == null, this));
         viewDelegate.viewHolder.iv_pic.setImageResource(R.drawable.ic_share_group);
     }
 
@@ -72,7 +72,6 @@ public class RecommendActivity extends BaseDataBindActivity<RecommendDelegate, R
 
 
     private void initClick() {
-
         viewDelegate.viewHolder.lin_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +139,8 @@ public class RecommendActivity extends BaseDataBindActivity<RecommendDelegate, R
         viewDelegate.viewHolder.sv_root.setVisibility(View.VISIBLE);
         viewDelegate.viewHolder.tv_num.setText(shareBean.getCountNum());
         viewDelegate.viewHolder.tv_rewards.setText(shareBean.getSumAmount());
-
+        initShareDialog();
+        initClick();
     }
 
     private void copy(String txt) {
@@ -161,9 +161,8 @@ public class RecommendActivity extends BaseDataBindActivity<RecommendDelegate, R
             case 0x123:
                 shareBean = GsonUtil.getInstance().toObj(data, ShareBean.class);
                 if (shareBean != null) {
+                    CacheUtils.getInstance().put("ShareBean", data, 60 * 60 * 24);
                     initView();
-                    initShareDialog();
-                    initClick();
                 }
                 break;
         }

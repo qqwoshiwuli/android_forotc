@@ -14,7 +14,6 @@ public class AddAddressDelegate extends BaseDelegate {
     @Override
     public void initView() {
         viewHolder = new ViewHolder(getRootView());
-        setCommitEnableView(viewHolder.tv_commit);
     }
 
     @Override

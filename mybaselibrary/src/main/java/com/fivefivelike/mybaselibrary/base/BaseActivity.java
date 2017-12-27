@@ -6,13 +6,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.circledialog.CircleDialog;
 import com.fivefivelike.mybaselibrary.R;
 import com.fivefivelike.mybaselibrary.entity.ToolbarBuilder;
 import com.fivefivelike.mybaselibrary.mvp.presenter.ActivityPresenter;
 import com.fivefivelike.mybaselibrary.utils.ActUtil;
+import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.githang.statusbar.StatusBarCompat;
 
 import java.util.ArrayList;
@@ -92,7 +92,7 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
     public void onBackPressed() {
         if (doubleClickActList.contains(getClass().getName())) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                ToastUtil.show("再按一次退出程序");
                 exitTime = System.currentTimeMillis();
             } else {
                 ActUtil.getInstance().AppExit(this);

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.fivefivelike.mybaselibrary.utils.GlobleContext;
+import com.blankj.utilcode.util.Utils;
 import com.fivefivelike.mybaselibrary.utils.GsonUtil;
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class BroadcastManager {
      */
     public static BroadcastManager getInstance() {
         if (instance == null) {
-            instance = new BroadcastManager(GlobleContext.getInstance().getApplicationContext());
+            instance = new BroadcastManager(Utils.getApp().getApplicationContext());
         }
         return instance;
     }

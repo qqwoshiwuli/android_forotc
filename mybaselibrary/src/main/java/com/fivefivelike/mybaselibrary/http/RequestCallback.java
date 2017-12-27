@@ -7,6 +7,7 @@ package com.fivefivelike.mybaselibrary.http;
 public interface RequestCallback {
     /**
      * 请求服务器成功
+     *
      * @param requestCode
      * @param data
      */
@@ -14,9 +15,13 @@ public interface RequestCallback {
 
     /**
      * 请求服务器失败
+     *
      * @param requestCode
      * @param exThrowable
      */
     void error(int requestCode, Throwable exThrowable);
+
+
+
 
 }

@@ -59,7 +59,6 @@ public class AdvertisingBuyAndSellDelegate extends BaseDelegate {
     @Override
     public void initView() {
         viewHolder = new ViewHolder(getRootView());
-        setCommitEnableView(viewHolder.tv_commit);
         viewHolder.tv_toggle.setChecked(false);
         viewHolder.et_unit_price.setEnabled(false);
         viewHolder.tv_toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

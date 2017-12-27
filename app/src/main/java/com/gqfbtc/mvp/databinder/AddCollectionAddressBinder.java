@@ -28,7 +28,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String code,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("ownerIsUser", ownerIsUser);
         baseMap.put("collectionType", collectionType);
         baseMap.put("collectionAddr", collectionAddr);
@@ -61,7 +60,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String ownerName,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("ownerIsUser", ownerIsUser);
         baseMap.put("collectionType", collectionType);
         baseMap.put("collectionAddr", collectionAddr);
@@ -92,7 +90,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String code,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("collectionType", "2");
         baseMap.put("collectionAddr", collectionAddr);
         baseMap.put("ownerName", ownerName);
@@ -115,7 +112,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String ownerName,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("collectionType", "2");
         baseMap.put("collectionAddr", collectionAddr);
         baseMap.put("ownerName", ownerName);
@@ -144,7 +140,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String code,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("ownerIsUser", ownerIsUser);
         baseMap.put("collectionType", collectionType);
         baseMap.put("collectionAddr", collectionAddr);
@@ -178,7 +173,6 @@ public class AddCollectionAddressBinder extends BaseDataBind<AddCollectionAddres
             String ownerName,
             RequestCallback requestCallback) {
         getBaseMapWithUid();
-        viewDelegate.commitEnableView(false);
         baseMap.put("ownerIsUser", ownerIsUser);
         baseMap.put("collectionType", collectionType);
         baseMap.put("collectionAddr", collectionAddr);

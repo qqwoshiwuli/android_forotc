@@ -1,6 +1,7 @@
 package com.fivefivelike.mybaselibrary.utils;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.fivefivelike.mybaselibrary.R;
 
 
 /**
@@ -10,12 +11,12 @@ import com.blankj.utilcode.util.ToastUtils;
 public class ToastUtil {
 
     public static void show(String message) {
+        ToastUtils.setBgResource(R.drawable.toast_bg);
         if (message.length() < 15) {
-            ToastUtils.showShortSafe(message);
+            ToastUtils.showShort(message);
         } else {
-            ToastUtils.showLongSafe(message);
+            ToastUtils.showLong(message);
         }
     }
-
 
 }

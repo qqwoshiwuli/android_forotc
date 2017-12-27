@@ -30,7 +30,6 @@ public class ChooseBuyBtcModeBinder extends BaseDataBind<ChooseBuyBtcModeDelegat
         baseMap.put("isSale", isSale);
         baseMap.put("dealMoney", dealMoney);
         baseMap.put("isSafe", isSafe);
-        viewDelegate.commitEnableView(false);
         return new HttpRequest.Builder()
                 .setRequestCode(0x123)
                 .setRequestUrl(HttpUrl.getIntance().beforeSaveAd)
@@ -65,7 +64,6 @@ public class ChooseBuyBtcModeBinder extends BaseDataBind<ChooseBuyBtcModeDelegat
         baseMap.put("intermediaryId", intermediaryId);
         baseMap.put("dealIsSafe", dealIsSafe);
         baseMap.put("dealMoney", dealMoney);
-        viewDelegate.commitEnableView(false);
         //        userCollectionCashAddr   安全卖时
         //        dealCollectionCoinAddr   安全买时
         baseMap.put(!isBuy ? "userCollectionCashAddr" : "dealCollectionCoinAddr", dealCollectionCoinAddr);
