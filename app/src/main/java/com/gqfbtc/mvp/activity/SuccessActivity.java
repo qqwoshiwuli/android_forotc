@@ -14,6 +14,7 @@ import com.gqfbtc.R;
 import com.gqfbtc.entity.bean.HomeAdvertising;
 import com.gqfbtc.mvp.activity.advertising.BigDealsAdvertisingActivity;
 import com.gqfbtc.mvp.activity.advertising.BuyAndSellBTCActivity;
+import com.gqfbtc.mvp.activity.main.LoginActivity;
 import com.gqfbtc.mvp.activity.transact.BigDealsActivity;
 import com.gqfbtc.mvp.activity.transact.WaitTransactActivity;
 import com.gqfbtc.mvp.delegate.SuccessDelegate;
@@ -149,7 +150,7 @@ public class SuccessActivity extends BaseActivity<SuccessDelegate> {
             }
         } else if (type == INTENT_SUCCESS_UPDATA) {
             //去登陆页
-            Intent intent = new Intent(this, loginCls);
+            Intent intent = new Intent(this, LoginActivity.class);
             ActUtil.getInstance().killAllActivity(this);
             startActivity(intent);
         } else if (type == INTENT_SUCCESS_ORDER) {

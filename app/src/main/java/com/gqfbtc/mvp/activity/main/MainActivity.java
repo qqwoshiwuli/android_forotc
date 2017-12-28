@@ -21,7 +21,6 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.gqfbtc.R;
 import com.gqfbtc.Utils.UiHeplUtils;
 import com.gqfbtc.Utils.glide.GlideUtils;
-import com.gqfbtc.base.Application;
 import com.gqfbtc.dialog.UpdateDialog;
 import com.gqfbtc.entity.TabEntity;
 import com.gqfbtc.entity.bean.AppVersion;
@@ -32,7 +31,6 @@ import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
 import com.gqfbtc.mvp.activity.ChooseBuyBtcModeActivity;
 import com.gqfbtc.mvp.activity.posted.PostedBigDealBuyActivity;
 import com.gqfbtc.mvp.activity.posted.PostedBigDealSellActivity;
-import com.gqfbtc.mvp.activity.user.FAQActivity;
 import com.gqfbtc.mvp.databinder.MainBinder;
 import com.gqfbtc.mvp.delegate.IMDelegate;
 import com.gqfbtc.mvp.delegate.MainDelegate;
@@ -146,9 +144,6 @@ public class MainActivity extends BaseDataBindActivity<MainDelegate, MainBinder>
         viewDelegate.addFragment(assetsFragment);
         viewDelegate.addFragment(userFragment);
         viewDelegate.showFragment(0);
-        loginCls = LoginActivity.class;//token过期重新登录页面
-        helpCls = FAQActivity.class;//帮助页面
-        baseAppLinsener = Application.getInstance();//启动客服统一入口
         doubleClickActList.add(this.getClass().getName());//两次返回act注册
     }
 

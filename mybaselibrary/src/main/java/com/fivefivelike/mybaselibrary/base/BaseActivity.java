@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -23,13 +24,9 @@ import java.util.List;
  */
 
 public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPresenter<T> implements View.OnClickListener, CircleDialog.CircleDialogLinsener {
-    public static Class loginCls;
-    public static Class helpCls;
     public static List<String> doubleClickActList = new ArrayList<>();
     public Activity mContext;
     private long exitTime = 0;
-
-    public static BaseAppLinsener baseAppLinsener;
 
     private int WindowManagerLayoutParams = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
     public static final int WindowManagerLayoutParamsNone = 0;
@@ -54,6 +51,18 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
             }
         }
     };
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +151,7 @@ public abstract class BaseActivity<T extends BaseDelegate> extends ActivityPrese
     protected void clickRightTv() {
         if ("帮助".equals(viewDelegate.getmToolbarSubTitle().getText().toString())) {
             //gotoActivity(helpCls).startAct();
-            baseAppLinsener.startCustomerService(mContext);
+            BaseApp.getInstance().startCustomerService(mContext);
         }
     }
 

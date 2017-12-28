@@ -60,6 +60,7 @@ dependencies {
     compile rootProject.ext.dependencies["okhttp3-integration"]
     compile rootProject.ext.dependencies["status-bar"]
     compile rootProject.ext.dependencies["utilcode"]
+    compile rootProject.ext.dependencies["multidex"]
     annotationProcessor rootProject.ext.dependencies["bumptech"]
 
 }

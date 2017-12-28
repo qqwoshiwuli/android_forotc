@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable;
  * Created by 郭青枫 on 2017/7/3.
  */
 
-public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDataBind> extends BaseActivity<T> implements RequestCallback,ServiceDataCallback, DefaultClickLinsener {
+public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDataBind> extends BaseActivity<T> implements RequestCallback, ServiceDataCallback, DefaultClickLinsener {
     protected D binder;
 
     @Override
@@ -58,43 +58,13 @@ public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDa
         if (binder != null) {
             binder.success(this, this, this, requestCode, jsonData);
         }
-        //        String info;
-        //        int status;
-        //        String data;
-        //        KLog.i(this.getClass().getName(), "请求数据: " + jsonData);
-        //
-        //        try {
-        //            JSONObject object = new JSONObject(jsonData);
-        //            info = object.getString("msg");
-        //            status = object.getInt("code");
-        //            data = object.getString("data");
-        //
-        //            if (status == 0000) {
-        //                onServiceSuccess(data, info, status, requestCode);
-        //            } else {
-        //                onServiceError(data, info, status, requestCode);
-        //            }
-        //            String dialog = GsonUtil.getInstance().getValue(jsonData, ResultDialog.DIALOG_KEY, String.class);
-        //
-        //            if (TextUtils.isEmpty(dialog) && status != 0000) {
-        //                ToastUtil.show(info);
-        //            }
-        //            if (!TextUtils.isEmpty(dialog)) {
-        //                ResultDialogEntity resultDialogEntity = ResultDialog.getInstence().ShowResultDialog(this, dialog, this);
-        //                if (TextUtils.isEmpty(resultDialogEntity.getType())) {
-        //                    ToastUtil.show(info);
-        //                }
-        //            }
-        //        } catch (JSONException e) {
-        //            e.printStackTrace();
-        //            error(requestCode, e);
-        //        }
     }
 
     @Override
     public void onDataSuccess(String data, String info, int status, int requestCode) {
         onServiceSuccess(data, info, status, requestCode);
     }
+
     @Override
     public void onDataError(String data, String info, int status, int requestCode) {
         onServiceError(data, info, status, requestCode);
@@ -109,7 +79,7 @@ public abstract class BaseDataBindActivity<T extends BaseDelegate, D extends IDa
 
     protected void onServiceError(String data, String info, int status, int requestCode) {
         if (binder.isMissToken(status)) {
-            binder.loginAgain(this, loginCls);
+            binder.loginAgain(this);
         }
     }
 

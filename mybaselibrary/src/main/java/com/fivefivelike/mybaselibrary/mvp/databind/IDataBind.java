@@ -15,18 +15,25 @@ import io.reactivex.disposables.Disposable;
 
 public interface IDataBind<T extends IDelegate> {
 
+    //添加网络请求
     void addRequest(Disposable disposable);
 
+    //网络请求取消绑定
     void cancelpost();
 
+    //判断token丢失
     boolean isMissToken(int status);
 
-    void loginAgain(FragmentActivity activity, Class login);
+    //重新登录
+    void loginAgain(FragmentActivity activity);
 
+    //展示报错
     void showError(Throwable exThrowable);
 
+    //网络 返回弹窗 点击事件
     void onDialogBtnClick(FragmentActivity activity, View view, int position, Object item);
 
+    //网络请求成功
     void success(FragmentActivity activity, ServiceDataCallback serviceDataCallback, DefaultClickLinsener defaultClickLinsener, int requestCode, String jsonData);
 
 }

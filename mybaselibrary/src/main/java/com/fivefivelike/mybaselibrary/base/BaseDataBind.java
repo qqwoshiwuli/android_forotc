@@ -73,9 +73,9 @@ public abstract class BaseDataBind<T extends IDelegate> implements IDataBind<T> 
         return status == 4444 || status == 4445;
     }
 
-    public void loginAgain(FragmentActivity activity, Class login) {
+    public void loginAgain(FragmentActivity activity) {
         //重新登录
-        Intent intent = new Intent(activity, login);
+        Intent intent = new Intent(activity, BaseApp.getInstance().getLoginActivityClass());
         ActUtil.getInstance().killAllActivity(activity);
         activity.startActivity(intent);
         activity.finish();

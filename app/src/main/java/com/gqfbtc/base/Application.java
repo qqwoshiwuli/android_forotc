@@ -1,13 +1,11 @@
 package com.gqfbtc.base;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 
 import com.biv.BigImageViewer;
 import com.biv.loader.glide.GlideImageLoader;
 import com.blankj.utilcode.util.Utils;
-import com.fivefivelike.mybaselibrary.base.BaseAppLinsener;
+import com.fivefivelike.mybaselibrary.base.BaseApp;
 import com.fivefivelike.mybaselibrary.utils.GlobleContext;
 import com.fivefivelike.mybaselibrary.utils.ToastUtil;
 import com.fivefivelike.mybaselibrary.utils.logger.KLog;
@@ -16,6 +14,7 @@ import com.gqfbtc.entity.event.CustomerServiceEvent;
 import com.gqfbtc.entity.event.TransactEvent;
 import com.gqfbtc.greenDaoUtils.DaoManager;
 import com.gqfbtc.greenDaoUtils.SingSettingDBUtil;
+import com.gqfbtc.mvp.activity.main.LoginActivity;
 import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;
 import com.yanzhenjie.nohttp.InitializationConfig;
@@ -46,12 +45,7 @@ import static com.gqfbtc.base.AppConst.rongId;
  * Created by 郭青枫 on 2017/9/25.
  */
 
-public class Application extends BaseApp implements RongIMClient.OnReceiveMessageListener, BaseAppLinsener {
-    private static Application instance;
-
-    public static synchronized Application getInstance() {
-        return instance;
-    }
+public class Application extends BaseApp implements RongIMClient.OnReceiveMessageListener {
 
     @Override
     public void onCreate() {
@@ -65,7 +59,6 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
     private void initClient() {
         //客户端进程中初始化操作
         if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))) {
-            instance = this;
             //初始化工具类集合
             Utils.init(this);
             GlobleContext.init(this);
@@ -92,6 +85,9 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
         super.onTerminate();
     }
 
+    public Class getLoginActivityClass() {
+        return LoginActivity.class;
+    }
 
     private void initNohttp() {
         SSLContext sslContext = SSLContextUtil.getSSLContext();
@@ -151,32 +147,6 @@ public class Application extends BaseApp implements RongIMClient.OnReceiveMessag
             ToastUtil.show("登录后才能使用客服帮助");
         }
     }
-
-    /**
-     * OnLowMemory是Android提供的API，在系统内存不足，
-     * 所有后台程序（优先级为background的进程，不是指后台运行的进程）都被杀死时，系统会调用OnLowMemory
-     */
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        //垃圾回收
-        System.gc();
-    }
-
-
-    public static String getCurProcessName(Context context) {
-        int pid = android.os.Process.myPid();
-        ActivityManager activityManager = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager
-                .getRunningAppProcesses()) {
-            if (appProcess.pid == pid) {
-                return appProcess.processName;
-            }
-        }
-        return null;
-    }
-
 
     @Override
     public boolean onReceived(Message message, int i) {
