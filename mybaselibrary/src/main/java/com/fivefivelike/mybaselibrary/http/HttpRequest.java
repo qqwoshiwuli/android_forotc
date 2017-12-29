@@ -312,30 +312,35 @@ public class HttpRequest {
                     if (response.isSucceed())
                         e.onNext(response);
                     else {
-                        e.onError(response.getException());
+                        e.onError(response.getException());//onError 之后不可可继下游可继续接受 onNext
                     }
-                    e.onComplete();
+                    e.onComplete();//onComplete 之后可继下游可继续接受 onNext
                 }
+                //onComplete和onError必须唯一并且互斥, 即不能发多个onComplete, 也不能发多个onError,
+                // 也不能先发一个onComplete, 然后再发一个onError, 反之亦然
             }
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                //执行了反注册unsubscribes或者发送数据序列中断了，解除上游生产者与下游订阅者之间的引用。
                 .onTerminateDetach()
-                .subscribe(new Consumer<Response<String>>() {
+                .subscribe(new Consumer<Response<String>>() {//onNext()
                     @Override
                     public void accept(@NonNull Response<String> stringResponse) throws Exception {
+                        //调用成功 返回json
                         success(stringResponse);
                     }
-                }, new Consumer<Throwable>() {
+                }, new Consumer<Throwable>() {//onError()
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
+                        //调用失败
                         dismissDialog();
                         throwable.printStackTrace();
                         if (mRequestCallback != null) {
                             mRequestCallback.error(mRequestCode, throwable);
                         }
                     }
-                }, new Action() {
+                }, new Action() {//onCompleted()
                     @Override
                     public void run() throws Exception {
                         dismissDialog();
